@@ -932,9 +932,10 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
 
 ### past exam
 - > [2015 Q2] A) Explain the general principles that should underlie the design of Service-Oriented Architectures (SOA). [7]
+  
     - see SOA goal above
 - > [2015 Q2] B) Explain why and how Cloud infrastructures have benefited from SOA. [3]
-    
+  
     - standardized interfaces available (可用的标准化接口) to enable you not worry how the cloud internal do tasks for external interactions
     - When an architecture is completely contained within the same machine, components can communicate directly
         - e.g. through function calls or object instantiations.
@@ -948,7 +949,7 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
         - you are providing interface that people/software can interact with
     - Where it is helping cloud computing is every single cloud provider at the builder of the interface using different technologies i.e. you have to learn the programming language to do that and this can be a major bottleneck. Adopting SOA like ReST can help to solve this problem. We have apis provided by openstack where you can interact with the cloud with the help of set of libraries for doing that. 
 - > [2013 Q4] A) Compare and contrast Representational State Transfer (ReST) based web services and Simple Object Access Protocol (SOAP)-based web services for implementing service-oriented architectures. [8]
-    
+  
     - They are different flavors of web services
     - complexity of SOAP
         - have namespace and standardization around us to do with the operation names of parameters
@@ -964,7 +965,7 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
   
     - above
 - > [2016 Q4] A) Representational State Transfer (ReST) based web services are often used for creating Resource Oriented Architectures (ROA) whilst Simple Object Access Protocol (SOAP)-based web services are often used to implement Service-oriented Architectures (SOA). Discuss the similarities and **differences between a ROA and a SOA**. [3]
-    
+  
     - similar
         - Much of the philosophy behind SOA applies to ROA, 
             - Standardized service contract
@@ -985,12 +986,13 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
 - > [2014 Q1] C) A HTTP method can be _idempotent_
 
     - > What is meant by this **italicized** term? [1]
-
-    Effect of repeating a call is equivalent to making a single call; if not can has side-effects
+    >
+      > Effect of repeating a call is equivalent to making a single call; if not can has side-effects
 
   - > Give an example of an idempotent ReST method. [1]
-
-    PUT
+  >
+    > PUT
+  
 - > [2015 Q3] B) HTTP methods can be safe or idempotent.
   
     - > a. What is meant by a safe HTTP method? [1]
@@ -1015,14 +1017,12 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
 ## Week 7 – Big Data and CouchDB
 ### "Big data" challenges and architectures
 #### challenge
-1. four "Vs"
+1. Big data challenges: four "Vs"
 
-    |Big data challenges||
-    |---|---|
-    |Volume| No one really knows how much new data is being generated, but the amount of information being collected is huge.
-    |Velocity| **the frequency (that data arrive)** at which new data is being brought into the system and analytics performed
-    |Variety| **the variability and complexity** of data schema. The more complex the data schema(s) you have, the higher the probability of them changing along the way, adding more complexity.
-    |Veracity| **the level of trust** in the data accuracy (provenance); the more diverse sources you have, the more unstructured they are, the less veracity you have.
+    - **Volume**: yes, volume (Giga, Tera, Peta, …) is a criteria, but not the only one
+    - **Velocity**: the frequency at which new data is being brought into the system and analytics performed
+    - **Variety**: the variability and complexity of data schema. The more complex the data schema(s) you have, the higher the probability of them changing along the way, adding more complexity.
+    - **Veracity**: the level of trust in data accuracy (provenance); the more diverse sources you have, the more unstructured they are, the less veracity you have.
 
 2. Big Data Calls for Ad hoc Solutions
     - While Relational DBMSs are extremely good at ensuring consistency, they rely on normalized data models that, in a world of big data (think about Veracity and Variety) can no longer be taken for granted.
@@ -1030,62 +1030,64 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
     - While there is nothing preventing SQL to be used in distributed environments, alternative query languages have been used for distributed databases, hence they are sometimes called NoSQL DBMSs
 
 3. DBMSs for Distributed Environments
-    - |||e.g.|
-        |---|---|---|
-        |key-value store|is a DBMS that allows the retrieval of a chunk of data given a key: **fast, but crude**|(e.g. Redis, PostgreSQL Hstore, Berkeley DB)
-        |BigTable DBMS store|data in columns grouped into column families, with rows potentially containing different columns of the same family for **quick retrive**|(e.g. Apache Cassandra, Apache Accumulo) 
-        |Document-oriented DBMS store|- data as structured documents, usually expressed as XML or JSON<br/>- Document-oriented databases are one of the main categories of NoSQL databases|(e.g. Apache CouchDB, MongoDB)
-        |NoSQL DBMSs|While there is nothing preventing SQL to be used in distributed environments, alternative query languages have been used for distributed databases, hence they are sometimes called NoSQL DBMSs|
-    - Why Document-oriented DBMS for Big data?
-        - While Relational DBMSs are extremely good for ensuring consistency and availability, the normalization that lies at the heart of a relational database model implies fine-grained data, which are less conducive to partition-tolerance than coarse-grained data.
-            - Example:
-                -  A typical contact database in a relational data model may include: a person table, a telephone table, an email table and an address table, all relate to each other.
-                -  The same database in a document-oriented database would entail one document type only, with telephones numbers, email addresses, etc., nested as arrays in the same document.
-        - While Relational DBMSs are extremely good at ensuring consistency, they rely on normalized data models that, in a world of big data (think about Veracity and Variety) can no longer be taken for granted.
-            - Therefore, it makes sense to use DBMSs that are built upon data models that are not relational (relational model: tables and relationships amongst tables).
-        - While there is nothing preventing SQL to be used in distributed environments, alternative query languages have been used for distributed databases, hence they are sometimes called NoSQL DBMSs
-        - Relational database finds it challenging to handle such huge data volumes. To address this, RDBMS added more central processing units (or CPUs) or more memory to the database management system to scale up vertically
-        - The majority of the data comes in a semi-structured or unstructured format from social media, audio, video, texts, and emails.
-        - Big data is generated at a very high velocity. RDBMS lacks in high velocity because it’s designed for steady data retention rather than rapid growth
 
-4. Brewer’s CAP Theorem
-    - Consistency, Availability, Partition-Tolerance
+    - A **key-value store** is a DBMS that allows the retrieval of a chunk of data given a key: fast, but crude (e.g. Redis, RocksDB, Berkeley DB)
+    - A **BigTable DBMS stores** data in columns grouped into column families, with rows potentially containing different columns of the same family (e.g. Apache Cassandra, Apache Accumulo)
+    - A **Document-oriented DBMS stores** data as structured documents, usually expressed as XML or JSON (e.g. Apache CouchDB, MongoDB)
+    - **NoSQL DBMSs**: While there is nothing preventing SQL to be used in distributed environments, alternative query languages have been used for distributed databases, hence they are sometimes called NoSQL DBMSs
 
-        |||
-        |---|---|
-        |Consistency|every client receiving an answer receives **the same answer** from all nodes in the cluster (it doesn't depend on which node is quired)
-        |Availability|every client receives **an answer** from any node in the cluster (which might differ from node to node)
-        |Partition-Tolerance|the cluster **keeps on operating** when one or more nodes cannot communicate with the rest of the cluster
-    - Brewer’s CAP Theorem: you can only pick any two of Consistency, Availability and Partition-Tolerance.
-        - <img src="./docs/13.jpg" width="30%" height="50%" />
+4. Why Document-oriented DBMS for Big data?
+    - While Relational DBMSs are extremely good for ensuring consistency and availability, the normalization that lies at the heart of a relational database model implies fine-grained data, which are less conducive to partition-tolerance than coarse-grained data.
+
+        Example:
+        -  A typical contact database in a relational data model may include: a person table, a telephone table, an email table and an address table, all relate to each other.
+        -  The same database in a document-oriented database would entail one document type only, with telephones numbers, email addresses, etc. nested as arrays in the same document.
+
+    - (Big Data Calls for Ad hoc Solutions) 同样适用
+    - Relational database finds it challenging to handle such huge data volumes. To address this, RDBMS added more central processing units (or CPUs) or more memory to the database management system to scale up vertically
+    - The majority of the data comes in a semi-structured or unstructured format from social media, audio, video, texts, and emails.
+    - Big data is generated at a very high velocity. RDBMS lacks in high velocity because it’s designed for steady data retention rather than rapid growth
+
+5. Brewer’s CAP Theorem
+
+    - CAP
+        - **Consistency**: every client receiving an answer receives **the same answer** from all nodes in the cluster (it doesn't depend on which node is quired)
+        - **Availability**: every client receives **an answer** from any node in the cluster (which might differ from node to node)
+        - **Partition-Tolerance**: the cluster **keeps on operating** when one or more nodes cannot communicate with the rest of the cluster
+    - Brewer’s CAP Theorem: 
+        - you can **only pick any two** of Consistency, Availability and Partition-Tolerance.
+        - <img src="./docs/13.jpg" style="zoom: 33%;" />
         - The CAP theorem forces us to consider trade-offs among different options
-        - (not quite) While the theorem shows all three qualities are symmetrical, Consistency and Availability are at odds when a Partition happens (虽然定理表明这三个性质都是对称的，但是当一个分区发生时，一致性和可用性是不一致的)
-            - “Hard” network partitions may be rare, but “soft” ones are not (a slow node may be considered dead even if it is not); ultimately, every partition is detected by a timeout
-                - Can have consequences that impact the cluster as a whole
-                    - e.g. a distributed join is only complete when all sub-queries return
-                - Traditional DBMS architectures were not concerned with network partitions, since all data were supposed to be in a small, co-located cluster of servers
-            - Consequence:
-                - The emphasis on numerous commodity servers, can result in an increased number of hardware failures
+        - (not quite) While the theorem shows all three qualities are symmetrical, Consistency and Availability are at odds when a Partition happens 
+            (虽然定理表明这三个性质都是对称的，但是当一个分区发生时，一致性和可用性是不一致的)
+        - “Hard” network partitions may be rare, but “soft” ones are not (a slow node may be considered dead even if it is not); ultimately, every partition is detected by a timeout
+        - Can have consequences that impact the cluster as a whole
+            - e.g. a distributed join is only complete when all sub-queries return
+        - Traditional DBMS architectures were not concerned with network partitions, since all data were supposed to be in a small, co-located cluster of servers
+        - Consequence: The emphasis on numerous commodity servers, can result in an increased number of hardware failures
 
-5. CAP Theorem and the Classification of Distributed Processing Algorithms
-    - <img src="./docs/14.jpg" width="30%" height="50%" />
+6. CAP Theorem and the Classification of Distributed Processing Algorithms
+
+    <img src="./docs/14.jpg" style="zoom:40%;" />
 
     1. Two phase commit: Consistency and Availability
         - This is the usual algorithm used in relational DBMS's (and MongoDB)
+        it achieves consistency by:
+            - locking data that are within the transaction scope
+            - performing transactions on write-ahead logs
+            - completing transactions (commit) only when all nodes in the cluster have performed the transaction
+            - aborts transactions (rollback) when a partition is detected
+        - requirements:
+            - reduced availability (data lock, stop in case of partition)
+            - enforced consistency (every database is in a consistent state, and all are left in the same state)
 
-            ||what does it entail?|by|
-            |---|---|---|
-            |enforces consistency|every database is in a consistent state, and all are left in the same state|1. locking data that are within the transaction scope <br/>2. performing transactions on write-ahead logs <br/>3. completing transactions (commit) only when all nodes in the cluster have performed the transaction <br/>4. aborts transactions (rollback) when a partition is detected
-            |reduced availability|data lock, stop in case of partition
-        - Conclusion
-          
-            - Therefore, two-phase commit is a good solution when the cluster is co-located, less good when it is distributed
+        Therefore, two-phase commit is a good solution when the cluster is co-located, less good when it is distributed
     2. Paxos: Consistency and Partition-Tolerance
         - This family of algorithms is driven by consensus, and is both partition-tolerant and consistent
         - In Paxos, every node is either a proposer or an accepter:
             - a proposer proposes a value (with a timestamp)
             - an accepter can accept or refuse it (e.g. if the accepter receives a more recent value)
-            - When a proposer has received a sufficient number of acceptances (a quorum is reached), and a confirmation message is sent to the accepters with the agreed value
+        - When a proposer has received a sufficient number of acceptances (a quorum is reached), and a confirmation message is sent to the accepters with the agreed value
         - Conclusion
             - Paxos clusters can recover from partitions and maintain consistency, but the smaller part of a partition (the part that is not in the quorum) will not send responses, hence the availability is compromised
     3. Multi-Version Concurrency Control (MVCC): Availability and Partition-tolerance
@@ -1099,10 +1101,10 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
         - To achieve consistency, Bitcoin uses a form of MVCC based on proof-of-work (which is a proxy for the computing power used in a transaction) and on repeated confirmations by a majority of nodes of a history of transactions.
 
 #### Architecture
-1. Sharding
+1. Sharding (分片)
     - What is it?  
-        - Sharding is the partitioning of a database “horizontally”, i.e. the database rows (or documents) are partitioned into subsets that are stored on different
-    servers. 
+        - Sharding is the partitioning of a database “horizontally”, 
+    i.e. the database rows (or documents) are partitioned into subsets that are stored on different servers. 
         - shard: Every subset of rows
     - Number of shards
         - Larger than the number of replica
@@ -1110,55 +1112,53 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
     - Number of nodes
         - larger than the number of replicas (usually set to 3)
         - The max number of nodes = the number of shards (lest a node contains the same shard file twice)    
-    - The main advantage of a sharded database lies in the
+    - The main **advantage** of a sharded database lies in the
         - improve performance through the distribution of computing load across nodes. 
             - i.e.: better distribution of data
         - makes it easier to move data files around, 
             - e.g. when adding new nodes to the cluster
-    - sharding strategies:
-        |||
-        |---|---|
-        |Hash sharding|to distribute rows evenly across the cluster|
-        |Range sharding|similar rows (say, tweets coming for the same area) that are stored on the same node|
-6. Replication and Sharding
+    - Sharding strategies:
+        - Hash sharding: to distribute rows evenly across the cluster
+        - Range sharding: similar rows (say, tweets coming for the same area) are stored on the same shard
+6. Replication and Sharding (复制和分片)
     - What is replication?   
         - Replication is the action of storing the same row (or document) on different nodes to make the database fault-tolerant.
-    - (adv) Replication and sharding can be combined with the objective of maximizing availability while maintaining a minimum level of data safety.
-    - A bit of nomenclature:
-        - n is the number of replicas (how many times the same data item is repeated across the cluster)
-        - q is the number of shards (how many files a database is split)
-        - n * q is the total number of shard files distributed in the different nodes of the cluster
-        - <img src="./docs/31.png" width="60%" height="50%" />
-          
-            - There are 16 shards since the three node clustered database has n=2 replicas and q=8 shards. 
-7. Partitions
+    - (**advantage**) Replication and sharding can be combined with the objective of maximizing availability while maintaining a minimum level of data safety.
+    - A bit of nomenclature: (术语)
+        - ***n*** is the number of replicas (how many times the same data item is repeated across the cluster)
+        - ***q*** is the number of shards (how many files a database is split)
+        - **n * q** is the total number of shard files distributed in the different nodes of the cluster
+        - <img src="./docs/31.png"/>
+          - There are 16 shards since the three node clustered database has n=2 replicas and q=8 shards. 
+7. Partitions (分区)
     - What is it?  
         - A partition is a grouping of logically related rows in the same shard 
             - e.g.: all the tweets of the same user
-    - Advantage:  
+    - **Advantage**:  
         - Partitioning improves performance by restricting queries to a single shard
             - To be effective, partitions have to be relatively small (certainly smaller than a shard)
     - A database has to be declared “partitioned” during its creation
     - Partitions are a new feature of CouchDB 3.x
-8. MapReduce Algorithms
+4. MapReduce Algorithms
     - What is it?  
       
-        - This family of algorithms is particularly suited to parallel computing of the Single-Instruction, Multiple-Data type (SIMD) (see Flynn's taxonomy in a previous lecture)
-    - Advantage:  
+        - This family of algorithms is particularly suited to parallel computing of the **Single-Instruction, Multiple-Data** type (SIMD) (see Flynn's taxonomy in a previous lecture)
+    - **Advantage**:  
         - parallelism
         - greatly reducing network traffic by moving the process to where data are
     - Procedure:  
         1. Map: distributes data across machines, while 
-    2. Reduce: hierarchically summarizes them until the result is obtained.
-    
-                function map(name, document):
-                    for each word w in document:
-                        emit (w, 1)
-                function reduce(word, partialCounts):
-                    sum = 0
-                    for each pc in partialCounts:
-                        sum += pc
-                    emit (word, sum)
+        2. Reduce: hierarchically summarizes them until the result is obtained.
+    ```
+    function map(name, document):
+        for each word w in document:
+            emit (w, 1)
+    function reduce(word, partialCounts):
+        sum = 0
+        for each pc in partialCounts:
+            sum += pc
+        emit (word, sum)
+    ```
 1. Clustered database architecture
     - Distributed databases are run over “clusters”, that is, sets of connected computers
     - Clusters are needed to: 
@@ -1166,7 +1166,7 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
         - Storing multiple copies of data, e.g. to achieve redundancy 
     - Consider two document-oriented DBMSs (CouchDB and MongoDB) and their typical cluster architectures
 2. CouchDB Cluster Architecture
-    - <img src="./docs/11.jpg" width="30%" height="50%" />
+    - <img src="./docs/11.jpg" style="zoom: 50%;" />
     - In this example there are 3 nodes, 4 shards and a replica number of 2
       
         - replica: copy of data
@@ -1185,23 +1185,23 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
             The sub-directories are named after the document _ids ranges
             ```
     - When a node does not contain a document (say, a document of Shard A is requested to Node 2), the node requests it from another node (say, Node 1) and returns it to the client
-    - Scalability: Nodes can be added/removed easily, and their shards are re-balanced automatically upon addition/deletion of nodes
-    - Quorums
+    - Scalability: (可伸缩性) Nodes can be added/removed easily, and their shards are re-balanced automatically upon addition/deletion of nodes
+    - Quorums (法定人数)
         - Write
             - Can only complete successfully if the document is committed to a quorum of replicas, usually a simple majority
         - Read
             - Can only complete successfully only if a quorum of replicas return matching documents
 3. MongoDB Cluster Architecture
-    - <img src="./docs/12.jpg" width="30%" height="50%" />
+    - <img src="./docs/12.jpg" style="zoom: 50%;" />
     - Sharding (splitting of data) is done at the replica set level
         - i.e.: it involves more than one cluster (a shard is on top of a replica set)
-    - write requests can be answered only by the primary node in a replica set
-    - read requests can be answered by every node (including secondary nodes) in the set 
+    - **write requests** can be answered only by the **primary node** in a replica set
+    - **read requests** can be answered by **every node** (including secondary nodes) in the set 
         - depend on the specifics of the configuration 
-    - Updates flow only from the primary to the secondary
+    - **Updates flow only from the primary to the secondary**
         - If a primary node fails, or discovers it is connected to a minority of nodes, a secondary of the same replica set is elected as the primary
     - Data are balanced across replica sets 
-    - Arbiters (MongoDB instances without data) can assist in breaking a tie in elections.
+    - Arbiters (仲裁者)  (MongoDB instances without data) can assist in breaking a tie in elections.
     - Since a quorum has to be reached, it is better to have an odd number of voting members (the arbiter in this diagram is only illustrative)
 4. MongoDB vs CouchDB Clusters
 
@@ -1214,15 +1214,16 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
     | Functionality  | Some features, such as unique indexes, are not supported in MongoDB sharded environments | Can support this                                             |
     | CAP            | <u>**Two-phase commit**</u> for replicating data from primary to secondary. <br/>**<u>Paxos-like</u>** to elect a primary node in a replica-set. | MVCC                                                         |
 
-    ||CouchDB|MongoDB|
-    |---|---|---|
-    |clusters are (difference in API)|less complex|more complex
-    |clusters are|more available|less available, as - by default - only primary nodes can talk to clients for read operations, (and exclusively so for write operations)
-    |software routers|while any HTTP client can connect to CouchDB|(MongoS) must be embedded in application servers
+    | |CouchDB|MongoDB|
+    |---|--------------|---|
+    |clusters are (difference in API)|less complex|more complex|
+    |clusters are|more available|less available, as - by default - only primary nodes can talk to clients for read operations, (and exclusively so for write operations)|
+    |software routers|while any HTTP client can connect to CouchDB|(MongoS) must be embedded in application servers|
     |Losing two nodes|out of three in the CouchDB architecture shown, means **losing access to between 1/4 and 1/2 the data, depending on the nodes that fail**|in the MongoDB example implies **losing write access** to half the data (although there are ten nodes in the cluster instead of three), and possibly read access too, depending on the cluster configuration parameters and the nature (primary or secondary) of the lost nodes|
-    |Some features (such as unique indexes)||not supported in MongoDB sharded environmen
+    |Some features (such as unique indexes)| |not supported in MongoDB sharded environmen|
     |Classification of Distributed Processing Algorithms|uses MVCC|- uses a mix of two-phase commit (for replicating data from primary to secondary nodes) <br/> - Paxos-like (to elect a primary node in a replica-set)|
-    |emphasis on and all have partition-tolerance|Availability|consistency|
+    |emphasis on and all have partition tolerance | Availability |consistency|
+
     - These differences are rooted in different approaches to an unsolvable problem, a problem defined by Brewer’s CAP Theorem
         - first 5
     - The different choices of strategies explains the different cluster architectures of these two DBMSs
@@ -1234,99 +1235,97 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
 
 ### past exam
 - > [2016 Q3] A) Big data is often associated with data having a range of properties including high volume, high velocity and high variety (heterogeneity).  
-Discuss the advantages, disadvantages and suitability more generally of the following data solutions with regards to these big data properties:  
+Discuss the **advantages**, **disadvantages** and **suitability** more generally of the following data solutions with regards to these big data properties:  
 Your answer should include the way in which these solutions implement MapReduce.
-    - > a. CouchDB [3]
-        - document-oriented approach (less fine grained schema which is typically needed for many big data scenarios)
-            - is a document oriented database which helps to solve the data variaty challenge
-        - supports MVCC for availability and partition tolerance
-        - support for MapReduce for data analytics
-            - the use of mapreduce in CouchDB parallelize data processing from huge amout in a small amount way which can helps to solve the high volume challenge
-        - may not be suitable for all  big data scenarios (where consistency needed)
-        - MapReduce not as rich analytics as others
-            - e.g. running machine learning algorithms hence we have Spark
-        - supports unique index which helps to improve storage space when there is data duplication for high volume challenge
-    - > b. Apache Hadoop Distributed File System (HDFS) [3]
-        - Apache Hadoop started as a way to distribute files over a cluster and execute MapReduce tasks
-        - HDFS distributed file system so suited for high velocity data (not single server bottleneck)
-        - MapReduce for big data processing and increased block size so suited to larger data
-        - variety needs programming to tackle
-    - > c. Apache Spark [3]
-        - Spark was designed to reduce the latency inherent in the Hadoop approach for the execution of MapReduce job
-        - Spark supports large in memory analysis
-        - richer data processing capabilities (plug-ins)
-        - typically used with HDFS to benefit from above two
-        - maybe also mention RDDs etc
-    - > What other data properties can be associated with big data challenges? [1]
+    
+    - a. CouchDB [3]
+      - document-oriented approach (less fine grained schema which is typically needed for many big data scenarios)
+          - is a document oriented database which helps to solve the data variaty challenge
+      - supports MVCC for availability and partition tolerance
+      - support for MapReduce for data analytics
+          - the use of mapreduce in CouchDB parallelize data processing from huge amout in a small amount way which can helps to solve the high volume challenge
+      - may not be suitable for all  big data scenarios (where consistency needed)
+      - MapReduce not as rich analytics as others
+          - e.g. running machine learning algorithms hence we have Spark
+      - supports unique index which helps to improve storage space when there is data duplication for high volume challenge
+    - b. Apache Hadoop Distributed File System (HDFS) [3]
+      - Apache Hadoop started as a way to distribute files over a cluster and execute MapReduce tasks
+      - HDFS distributed file system so suited for high velocity data (not single server bottleneck)
+      - MapReduce for big data processing and increased block size so suited to larger data
+      - variety needs programming to tackle
+    - c. Apache Spark [3]
+      - Spark was designed to reduce the latency inherent in the Hadoop approach for the execution of MapReduce job
+      - Spark supports large in memory analysis
+      - richer data processing capabilities (plug-ins)
+      - typically used with HDFS to benefit from above two
+      - maybe also mention RDDs etc
+    - What other data properties can be associated with big data challenges? [1]
   
         - Veracity: the level of trust in the data accuracy (provenance); the more diverse sources you have, the more unstructured they are, the less veracity you have.
 - > [2013 Q7] A) Many research domains are facing "big data" challenges. Big data is not just related to the size of the data sets. Explain. [5]
-    - |Big data challenges||
-        |---|---|
-        |Volume| No one really knows how much new data is being generated, but the amount of information being collected is huge.
-        |Velocity| **the frequency (that data arrive)** at which new data is being brought into the system and analytics performed
-        |Variety| **the variability and complexity** of data schema. The more complex the data schema(s) you have, the higher the probability of them changing along the way, adding more complexity.
-        |Veracity| **the level of trust** in the data accuracy (provenance); the more diverse sources you have, the more unstructured they are, the less veracity you have.
+    - **Volume**: yes, volume (Giga, Tera, Peta, …) is a criteria, but not the only one
+    - **Velocity**: the frequency at which new data is being brought into the system and analytics performed
+    - **Variety**: the variability and complexity of data schema. The more complex the data schema(s) you have, the higher the probability of them changing along the way, adding more complexity.
+    - **Veracity**: the level of trust in data accuracy (provenance); the more diverse sources you have, the more unstructured they are, the less veracity you have.
     - For life science, there can be all kinds of flavours of datasets and it's not as simple as integrating them all as there can be huge heterogeneous across data sets.
-- > [2013 Q7] B) What capabilities are currently offered or will be required for Cloud Computing infrastructures such as the NeCTAR Research Cloud to tackle these "big data" challenges. [5]  
-You may refer to specific research disciplines, e.g. life sciences, astrophysics, urban research (or others!) in your answer to part A) and B) of this question.
-    -  You can have access to CouchDB service on the cloud but this does not help to the high velocity problems or sensitive data problems or it doesn't solve other challenges in the big data space. These problems should be solved by engineers and shouldn't be expected to be solved by the NeCTAR.
+- > [2013 Q7] B) What **capabilities** are currently offered or will be required for Cloud Computing infrastructures such as the NeCTAR Research Cloud to tackle these "big data" challenges. [5]  
+  You may refer to specific research disciplines, e.g. life sciences, astrophysics, urban research (or others!) in your answer to part A) and B) of this question.
+    
+    -  You can have access to CouchDB service on the cloud but this does not help to the **high velocity problems** or **sensitive data problems** or it doesn't solve other challenges in the big data space. These problems should be solved by engineers and shouldn't be expected to be solved by the NeCTAR.
     - For life science, there is no cancer database. You have to build your own by using the infrastructure provided by the NeCTAR.
     - No fine-grained security service, you have to build it on the cloud.
     - For life science, there can be all kinds of flavours of datasets and you need to provide a service to integrate them and make the result accessible.
     - For life science, there are thousands of databases relevant to bioinformatics and growing! i.e. we know there can be lots of data but we don't know exact how much. So we should make the NeCTAR be scalable to the volumes of the data to be stored.
 
-- > [2013 Q3] A) Explain the consequences of Brewer's CAP theorem on distributed databases. [4]
+- > [2013 Q3] A) Explain the consequences of **Brewer's CAP theorem** on distributed databases. [4]
+    
     - Brewer’s CAP Theorem: you can only pick any two of Consistency, Availability and Partition-Tolerance.
     - Two phase commit can achieve Consistency and Availability
     - Paxos can achieve Consistency and Partition-Tolerance
     - Multi-Version Concurrency Control (MVCC) can achieve Availability and Partition-tolerance
 - > [2013 Q3] B) Describe which aspects of the CAP theorem are supported by the following database technologies:
+
+  - non-SQL (unstructured) databases such as CouchDB. [2]
+
+    - CouchDB uses MVCC to support Availability and Partition-tolerance
+  - relational databases such as PostGreSQL. [2]
+      - Relational DBMSs are extremely good for ensuring consistency and availability
+
+- > Describe the **advantages of MapReduce** compared to other more traditional data processing approaches. [2]
   
-    - > non-SQL (unstructured) databases such as CouchDB. [2]
+  - You can map to multiple different servers and you can reductions on all data and it can scale.
+  - parallelism
+  - greatly reducing network traffic by moving the process to where data are
   
-        - CouchDB uses MVCC to support Availability and Partition-tolerance
-    - > relational databases such as PostGreSQL. [2]
-      
-        - Relational DBMSs are extremely good for ensuring consistency and availability
-    - > Describe the advantages of MapReduce compared to other more traditional data processing approaches. [2]
-        - You can map to multiple different servers and you can reductions on all data and it can scale.
-        - parallelism
-        - greatly reducing network traffic by moving the process to where data are
 - > [sample Q4] A) In the context of distributed databases, explain the concepts of: 
-  
-    - > Consistency [1]
-  
-        - every client receiving an answer receives **the same answer** from all nodes in the cluster (it doesn't depend on which node is quired)
-    - > Availability [1]       
-      
-        - every client receives **an answer** from any node in the cluster (which might differ from node to node)
+
+    - Consistency [1]
+      - every client receiving an answer receives **the same answer** from all nodes in the cluster (it doesn't depend on which node is quired)
+  - Availability [1]       
+      - every client receives **an answer** from any node in the cluster (which might differ from node to node)
 - > [sample Q4] B) Give an example of a database technology that supports Availability in the presence of a (network) partition.  [1]
   
     - Multi-Version Concurrency Control (MVCC)
 - > [sample Q4] C) In the context of CouchDB clusters what is the meaning of:
   
-    - > Replica number [1]
-  
-        - Number of copies of the same shard kept in the cluster
-    - > Number of shards [1]
-      
-        - Number of horizontal partitions of the cluster
-    - > Read quorum [1]
-      
-        - Minumum number of nodes that have to give the same result to a read operation for it to be declared valid and sent back to the client
-    - > Write quorum [1]
-      
-        - Minumum number of nodes that have to occur for a write operation for it to be accepted
-- > [2014 Q5] A) Discuss the advantages and disadvantages of unstructured (noSQL) databases such as CouchDB for dealing with “big data” compared to more traditional databases, e.g. relational databases such as MySQL.  
+    - Replica number [1]
+    - Number of copies of the same shard kept in the cluster
+  - Number of shards [1]
+      - Number of horizontal partitions of the cluster
+  - Read quorum [1]
+      - Minumum number of nodes that have to give the same result to a read operation for it to be declared valid and sent back to the client
+  - Write quorum [1]
+      - Minumum number of nodes that have to occur for a write operation for it to be accepted
+- > [2014 Q5] A) Discuss the **advantages** and **disadvantages** of unstructured (noSQL) databases such as CouchDB for dealing with “big data” compared to more traditional databases, e.g. relational databases such as MySQL.  
 Your answer should cover challenges with data distribution, traditional database ACID properties, heterogeneity of data and large-scale data processing. [6]
+    
     - In traditional database, we have things like schema, keys tables. While we don't have these in noSQL database which is more flexible.
     - In traditional database, we have to write queries. While we don't to do these in noSQL database
     - Because we have heterogenous data, we would like to save them as document in the noSQL database which is not supported by traditional database
             - The majority of the data comes in a semi-structured or unstructured format from social media, audio, video, texts, and emails.
     - Because noSQL database support mapreduce, we can run mapreduce across many many services which full-scale the processing opportunities for large scale analytics on multiple servers and processing them
     - For ACID, in mySQL transaction needs to be complete while this not a problem with distributed database which shard across multiple servers and everyone of returns with the same answer which can causes overhead on the limitation to do that. CouchDB's nodes can fail but you can still get results.
-    - While Relational DBMSs are extremely good for ensuring consistency and availability, the normalization that lies at the heart of a relational database model implies fine-grained data, which are less conducive to partition-tolerance than coarse-grained data.
+    - While Relational DBMSs are extremely good for ensuring consistency and availability, the normalization that lies at the heart of a relational database model implies fine-grained data (细粒度数据), which are less conducive to partition-tolerance than coarse-grained data (粗粒度数据).
         - Example:
             -  A typical contact database in a relational data model may include: a person table, a telephone table, an email table and an address table, all relate to each other.
             -  The same database in a document-oriented database would entail one document type only, with telephones numbers, email addresses, etc., nested as arrays in the same document.
