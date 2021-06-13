@@ -2,28 +2,37 @@
 
 ## Week1 - How we got here
 1. What is cloud computing?
-    - In 2013, Cloud computing is a jargon term without a commonly accepted non-ambiguous scientific or technical definition. (Anything that is not on your computer, e.g.: gmail)
-    - In 2016, Proponents claim that cloud computing allows companies to avoid upfront infrastructure costs, and focus on projects that differentiate their businesses instead of on infrastructure. Proponents also claim that cloud computing allows enterprises to get their applications up and running faster, with improved manageability and less maintenance, and enables IT to more rapidly adjust resources to meet fluctuating and unpredictable business demand. Cloud providers typically use a "pay as you go" model. This can lead to unexpectedly high charges if administrators do not adapt to the cloud pricing model. (Everyone has different flavor)
+    - In 2013, Cloud computing is a jargon term (专业术语) without a commonly accepted non-ambiguous scientific or technical definition. (Anything that is not on your computer, e.g.: gmail)
+    - allows companies to avoid upfront infrastructure costs, and focus on projects that differentiate their businesses instead of on infrastructure. 
+         (允许公司避免前期的基础设施成本，并专注于使其业务与众不同的项目而不是基础设施。)
+    - allows enterprises to get their applications up and running faster, with improved manageability and less maintenance, and enables IT to more rapidly adjust resources to meet fluctuating and unpredictable business demand. 
+        (使企业能够更快地启动和运行他们的应用程序，并提高可管理性和更少的维护，并使IT更迅速地调整资源以满足波动的和不可预知的业务需求。)
+    - Cloud providers typically use a "pay as you go" model. This can lead to unexpectedly high charges if administrators do not adapt to the cloud pricing model. (Everyone has different flavor)
+        (云计算供应商 通常使用"随用随付"的模式。这可能导致意外的高额费用，如果管理员不适应云计算的定价模式。)
+    
 2. Cloud Characteristics (Lecture notes and then my paraphrasing)
-    - On-demand self-service
-        - A consumer can provision computing capabilities as needed without requiring human   interaction with each service provider. 
-        - Scale computing resources up and down by needs without requiring human interaction with each service provider.
+    - **On-demand self-service** (按需自助服务)
+        - A consumer can provision (供应) computing capabilities as needed without requiring human   interaction with each service provider. 
+        - Scale computing resources up and down by needs without requiring human interaction with each service provider. 
+            (根据需要扩大或缩小计算资源的规模，而不需要与每个服务提供商进行人工互动)
         - For anyone in any time - infinite availability (key)
-    - Networked access
-        - Capabilities are available over the network and access through standard mechanisms that promote use by heterogeneous client platforms.
+    - **Networked access**
+        - Capabilities are available over the network and access through standard mechanisms that promote use by *heterogeneous client platforms*. (异质客户平台)
         - Resources can be access through network and adapted to heterogeneous client platforms.
-    - Resource pooling
-        - The provider's computing resources are pooled to serve multiple consumers using a   multi-tenant model potentially with different physical and virtual resources that can be  dynamically assigned and reassigned according to consumer demand. 
-        - Provider’s resources are pooled and can be dynamically assigned and reassigned by need.     
+    - **Resource pooling** (共享资源池)
+        - The provider's computing resources are pooled to serve multiple consumers using a multi-tenant model potentially with different physical and virtual resources that can be dynamically assigned and reassigned according to consumer demand. 
+            (提供商的计算资源被集中起来，使用多租户模式为多个消费者服务，可能有不同的物理和虚拟资源，可以根据消费者的需求动态地分配和重新分配。) 
         - Enough resource to scale up & down
-    - Rapid Elasticity
-        - Capabilities can be elastically provisioned and released, in some cases automatically, to scale rapidly upon  demand.
+    - **Rapid Elasticity** (快速弹性的扩展)
+        - Capabilities can be elastically provisioned and released (可以被弹性地提供和释放), in some cases automatically, to scale rapidly upon  demand.
         - Capabilities can scale easily and rapidly upon demand.
-    - Measured Service
+    - **Measured Service** (测量服务)
         - Cloud systems automatically control and optimize resource use by leveraging a metering  capability at some level of abstraction appropriate to the type of service.
+            (云系统通过利用适合于服务类型的某种抽象水平的计量能力，自动控制和优化资源使用。)
         - Resourcing optimization by measuring usage
-        - monitor for load balance (e.g.: nigix)
-3. Flavour
+        - monitor for load balance (e.g.: nginx)
+    
+3. Flavours
     - Compute clouds
       - Amazon Elastic compute cloud
       - Azure
@@ -35,18 +44,18 @@
     - Application Clouds
       - App store
       - Virtual image factories
-    - Public(credit card and pay for using) /Private(Unimelb research cloud)/Hybrid(MRC run out of resource nad buy from Amazon)/Mobile/Health Clouds
+    - Public (credit card and pay for using) / Private (Unimelb research cloud) / Hybrid (MRC run out of resource nad buy from Amazon) / Mobile / Health Clouds
     - complexity arise in: decision about what can we move out/what cost ot stay in/who is  allowed this to happen
+    
 4. History - tends in computing
     1. Computing and Communication Technologies (r)evolution
-        - from centralised to decentralised
-    2. distributed system history
-        - Once upon a time we had standards
-        - Then we had more standards
+        - from centralized to decentralized
+    2. Distributed system history
+        - Purposed standards: Once upon a time we had standards. Then we had more standards
         - mid-90s: focused on computer-computer interaction
         - internet: peer-to-peer
             - challenge: sharing data between different organizations
-            - soln: grid computing
+            - solution: grid computing
             - Grid: only need access to it no matter it is data or super computer the process to move things
                 - problem: people have different ways to do it
     - Distributed System
@@ -59,11 +68,13 @@
             - Scalability problem
             - Sharing data between different organizations  
     - Grid Computing
-        - From computer-computer focus to organisation-organisation focus
+        - From computer-computer focus to organization-organization focus
         - Can be thought of as a distributed system with non-interactive workloads.
-        - It is in contrast to the traditional notion of a supercomputer, which has many processors connected by a local high-speed computer bus instead of Ethernet.
+        - It is in **contrast to** the *traditional notion of a supercomputer*, which has many processors connected by a local high-speed computer bus instead of Ethernet.
         - Grid computing is distinguished from conventional high-performance computing systems such as cluster computing in that grid computers have each node set to perform a different task/application. Grid computers also tend to be more heterogeneous and geographically dispersed (thus not physically coupled) than cluster computers.
+            (网格计算与传统的高性能计算系统(如集群计算)的区别在于，网格计算机有每个节点集来执行不同的任务/应用程序。网格计算机也趋向于比集群计算机更加异构和地理上分散(因此没有物理耦合)。)
         - Although a single grid can be dedicated to a particular application, commonly a grid is used for a variety of purposes. Grids are often constructed with general-purpose grid middleware software libraries. Grid sizes can be quite large.
+            (虽然单个网格可以专用于特定的应用程序，但网格通常用于各种目的。网格通常是用通用网格中间件软件库构建的。网格的大小可以相当大。)
         - Challenge
             - What resources are available
             - To determine the status of resources
@@ -73,11 +84,12 @@
                 - Public key infrastructure
     
 5. Comparison between Grid/Cluster/Cloud Computing
-    ```
-    Clusters "tend" to be tightly coupled, e.g. a bunch of servers in a rack with high speed interconnects - we'll go into some details of this in week 3;  
-    Grid is/was more loosely coupled resources that provided single sign-on access to distributed resources that are often hosted by different organisations;  
-    Cloud = we'll get to that soon! ;o)
-    ```
+    | type    | description                                                  |
+    | ------- | ------------------------------------------------------------ |
+    | Cluster | "tend" to be tightly coupled<br />e.g. a bunch of servers in a rack with high speed interconnects |
+    | Grid    | is/was more loosely coupled resources that provided single sign-on access to distributed resources that are often hosted by different organizations; |
+    | Cloud   |                                                              |
+
     - Grid computing
         - Refer to the top
     - Cluster Computing
@@ -86,40 +98,51 @@
             - Super computer
     - Cloud Computing
         - Refer to week 5
-        - Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources(networks, servers, storage, applications, services) that can be rapidly provisioned and released with minimal management effort or service provider interaction.
+        - Cloud computing is a model for enabling ubiquitous (无处不在的), convenient, on-demand network access to a shared pool of configurable computing resources(networks, servers, storage, applications, services) that can be rapidly provisioned and released with minimal management effort or service provider interaction.
+            (云计算是一种模型，用于实现无处不在的、方便的、按需的网络访问，以访问可配置计算资源(网络、服务器、存储、应用程序、服务)的共享池，这些资源可以通过最小的管理工作或服务提供商交互快速提供和发布。)
 
 ### past exam
 - > [2013 Q1] A) Explain what is meant by the terms:
-    - > Grid Computing [1]
-        - focus on organizational collaboration, coordination, activity and technologies to doing it
-    - > Cluster Computing [1]
-        - multiple servers rach-mounted which are accessible and you can run jobs across the cluster
-    - > Cloud Computing [1]
-        - is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources(networks, servers, storage, applications, services) that can be rapidly provisioned and released with minimal management effort or service provider interaction.
+
+
+- Grid Computing [1]
+	
+	    - focus on organizational collaboration, coordination, activity and technologies to doing it
+- Cluster Computing [1]
+	
+	    - multiple servers rach-mounted which are accessible and you can run jobs across the cluster
+
+- Cloud Computing [1]
+	
+	    - is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources(networks, servers, storage, applications, services) that can be rapidly provisioned and released with minimal management effort or service provider interaction.
+
 - > [2013 Q1, 2017 Q1 B [5]] B) Current Cloud Computing systems do not solve many key challenges of large-scale distributed systems. Discuss. [7]
+  
     - by below
 - > [sample Q2 A] Describe some of the current challenges associated with large-scale distributed systems. [4] 
-    - distributed systems didn't solve data heterogeneity. And we have big data challenges.
-    - distributed systems has scalability and issues of fixed hardware system. We have distributed computers running on different hardware system.
-    - fault tolerance not solved
+  
+    - distributed systems didn't solve **data heterogeneity**. And we have big data challenges.
+    - distributed systems has **scalability and issues of fixed hardware system**. We have distributed computers running on different hardware system. （**hardware system heterogeneity**）
+    - **fault tolerance** not solved
         - Many diverse faults can happen with distributed systems
-            - , e.g. server failures or partial failures, network outages, overloading of components etc etc. 
+            - e.g. server failures or partial failures, network outages, overloading of components etc.
             - There is no simple solution to this that has been widely adopted/accepted.
-    - results in software stack
+    - **results in software stack**
         - Each system tends to develop its own technical solution
-            - , e.g. using queuing or having back-ups/failovers of system for failures. 
+            - e.g. using queuing or having back-ups/failovers of system for failures. 
             - This can result in complex software stacks and recipes that have to be cooked to address  specific needs/demands.
     - (And all these erroneous assumption can't be made at week 2 last)
-    - The network is reliable
-    - Latency is zero
-    - Bandwidth is infinite - I can send any amount of data I wish between any nodes
-    - The network is secure
-    - Topology doesn't change - Node x is always there
-    - There is one administrator
-    - Transport cost is zero - I can send as much data as I like for free
-    - The network is homogeneous
-    - Time is ubiquitous - Clock is same across all computers in network
+        - The **network is reliable**
+            - Latency is zero
+            - Bandwidth is infinite - I can send any amount of data I wish between any nodes
+            - The network is secure
+            - Topology doesn't change - Node x is always there
+            - There is one administrator
+            - Transport cost is zero - I can send as much data as I like for free
+            - The network is homogeneous
+            - Time is ubiquitous - Clock is same across all computers in network
 - > [sample Q2 B] Cloud computing solves some of these issues but not all. Explain. [4]
+  
     - scalability and elastic scaling (purchase cloud when you need its service)
     - software deployment easier as we have snapshots/scripted deployment
     - more tools available, e.g.: load balancers, proven solutions. You might not have this much in distributed system
@@ -127,59 +150,58 @@
     - geospatially distributed and easy to migrate application
     - doesn't address many of the above though (但并没有解决上面的很多问题) (bandwidth from user/organization to data center)
 - > [2015 Q1] A) Describe some of the erroneous assumptions that are often made in designing large-scale distributed systems. [5]
+  
     - above
-- > [2014 Q1] A) Discuss the major trends in research and research computing over the last 20 years that have led to the emergence of Cloud computing. [6]
-    - Mainframes
-        - main frames to move to the distributed system
-    - decentralised PCs
-    - explosion of the Internet
-    - distributed system move back to the centralised system
-    - scale of compute/storage
-    - clouds and data centres
+- > [2014 Q1] A) Discuss the **major trends** in research and research computing over the last 20 years that have **led to the emergence of Cloud computing**. [6]
+  >
+  > - Mainframes: main frames to move to the distributed system
+  > - decentralized PCs
+  > - explosion of the Internet
+  > - distributed system move back to the centralized system
+  > - scale of compute/storage
+  > - clouds and data centers
 
 ## Week2 - Domain Drivers – tour of some big data projects
 1. compute scaling
-    - method:
-        1. Vertical Computational Scaling
-            - Have faster processors
-            - disabv: processor speed is limited  
-              Moore's law is no longer working, CPU stop goes faster as we expected
-        2. Horizontal Computational Scaling
-            - Have more processors
-            - adv: 
-                - 1) Easy to **add more** (more cores or cluster of nodes)
-                    - add more = 
-                        - Single machine multiple cores
-                            - Typical laptop/PC/server these days
-                        - Loosely coupled collection/cluster of machines
-                            - Polling/sharing of resources
-                            - Dedicated vs available only when not in use by others
-                        - Tightly coupled cluster of machines
-                            - Typical HPC/HTC set-up (SPARTAN)
-                            - Which many servers in same room, often with fast message passing interconnects
-                        - Widely distributed clusters of machines
-                            - UK NGS, EGEE
-                        - Hybrid combination of the above
-                            - Leads to many challenges with distributed systems
-                            - Shared state
-                            - Delayed and lost in message passing
-                - 2) cost increase not so much
-            - disadv: 
-                - 1) **add more** limition (see week3 - Amdahl's law)
-                - 2) harder to design, develop, test
-2. network scaling
+    1. Vertical Computational Scaling
+        - Have faster processors
+        - disadv: processor increasing speed is limited
+          Moore's law is no longer working, CPU stop goes faster as we expected
+    2. Horizontal Computational Scaling
+        - Have more processors
+        - adv: 
+            - 1) Easy to **add more** (more cores or cluster of nodes)
+                add more=
+                - Single machine multiple cores
+                    - Typical laptop/PC/server these days
+                - Loosely coupled collection/cluster of machines (松散耦合的机器收集/集群)
+                    - Polling/sharing of resources
+                    - Dedicated(专用) vs available only when not in use by others
+                - Tightly coupled cluster of machines
+                    - Typical HPC/HTC set-up (SPARTAN)
+                    - Which many servers in same room, often with fast message passing interconnects
+                - Widely distributed clusters of machines
+                    - UK NGS, EGEE
+                - Hybrid combination of the above
+                    - Leads to many challenges with distributed systems
+                    - Shared state
+                    - Delayed and lost in message passing
+            - 2) cost increase not so much
+        - disadv: 
+            - 1) **add more** limitation (see week3 - Amdahl's law)
+            - 2) harder to design, develop, test
+2. network scaling (网络拓展)
     - volume of data on network grows each year
-3. massive amount of data generated among a time requires compute infrasture
+3. massive amount of data generated among a time requires compute infrastructure
     - e.g. mapping the sky with data from tele-scope
-5. Cloud Computing in Different Domains
+4. Cloud Computing in Different Domains
     - **High energy physics**
     - Astrophysics
     - **Macro-micro simulations**
     - Electronics
     - Arts and humanities
     - Life sciences
-        - Extensive Research Community
-            - Parkville Precinct for example
+        - Extensive Research Community  e.g. Parkville Precinct
         - Many people care about them
             - Health, Food, Environment – truly interdisciplinary!
         - Interacts with virtually every discipline
@@ -191,8 +213,7 @@
             - How does a brain work?
             - How does an organism develop?
             - Why do people who eat less tend to live longer?
-    - Social sciences
-        - Aurin
+    - Social sciences - AURIN
     - Clinical sciences
     - Data sharing and ethics
     - **e-Health**
@@ -228,17 +249,19 @@
 1. Question: If n processors (cores) are thrown at a problem how much faster will it go?
     - Some terminology:
         - <img src="./docs/1.png" width="50%" height="50%" />
-        - Proportion of speed up depends on parts of program that cannot be parallelised
-    1. Amdahl's law
+        - Proportion of speed up depends on parts of program that cannot be parallelized
+    1. Amdahl's law (阿姆达尔定律)
         - assumes a fixed problem size – sometimes can’t predict length of time required for jobs, 
             - e.g. state space exploration or differential equations that don’t solve
-        - <img src="./docs/2.jpg" width="60%" height="50%" />
+        - <img src="./docs/2.jpg"/>
         - That is, if 95% of the program can be parallelized, the theoretical maximum speedup using parallel computing would be 20 times, no matter how many processors are used.
-        - If the non-parallelisable part takes 1H, then no matter how many cores are used, it won’t complete in < 1H
+        - If the non-parallelizable part takes 1H, then no matter how many cores are used, it won’t complete in < 1H
         - Amdahl’s Law greatly simplifies the real world
+        - https://zhuanlan.zhihu.com/p/48022905
     2. Gustafson-Barsis's Law
         - speedup is a linear formula dependent on the number of processes and the fraction of time to run sequential parts
-        - <img src="./docs/3.jpg" width="60%" height="50%" />
+            (加速是一个线性公式，依赖于进程的数量和运行顺序部件的时间)
+        - <img src="./docs/3.jpg"/>
         - Faster (more parallel) equipment available, larger problems can be solved in the same time.
     3. comparison
         - Amdahl’s Law suggests that with limited task, speed up could not be too fast. 
@@ -258,21 +281,21 @@
             | ------------- | ------------------ | -------------------- |
             | Single Data   | SISD               | MISD                 |
             | Multiple Data | SIMD               | MIMD                 |
-            - Single Instruction, Single Data Stream (SISD)
-              - Sequential computer which exploits no parallelism in either the instruction of data streams
+            - Single Instruction, Single Data Stream (SISD) (单指令、单数据流)
+              - **Sequential** computer which exploits **no parallelism** in either the instruction of data streams
               - Single control unit fetches single instruction stream from memory. The CU/CPU then generates appropriate control signals to direct single processing element to operate on single Data Stream, i.e. one operation at a time.
               - Example
-                - von Neumann computer
-            - Multiple Instruction, Single Data stream (MISD)
+                - von Neumann computer (冯·诺伊曼计算机)
+            - Multiple Instruction, Single Data stream (MISD) (多指令、单数据流)
               - <u>**Parallel**</u> computing architecture where many functional units (PU/CPU) perform different operations on the same data
               - Example 
                 - fault tolerant computer architectures: multiple error checking on the same date source
-            - Single Instruction, Multiple Data Stream (SIMD)
+            - Single Instruction, Multiple Data Stream (SIMD) (单指令、多数据流)
               - Multiple processing elements that perform the same operation on multiple data points simultaneously
-              - Focusing on data level parallelism: many parallel computations, but only a single process (instruction) at a given moment (<u>**Concurrency**</u>)
+              - **Focusing on data level parallelism**: many parallel computations, but only a single process (instruction) at a given moment (<u>**Concurrency**</u>)
               - Example
                 - to improve performance of multimedia use such as for image processing
-            - Multiple Instruction, Multiple Data stream (MIMD)
+            - Multiple Instruction, Multiple Data stream (MIMD) (多指令、多数据流)
               - Number of processors that function **asynchronously** and independently.
               - at any time, different processors may be executing different instructions on different pieces of data
               - Machines can be shared memory or distributed memory categories.
@@ -280,83 +303,87 @@
               - Example
                 - HPC
 3. Approaches for Parallelism (Where and how)
-    - Explicit vs Implicit Parallelisation
-        - Implicit Parallelism
+    - Explicit vs Implicit Parallelization
+        - Implicit Parallelism (隐式)
             - **<u>Compiler</u>** is responsible for identifying parallelism and scheduling of calculations and the placement of data
+                (编译器负责识别并行性和调度计算和数据的放置)
             - Disadv: Pretty hard to do
-        - Explicit Parallelisation
+        - Explicit Parallelization (显式)
             - **<u>Programmer</u>** is responsible for most of the parallelization effort
     - Hardware
-        - Hardware Parallelisation
+        - Hardware Parallelization
             - **Cache**: much faster than reading/writing to main memory; instruction cache, data cache (multi-level) and translation lookaside buffer used for virtual-physical address translation (more later on Cloud and hypervisors). 
-            - **Add CPU (parallelisation)**: Parallelisation by adding extra CPU to allow more instructions to be processed per cycle. Usually shares arithmetic units. 
+            - **Add CPU (parallelisation)**: Parallelization by adding extra CPU to allow more instructions to be processed per cycle. Usually shares arithmetic units. (通常共享算术单元) 
                 - Disadv: Heavy use of one type of computation can tie up all the available units of the CPU preventing other threads from using them.
+                    (大量使用一种类型的计算可能会占用CPU的所有可用单元，从而阻止其他线程使用它们。)
             - **Multiple cores**: Multiple cores that can process data and perform computational tasks in parallel.
                 - Disadv: Typically share same cache, but issue of cache read/write performance and cache coherence. 
+                    (cache读写性能和cache一致性的问题。)
                 - Disadv: Possibility of cache stalls (CPU not doing anything whilst waiting for caching)
+                    (可能会出现缓存暂停(CPU在等待缓存时什么都不做))
                     - To address the issue that CPU not doing anything whilst waiting for caching. Many chips have mixture cache L1 for single core, L2 for pair cores and L3 shared with all cores.
                 - Disadv: typical to have different cache speeds and cache sizes (higher hit rates but potentially higher latency). 
-        - Symmetric Multiprocessing (SMP)
+                    通常有不同的缓存速度和缓存大小(更高的命中率，但可能有更高的延迟)。
+        - Symmetric Multiprocessing (SMP)  (对称多处理)
             - Two (or more) identical processors connected to a single, shared main memory, with full access to all I/O devices, controlled by a single OS instance that treats all processors equally. Each processor executes different programs and works on different data but with capability of sharing common resources (memory, I/O device, …). Processors can be connected in a variety of ways: buses, crossbar switches, meshes.  
-                - Disadv: More complex to program since need to program both for CPU and inter-processor communication (bus).
-        - Non-Uniform Memory Access (NUMA)
+                (多个相同的处理器, 每个处理器执行不同的程序，处理不同的数据，但具有共享公共资源)
+                - Disadv: More complex to program since need to program both for CPU and inter-processor communication (bus). 
+                    (编程更加复杂)
+        - Non-Uniform Memory Access (NUMA) (非统一存储器存取)
             - provides speed-up by allowing a processor to access its own local memory faster than non-local memory.
-                - Disadv: Improved performance as long as data are localized to specific processes/processors. 
-                - Key is allocating memory/processors in NUMA friendly ways, 
-                    - e.g. to avoid scheduling/locking and (expensive) inter-processor communication. Approaches such as ccNUMA with range of cache coherency protocols/products. 
+                (允许处理器比非本地内存更快地访问自己的本地内存，从而提高了速度)
+            - Disadv: Improved performance as long as data are localized to specific processes/processors. 
+                (提高性能，只要数据本地化到特定的进程/处理器。)
+            - Key is allocating memory/processors in NUMA friendly ways, 
+                - e.g. to avoid scheduling/locking and (expensive) inter-processor communication. Approaches such as ccNUMA with range of cache coherency protocols/products. 
+                    (为了避免调度/锁定和(昂贵的)处理器间通信。ccNUMA等具有一系列缓存一致性协议/产品的方法。)
     - Operating System
       - parallel vs interleaved semantics 
-        - Most modern multi-core operating systems support different "forms" of parallelisation
+        - Most modern multi-core operating systems support different "forms" of parallelization
         - e.g.: A || B vs A ||| B
       - Compute parallelism
-        - Processes
-          - Used to realize tasks, structure activities
-        - Theads
-          - Native threads
-            - Fork, Spawn, Join
-          - Green threads
-            - Scheduled by a VM instead of natively by the OS
-      - Data parallelism
-        - Caching
+        - Processes - Used to realize tasks, structure activities
+        - Threads
+          - Native threads - Fork, Spawn, Join 
+          - Green threads - Scheduled by a VM instead of natively by the OS
+      - Data parallelism - Caching
     - Software/Applications
-      - Programming language supports a range of parallelisation/concurrency features
+      - Programming language supports a range of parallelization/concurrency features
         - Threads, thread pools, locks, semaphores ...
       - Programming languages developed specifically for parallel/concurrent systems
       - Key issues:
-        - Deadlock
-          - Processes involved constantly waiting for each other
-        - LiveLock
-          - Process constantly change with regard to one another, but none are progressing
+        - Deadlock - Processes involved constantly waiting for each other
+        - Livelock - Process constantly change with regard to one another, but none are progressing
     - Message Passing Interface (MPI)
         - Widely adopted approach for message passing in parallel systems
         - Supports point-point, broadcast communications
         - Key MPI functions
-            - ```
-                MPI_Init	:initiate MPI computation
-                MPI_Finalize	:terminate computation
-                MPI_COMM_SIZE	:determine number of processors
-                MPI_COMM_RANK	:determine my process identifier
-                MPI_SEND	:send a message
-                MPI_RECV	:receive a message
-                ```
+            ```
+            MPI_Init	:initiate MPI computation
+            MPI_Finalize	:terminate computation
+            MPI_COMM_SIZE	:determine number of processors
+            MPI_COMM_RANK	:determine my process identifier
+            MPI_SEND	:send a message
+            MPI_RECV	:receive a message
+            ```
         - Adv: 
-            - Standardised, widely adopted, portable, performant
-            - Parallelisation = users problem (user controll how to parallel)
-    - (HT) Condor
+            - Standardized, widely adopted, portable, performant
+            - Parallelization = users problem (user control how to parallel)
+    - HTCondor ([高通量计算框架](https://www.cnblogs.com/charlee44/p/12204715.html))
         - A specialized workload management system for compute-intensive jobs developed at University of Wisconsin
         - Adv:
-            - Offers job queueing mechanisms, scheduling policies, priority schemes, resource monitoring/management
-            - User submits jobs to Condor and it chooses when and where to run the jobs, monitors their progress, and informs the user upon completion 
-            - Allows to harvest “free” (?) CPU power from otherwise idle desktop workstations
-                - e.g. use desktop machines when keyboard and mouse are idle 
-                    - key press detected checkpoint and migrate a job to a different (idle) machine 
-            - No need for shared file system across machines
-                - Data can be staged to machines as/when needed
-            - Can work across organisational boundaries
-                - Condor Flocking
-            - ClassAds
-                - Advertise resources and accept jobs (according to policy)
-    - Data Parallelism Approaches (week 9)
+        - **Offers job queueing mechanisms**, scheduling policies, priority schemes, resource monitoring/management
+        - User submits jobs to Condor and it chooses when and where to run the jobs, monitors their progress, and informs the user upon completion 
+        - Allows to harvest “free” (?) CPU power from otherwise idle desktop workstations
+            - e.g. use desktop machines when keyboard and mouse are idle 
+            - key press detected checkpoint and migrate a job to a different (idle) machine 
+        - No need for shared file system across machines
+            - Data can be staged to machines as/when needed
+        - Can work across organizational boundaries
+            - Condor Flocking
+        - ClassAds
+            - Advertise resources and accept jobs (according to policy)
+    - Data Parallelism Approaches (week 9) (数据并行方法)
         - Challenges of big data
             - The most important kind of parallelism challenge?
         - Distributed data
@@ -368,19 +395,14 @@
     - Challenges with Distribution 
         - "A distributed system is one in which the failure of a computer you didn't even know existed can render your own computer unusable" by Leslie Lamport
     - The network is reliable
-    - Latency is zero
+    - Latency is zero (延迟为零)
     - Bandwidth is infinite - I can send any amount of data I wish between any nodes
     - The network is secure
-        - People sending data to my services
-            - Repeated password attempts, SQL injections, …!?
-        - People actively attacking me
-            - Distributed denial of service attacks
-        - People reading the data sent over the network
-            - Man in the middle attacks
-        - People masquerading as one of my nodes
-            - Spoofing 
-        - People breaking into one of my nodes
-            - Trojans, viruses, brute force attacks, …
+        - People sending data to my services  e.g. Repeated password attempts, SQL injections, …!?
+        - People actively attacking me  e.g. Distributed denial of service attacks
+        - People reading the data sent over the network  e.g. Man in the middle attacks
+        - People masquerading as one of my nodes  e.g. Spoofing 
+        - People breaking into one of my nodes  e.g. Trojans, viruses, brute force attacks, …
         - People stealing the physical hardware
     - Topology doesn't change - Node x is always there
     - There is one administrator
@@ -390,12 +412,12 @@
     - Time is ubiquitous - Clock is same across all computers in network
     - [-- Assumption ends --]
     - issues of heterogeneity of compute, data, security from lecture 1
+        计算、数据、安全的异构性问题
     - Distributed systems are widespread - The Internet
     - Many approaches to design parallel or distributed systems (below)
         - No single algorithm
         - No single technical solution
         - Eco-system of approaches explored over time and many open research questions/challenges
-        - Flavour of some of these…
 5. Strategies for Development of Parallel/Distributed Systems
     - strategies: (detail see slides)
         - Automatic parallelization
@@ -403,34 +425,32 @@
         - Major recording
     - Challenges:
         - dependence analysis is hard for code that uses pointers, recursion, …; 
+            依赖分析是很难的代码使用指针，递归
         - loops can have unknown number of iterations; 
         - access to global resources, e.g. shared variables
 6. Design Stages of Parallel Programs
     - Partitioning
         - Decomposition of computational activities and data into smaller tasks 
-        - Numerous Pprallelisation paradigms:
+        - Numerous parallelization paradigms:
             - Master-Worker/task-farming
                 - Master decomposes the problem into small tasks
                 - distributes to workers and gathers partial results to produce the result
-                - Master-worker/task-farming is like divide and conquer with master doing both split and join operation
-                - <img src="./docs/4.jpg" width="20%" height="50%" />
-            - Divide and Conquer
-                - 1) A problem is divided into two or more sub problems
-                - 2) each of these sub problems are solved independently
-                - 3) their results are combined
+                - ![](./docs/4.jpg)
+            - Divide and Conquer (分而治之)
+                - A problem is divided into two or more sub problems, each of these sub problems are solved independently and their results are combined
                 - 3 operations: split, compute, and join
                 - Master-worker/task-farming is like divide and conquer with master doing both split and join operation
-                - <img src="./docs/7.jpg" width="20%" height="50%" />
+                - <img src="./docs/7.jpg" />
             - Single Program Multiple Data (SPMD)
                 - Each process executes the same piece of code, but on different parts of the data
                 - Data is typically split among the available processors
                 - Data splitting and analysis can be done in many ways
-                - Commonly exploited model: MapReduce
-                - <img src="./docs/5.jpg" width="20%" height="50%" />
+                - Commonly exploited model: **MapReduce**
+                - <img src="./docs/5.jpg" />
             - Pipelining 
                 - Suitable for applications involving multiple stages of execution
                 - typically operate on large number of data sets.
-                - <img src="./docs/6.jpg" width="30%" height="50%" />
+                - <img src="./docs/6.jpg"/>
             - Speculation
                 - Used when it is quite difficult to achieve parallelism through the previous paradigms
                 - use "look ahead" execution
@@ -440,33 +460,34 @@
                     - Consider a (long running) producer P and a consumer C such that C depends on P for the value of some variable V. If the value of V is *predictable*, we can execute C speculatively using a predicted value in parallel with P.
                         - If the prediction turns out to be correct, we gain performance since C doesn’t wait for P anymore. 
                         - If the prediction is incorrect (which we can find out when P completes), we have to take corrective action, cancel C and restart C with the right value of V again. 
-            - Parametric Computation
-                - not discussed?
-        -  Communication (relates with MPI)
-            - Flow of information and coordination among tasks that are created in the partition stage
-        -  Agglomeration
-            - (performance measuring) Tasks and communication created in above stages are evaluated for performance and implementation cost
-            - Tasks may be grouped into larger tasks to improve communication
-            - Individual communications can be bundled
-        -  Mapping/Scheduling
-            - (design to be able to scale up/down) Assign tasks to processors such that job completion time is minimized and resource utilization is maximized
+    -  Communication (relates with MPI)
+        - Flow of information and coordination among tasks that are created in the partition stage
+    - Agglomeration (集聚)
+        - (performance measuring) Tasks and communication created in above stages are evaluated for performance and implementation cost
+        - Tasks may be grouped into larger tasks to improve communication
+        - Individual communications can be bundled
+    - Mapping/Scheduling
+        - (design to be able to scale up/down) Assign tasks to processors such that job completion time is minimized and resource utilization is maximized
 
 ### past exam
 - > [sample Q5] A) Explain Amdahl's law and discuss the challenges of its practical implementation. [2]
     - Program always bound by limitations caused by sequential part.
-    - no matter how mang cores thrown at problem will be limited to the sequential part of the algorithm. 
-        - Also inlcudes overheads required to deal with parallelism (loops, variables, communications)
+    - no matter how many cores thrown at problem will be limited to the sequential part of the algorithm. 
+    - Also includes overheads required to deal with parallelism (loops, variables, communications)
 - > [2014 Q4] A) Define Gustafson-Barsis’ law for scaled speed-up of parallel programs. [2]
+  
     - Gustafson-Barsis’s Law suggests that with enough processors and remaining tasks, speed up will always meet the requirement. Faster (more parallel) equipment available, larger problems can be solved in the same time.
 - > [2014 Q4] B) A parallel program takes 128 seconds to run on 32 processors. The total time spent in the sequential part of the program is 12 seconds. What is the scaled speedup? [2]
     - S(N) = N - alpha * (N - 1) where N = n processors, alpha = time on sequential / time on parallel
     - S(N) = 32 - (12/128) * (32-1) = 931/32 = 29.09375
 - > [2014 Q4] C) According to Gustafson-Barsis’ law, how much faster could the application _theoretically_ run if it ran across all 32 processors compared to running on a single processor? [3]
+  
     - we know from b/ that it (theoretically) runs 29.09375 times faster using 32 processors compared to running on a single processor. 
     - If it takes 128 seconds with the 32 processor case then it would (theoretically) take 29.09375*128 = 3724 seconds in the single processor case.
 - > [2014 Q4] D) Why is theoretically italicized in the above? [3]
-    - you are not factoring the overheads dealing with the scalling system. If you have parallel processing, this can carry additional overheads, e.g. loops, communications, variables introduced to deal with parallel aspects. While you don't have this overheads in sequential programs.
-
+  
+  - you are not factoring the overheads dealing with the scalling system. If you have parallel processing, this can carry additional overheads, e.g. loops, communications, variables introduced to deal with parallel aspects. While you don't have this overheads in sequential programs.
+  
 - > [2014 Q3] A) What is Flynn’s Taxonomy? [2]
     - |               | Simple Instruction | Multiple Instruction |
         | ------------- | ------------------ | -------------------- |
@@ -474,14 +495,18 @@
         | Multiple Data | SIMD               | MIMD                 |
 
     - > a. What have been the implications of Flynn’s taxonomy on modern computer architectures?  
-    Give examples of its consequences on modern multi-core servers and clusters of servers such as the University of Melbourne Edward HPC facility. [4]
+      Give examples of its consequences on modern multi-core servers and clusters of servers such as the University of Melbourne Edward HPC facility. [4]
+      
         - The HPC uses MIMD so you can have multiple applications running at the same time, reading/writing/processing multiple different types of data but still on the same cluster
 - > [2015 Q4] A) Explain the following terms in the context of high performance computing.
-    - > a. Data parallelization [1]
-        - problem like you have a large amount of data But you need to process, analysis and aggregrate  in a small amount in a parallel way.
-    - > b. Compute parallelization [1]
-        - many processes and many threads for process things concurrently
+  - a. Data parallelization [1]
+  - - problem like you have a large amount of data But you need to process, analysis and aggregate  in a small amount in a parallel way.
+
+	-b. Compute parallelization [1]
+	
+	-  - many processes and many threads for process things concurrently
 - > [2015 Q4] D) Compute parallelization of an application can be achieved through a variety of paradigms including task farming and single program multiple data. Describe these approaches and explain when they might best be applied. [3]
+  
     - Master-Worker/task-farming
         - Master decomposes the problem into small tasks
         - distributes to workers and gathers partial results to produce the result
@@ -491,50 +516,52 @@
         - Data is typically split among the available processors
         - Data splitting and analysis can be done in many ways
         - Commonly exploited model: MapReduce
-    
+  
 
 ## Week4 - The Spartan HPC System
-- Some background on supercomputing, high performance computing, parallel computing, research computing (they're not the same thing!).
+1. Background
     - Supercomputer
-        - Any single computer system that has exceptional processing power for its time.
+        - Any **single** computer system that has exceptional processing power for its time.
     - Clustered computing
-        - is when two or more computers serve a single resource 
+        - is when **two or more computers** serve a single resource 
             - e.g.: A collection of smaller computers strapped together with a high-speed local network
         - Adv: improves performance and provides redundancy;
     - HPC - high performance computing
         - It is any computer system whose architecture allows for above average performance
         - The clustered HPC is the most efficient, economical, and scalable method, and for that reason it **dominates supercomputing**.
     - Parallel and Research Programming
-        - Parallel computing refers to the submission of jobs or processes over multiple processors and by splitting up the data or tasks between them
-            - With a cluster architecture, applications can be more easily parallelised across them.
+        - Parallel computing refers to **the submission of jobs or processes** over multiple processors and by **splitting up the data or tasks** between them
+            - With a cluster architecture, applications can be more easily parallelized across them.
         - Research computing is the software applications used by a research community to aid research.
             - challenge: This skills gap is a major problem and must be addressed because as the volume, velocity, and variety of datasets increases then researchers will need to be able to process this data.
-2. Flynn’s Taxonomy and Multicore System
+2. Flynn’s Taxonomy and Multicore System (分类和多和系统)
     - Over time computing systems have moved towards multi-processor, multi-core, and often multi-threaded and multi-node systems.
     - As computing technology has moved increasingly to the MIMD taxonomic classification additional categories have been added:
         - Single program, multiple data streams (SPMD)
         - Multiple program, multiple data streams (MPMD)
 3. Things are more important than performance
-    - Correctness of code and signal
-    - Clarity of code and architecture
-    - Reliability of code and equipment
-    - Modularity of code and components
-    - Readability of code and hardware documentation
-    - Compatibility of code and hardware
+    - Correctness of code and signal (代码和信号的正确性)
+    - Clarity of code and architecture  (清晰的代码和架构)
+    - Reliability of code and equipment (代码和设备的可靠性)
+    - Modularity of code and components  (代码和组件的模块化)
+    - Readability of code and hardware documentation (代码和硬件文档的可读性)
+    - Compatibility of code and hardware  (代码和硬件的兼容性)
 4. x-windows forwarding
-    - allows you to start up a remote application (on Spartan) but forward the display to your local machine.
+
+    allows you to start up a remote application (on Spartan) but forward the display to your local machine.
 5. Why Module?
-    - have the advantages of being shared with many users on a system and easily allowing multiple installations of the same application but with different versions and compilation options. Sometimes users want the latest and greatest of a particular version of an application for the feature-set they offer. In other cases, such as someone who is participating in a research project, a consistent version of an application is desired. In both cases consistency and therefore reproducibility is attained.
+
+    have the advantages of being **shared with many users** on a system and easily allowing multiple installations of the same application but with **different versions and compilation options**. Sometimes users want the latest and greatest of a particular version of an application for the feature-set they offer. In other cases, such as someone who is participating in a research project, a consistent version of an application is desired. In both cases ***consistency*** and therefore ***reproducibility*** is attained.
 - Why performance and scale matters, and why it should matter to you.
 - An introduction to Spartan, University of Melbourne's HPC/cloud hybrid system
 - Logging in, help, and environment modules.
 - Job submission with Slurm workload manager; simple submissions, multicore, multi-node, job arrays, job dependencies, interactive jobs.
 - Parallel programming with shared memory and threads (OpenMP) and distributed memory and message passing (OpenMPI)
-- Tantalising hints about more advanced material on message passing routines.
+- Tantalizing hints about more advanced material on message passing routines.
 
 ### past exam
 - > [2015 Q4] B) Explain the role of a job scheduler on a high performance computing system like the University of Melbourne Edward cluster. What commands can be used to influence the behavior of the job scheduler in supporting parallel jobs running on single or multiple nodes (servers)? [3]
-    - you can specify wall time, number of processess, number of threads in slurm scripts 
+    - you can specify wall time, number of processes, number of threads in slurm scripts 
     - and job scheduler schedule you job depend on theses
     - wall time is a massive influence on this
         - If you give a small wall time, the scheduler might schedule faster for you
@@ -571,7 +598,9 @@
     - If too large, then the job might be queued in a longer time it actually needs
     - If too small, then the job might be terminated before it finishes
 - > [2015 Q4] A) Explain the following terms in the context of high performance computing.
+  
     - > c. Wall-time [1]
+  
         - the time limit when you submit job that you think the job will finish by
 
 ## Week5 - Cloud Computing & ~~Getting to Grips with the University of Melbourne Research Cloud~~
@@ -599,11 +628,14 @@ Cloud computing is a model for enabling ubiquitous, convenient, on-demand networ
     - How to decide (in real time?) what data can go to public cloud?<br>
     - Is the public cloud compliant with PCI-DSS (Payment Card Industry – Data Security Standard)?<br>
 - > [2015 Q6] B) What are the advantages/disadvantages of public, private and hybrid clouds? [5]
+  
     - below
 - > [2014 Q2] A) According to Wikipedia “Cloud Computing is a colloquial expression used to describe a variety of different types of computing concepts that involve a large number of computers that are connected through a real-time communication network (typically the Internet). Cloud computing is a jargon term without a commonly accepted non-ambiguous scientific or technical definition”.
+  
     - > a. Is this justified? Your answer should cover:
+  
         - > i. public, private and hybrid Cloud computing models and their advantages and disadvantages; [4]
-                
+      
             || Private|Public| Hybrid |
             |---|---|---|---|
             |pro|1. **Control**<br>2. **Consolidation of resources**<br>3. **Easier to secure** - easy to setup firewall<br>4. **More trust**|1. Utility computing<br>2. **Can focus on core business** - no need to care infrasture or be a devop<br>3. Cost-effective - use as much as you need<br>4. “Right-sizing”<br>5. Democratisation of computing<br>|1. **Cloud-bursting** - Use private cloud, but burst into (突然变成) public cloud when needed |
@@ -862,6 +894,7 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
         - ROA has a style of supporting Restful services that allows folk to interact/navigate their functionality (HATEOS etc). The services still do PUT, POST, GET etc.
             - can be used to support the definition and creation of services or service endpoints. 
     - ROA \& Rest
+      
         - ROA has a style of supporting Restful services that allows folk to interact/navigate their functionality (HATEOS etc). The services still do PUT, POST, GET etc.
     - ROA v.s. SOA
         - similar
@@ -948,6 +981,7 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
         - too much standards compared to ReST
     - SOAP is built upon the <u>Remote Procedure Call paradigm (a language independent function call that spans another system)</u> while ReST is centered around resources, and the way they can be manipulated (added, deleted, etc.) remotely
 - > [2015 Q3] A) _SOAP is dead; ReST is the future!_ Explain this statement with regards to Representational State Transfer (ReST) based web services compared to Simple Object Access Protocol (SOAP)-based web services for implementing service-oriented architectures. [5]
+  
     - above
 - > [2016 Q4] A) Representational State Transfer (ReST) based web services are often used for creating Resourceoriented Architectures (ROA) whilst Simple Object Access Protocol (SOAP)-based web services are often used to implement Service-oriented Architectures (SOA). Discuss the similarities and differences between a ROA and a SOA. [3]
     - similar
@@ -968,20 +1002,29 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
     - **PUT** should be used when target resource URL is known by the client.
     - **POST** should be used when target resource URL is server generated
 - > [2014 Q1] C) A HTTP method can be _idempotent_
+  
     - > What is meant by this italicized term? [1]
+  
         - Effect of repeating a call is equivalent to making a single call; if not can has side-effects
     - > Give an example of an idempotent ReST method. [1]
+      
         - PUT
 - > [2015 Q3] B) HTTP methods can be safe or idempotent.
+  
     - > a. What is meant by a safe HTTP method? [1]
+  
         - Do not change, repeating a call is equivalent to not making a call at all 
     - > b. Give an example of a safe HTTP method. [1]
+      
         - GET
     - > c. What is meant by an idempotent HTTP method? [1]
+      
         - Effect of repeating a call is equivalent to making a single call; if not can has side-effects
     - > d. Give an example of an idempotent HTTP method. [1]
+      
         - PUT
     - > e. Give an example of a HTTP method that is neither safe nor idempotent? [1]
+      
         - POST
 
 ## Week 7 – Big Data and CouchDB
@@ -1050,6 +1093,7 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
             |enforces consistency|every database is in a consistent state, and all are left in the same state|1. locking data that are within the transaction scope <br/>2. performing transactions on write-ahead logs <br/>3. completing transactions (commit) only when all nodes in the cluster have performed the transaction <br/>4. aborts transactions (rollback) when a partition is detected
             |reduced availability|data lock, stop in case of partition
         - Conclusion
+          
             - Therefore, two-phase commit is a good solution when the cluster is co-located, less good when it is distributed
     2. Paxos: Consistency and Partition-Tolerance
         - This family of algorithms is driven by consensus, and is both partition-tolerant and consistent
@@ -1100,7 +1144,7 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
         - q is the number of shards (how many files a database is split)
         - n * q is the total number of shard files distributed in the different nodes of the cluster
         - <img src="./docs/31.png" width="60%" height="50%" />
-            
+          
             - There are 16 shards since the three node clustered database has n=2 replicas and q=8 shards. 
 7. Partitions
     - What is it?  
@@ -1113,14 +1157,15 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
     - Partitions are a new feature of CouchDB 3.x
 8. MapReduce Algorithms
     - What is it?  
+      
         - This family of algorithms is particularly suited to parallel computing of the Single-Instruction, Multiple-Data type (SIMD) (see Flynn's taxonomy in a previous lecture)
     - Advantage:  
         - parallelism
         - greatly reducing network traffic by moving the process to where data are
     - Procedure:  
         1. Map: distributes data across machines, while 
-        2. Reduce: hierarchically summarizes them until the result is obtained.
-
+    2. Reduce: hierarchically summarizes them until the result is obtained.
+    
                 function map(name, document):
                     for each word w in document:
                         emit (w, 1)
@@ -1138,8 +1183,10 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
 2. CouchDB Cluster Architecture
     - <img src="./docs/11.jpg" width="30%" height="50%" />
     - In this example there are 3 nodes, 4 shards and a replica number of 2
+      
         - replica: copy of data
     - All nodes answer requests (read or write) at the same time
+      
         - no master
     - Sharding (splitting of data across nodes) is done on every node
         - if a read request to shard A to node 1, then node 1 answer it
@@ -1226,6 +1273,7 @@ Your answer should include the way in which these solutions implement MapReduce.
         - typically used with HDFS to benefit from above two
         - maybe also mention RDDs etc
     - > What other data properties can be associated with big data challenges? [1]
+  
         - Veracity: the level of trust in the data accuracy (provenance); the more diverse sources you have, the more unstructured they are, the less veracity you have.
 - > [2013 Q7] A) Many research domains are facing "big data" challenges. Big data is not just related to the size of the data sets. Explain. [5]
     - |Big data challenges||
@@ -1249,29 +1297,41 @@ You may refer to specific research disciplines, e.g. life sciences, astrophysics
     - Paxos can achieve Consistency and Partition-Tolerance
     - Multi-Version Concurrency Control (MVCC) can achieve Availability and Partition-tolerance
 - > [2013 Q3] B) Describe which aspects of the CAP theorem are supported by the following database technologies:
+  
     - > non-SQL (unstructured) databases such as CouchDB. [2]
+  
         - CouchDB uses MVCC to support Availability and Partition-tolerance
     - > relational databases such as PostGreSQL. [2]
+      
         - Relational DBMSs are extremely good for ensuring consistency and availability
     - > Describe the advantages of MapReduce compared to other more traditional data processing approaches. [2]
         - You can map to multiple different servers and you can reductions on all data and it can scale.
         - parallelism
         - greatly reducing network traffic by moving the process to where data are
 - > [sample Q4] A) In the context of distributed databases, explain the concepts of: 
+  
     - > Consistency [1]
+  
         - every client receiving an answer receives **the same answer** from all nodes in the cluster (it doesn't depend on which node is quired)
     - > Availability [1]       
+      
         - every client receives **an answer** from any node in the cluster (which might differ from node to node)
 - > [sample Q4] B) Give an example of a database technology that supports Availability in the presence of a (network) partition.  [1]
+  
     - Multi-Version Concurrency Control (MVCC)
 - > [sample Q4] C) In the context of CouchDB clusters what is the meaning of:
+  
     - > Replica number [1]
+  
         - Number of copies of the same shard kept in the cluster
     - > Number of shards [1]
+      
         - Number of horizontal partitions of the cluster
     - > Read quorum [1]
+      
         - Minumum number of nodes that have to give the same result to a read operation for it to be declared valid and sent back to the client
     - > Write quorum [1]
+      
         - Minumum number of nodes that have to occur for a write operation for it to be accepted
 - > [2014 Q5] A) Discuss the advantages and disadvantages of unstructured (noSQL) databases such as CouchDB for dealing with “big data” compared to more traditional databases, e.g. relational databases such as MySQL.  
 Your answer should cover challenges with data distribution, traditional database ACID properties, heterogeneity of data and large-scale data processing. [6]
@@ -1312,6 +1372,7 @@ Your answer should cover challenges with data distribution, traditional database
   | Storage       | Large                                                        | Small (most are reusable)                     |
 
 - In real world they can co-exist
+  
   - When deploying applications on the cloud, the base computation unit is a Virtual Machine. Usually Docker containers are deployed on top of VMs.
 - Containers not always better
   - It depends on: 
@@ -1455,49 +1516,51 @@ Container? [1]
 - > [sample Q6] C) The following Docker compose file starts two Docker containers that are used to run a WordPress website. What are the equivalent Docker commands that could be used to start these two containers individually?   [4]
     ```
     version: '3.6'
-
-    services:
-
-    wordpress:
-
-        image: wordpress
-
-        restart: always
-
-        ports:
-
-        - 8080:80
-
-        environment:
-
-        WORDPRESS_DB_HOST: database
-
-        WORDPRESS_DB_USER: wordpress
-
-        WORDPRESS_DB_PASSWORD: wordpress
-
-        WORDPRESS_DB_NAME: wordpress
-
-    database:
-
-        image: mysql:5.7
-
-        restart: always
-
-        environment:
-
-        MYSQL_DATABASE: wordpress
-
-        MYSQL_USER: wordpress
-
-        MYSQL_PASSWORD: wordpress
-
-        MYSQL_ROOT_PASSWORD: P@ssw0rd
-
-        volumes:
-
-        - /data/mysql:/var/lib/mysql
     ```
+  ```
+  
+  services:
+  
+  wordpress:
+  
+      image: wordpress
+      
+      restart: always
+      
+      ports:
+      
+      - 8080:80
+      
+      environment:
+      
+      WORDPRESS_DB_HOST: database
+      
+      WORDPRESS_DB_USER: wordpress
+      
+      WORDPRESS_DB_PASSWORD: wordpress
+      
+      WORDPRESS_DB_NAME: wordpress
+  
+  database:
+  
+      image: mysql:5.7
+      
+      restart: always
+      
+      environment:
+      
+      MYSQL_DATABASE: wordpress
+      
+      MYSQL_USER: wordpress
+      
+      MYSQL_PASSWORD: wordpress
+      
+      MYSQL_ROOT_PASSWORD: P@ssw0rd
+      
+      volumes:
+      
+        - /data/mysql:/var/lib/mysql
+  ```
     - ```
         docker run -e WORDPRESS_DB_HOST=database \
         -e WORDPRESS_DB_USER=wordpress \
@@ -1505,6 +1568,7 @@ Container? [1]
         -e WORDPRESS_DB_NAME=wordpress \
         -p 8080:80 --restart always wordpress
         ```
+    ```
     - ```
         docker run -e MYSQL_DATABASE=wordpress \
         -e MYSQL_USER=wordpress \
@@ -1512,7 +1576,7 @@ Container? [1]
         -e MYSQL_ROOT_PASSWORD=P@ssw0rd \
         -v /data/mysql:/var/lib/mysql \
         -d --restart always mysql:5.7
-        ```
+    ```
 
 ## Week 8.1 – Virtualisation
 Terminology
@@ -1583,13 +1647,13 @@ Terminology
     - <img src="./docs/19.jpg" width="40%" height="30%" /> for Para-virtualisation, Hardware-assisted virtualisation
         differ in ring 0 service, see lecture 8.1 slides 16, 18
         - New Ring -1 for VMM supported Page tables, virtual memory mgt, direct memory access for high speed reads etc
-        
+    
 5. Memory Virtualisation
     - <img src="./docs/20.jpg" width="40%" height="30%" />
-        
+      
         - In conventional case, page tables store the logical page number and physical page number mappings
     - <img src="./docs/21.jpg" width="40%" height="30%" />
-        
+      
         - In VMM case, VMM maintains shadow page tables in lock-step with the page tables. Additional management overhead is added.
     - Shadow Page Tables
         - VMM maintains shadow page tables in lock-step with the page tables
@@ -1604,22 +1668,30 @@ Terminology
 
 ### past exam
 - > [2014 Q7] A) Define the following terms and their relevance to Cloud Computing:
+  
     - > a. Hypervisor [1]
+  
         - above
     - > b. Virtual machine [1]
+      
         - A representation of a real machine using hardware/software that can host a guest operating system
     - > c. Machine image [1]
+      
         - is a Compute Engine resource that stores all the configuration, metadata, permissions, and data from one or more disks required to create a virtual machine (VM) instance.
     - > d. Object Store [1]
+      
         - is a strategy that manages and manipulates data storage as distinct units
     - > e. Volume Store [1]
         - Store = Storage
         - Volume storage is the virtual equivalent of a USB drive. A USB drive retains your data, whether it is plugged in or not. Manipulating the data on a USB drive requires that it is plugged into a computer and that it is mounted by the operating system. Your USB drive can be unplugged and plugged into another (newer, bigger, better) computer, but your USB drive can only ever be plugged in to one computer at a time. 
         - Equivalently a volume in your Nectar project can retain your data, whether it is attached to an instance or not. Manipulating the data on the volume requires that is attached to an instance, and that the file systems is mounted by the operating system. Your volume can be detached and attached to another (newer, bigger, better) instance, but your volume can only ever be attached to one instance at a time. 
     - > f. Key-pair [1]
+      
         - A key pair consists of a private key and a public key.
 - > [2013 Q5] A) Explain what is meant by the following terms:
+  
     - > Virtual Machine Monitor/Hypervisor [1]
+  
         - is a technology to provide virtualization by providing a virtualisation layer between the underlying hardware the virtual machines and guest operating systems it supports.
     - > Full virtualization [1]
         - allow an unmodified guest OS to run in isolation by simulating full hardware 
@@ -1628,6 +1700,7 @@ Terminology
         - VMM/Hypervisor exposes special interface to guest OS for better performance. Requires a modified/hypervisor-aware Guest OS 
         - Can optimise systems to use this interface since not all instructions need to be trapped/dealt with
     - > Shadow page tables [1]
+      
         - VMM (virtual machine monitar) keeps a mapping between what a vitual machine on the server rack you think that if you are dealing with address spaces and memory update. And it keeps a logical mapping so that all the instances think their own page tables which they don't. All of that is managed indirectly by the shadow page table.
     - > Explain how hardware virtualization and software virtualization can differ in their treatment of shadow page tables. [2]
         <!-- - hardware virtualization has less performance overheads
@@ -1642,6 +1715,7 @@ Terminology
             - privacy and security issue
             - virtual machine has slow startup time
     - > [2017 Q7 C [3]] Describe the typical steps that are required to support live migration of virtual machine instances using a Cloud facility such as the NeCTAR Research Cloud. [2]
+      
         - picture above
 - > [2016 Q5] A) Popek and Goldberg laid down the foundations for computer virtualization in their 1974 paper, Formal Requirements for Third Generation Architectures.
     - > a. Identify and explain the different types of classification of instruction sets for virtualization to occur according to the theorem of Popek and Goldberg. You should include the relationships between the instruction sets. [3]
@@ -1944,6 +2018,7 @@ Terminology
 
 ### past exam
 - > [sample Q7] A) In the context of Cloud, what is meant by serverless computing? [1]
+  
     - A way of developing applications as **collections of functions** that are deployed on a computing infrastructure without the need to manage it.
 - > [sample Q7] B) List three reasons why it may be beneficial to choose a serverless solution. [3]
     - |Reason|How|
@@ -2165,6 +2240,7 @@ Terminology
         - HDFS has blocks existing on nodes and there is a name node which contains the meta data about which block is running.
         - HDFS is a fault tolerant file system that has been explicitly designed to span many nodes
     - > b. Describe the process by which Apache Hadoop supports fault tolerant data processing. [2]
+  
         - HDFS has blocks existing on nodes and there is a name node which contains the meta data about which block is running and if one of the nodes fails then the data is still available somewhere else in the system load balanced. And it will try to rebalnce itself.
 - > [sample Q4] D) Describe the three different Apache SPARK runtime modes:    
     - > Local [1]
@@ -2174,8 +2250,10 @@ Terminology
         - The cluster manager, driver program and the executors are all hosted on the cluster.
         - The cluster manager and Spark appplication is hosted on the cluster.
     - > Client [1]
+  
         - The driver program is hosted on the same computer that is not part of the cluster, while the cluster manager and executors are hosted on the cluster.
 - > [2017 Q2] B What is the Apache Hadoop Resilient Distributed Dataset (RDD) operation type that triggers RDD evaluations? Which operation type does not trigger RDD evaluations? [2]
+  
     - Spark's RDDs provide two kinds of operations: transformations and actions, where only actions such as reduce or collect trigger the evaluation. So transformation does not trigger RDD evaluations.
 
 ## Week 10.1 – Security and Clouds
@@ -2303,7 +2381,7 @@ Terminology
                         - identity provider
                             - the federation, listed in this case
                     - <img src="./docs/32.png" width="60%" height="50%" />
-                        
+                      
                         - How does the role of AURIN project go into the unimelb system
                         - How does the unimelb system a user is involved in the AURIN project
                         - How does the unimelb system know to send the information to the service provider related to which when it is required
@@ -2432,14 +2510,18 @@ Terminology
 
 ### past exam
 - > [2013 Q6] A) Explain what is meant by the following security terms:
+  
     - > single sign-on [1]
+  
         - is where you authenticate once then the identity provider will enable you to access set of multiple different services which can be hosted in different places 
     - > public key infrastructures [1]
         - the cloud computing is based on this
         - you have public private key pairs where public key is hold by anyone but only you hold by yourself. And the certificates which issuing the connection between your pulic key and your private key. And the certificate is issued by the certification authority. If you want to get certificates, you have to prove your identity. 
     - > certification authority [1]
+      
         - The certification authority is the authority who is responsible for issuing the certificate.
     - > registration authority [1]
+      
         - The physical individual in the organization who is responsible for checking someone's identity
     - > identity provider (IdP) [l]
         - is the authentication system
@@ -2448,7 +2530,7 @@ Terminology
 - > [2013 Q6] B) Discuss the challenges in supporting fine-grained security in Cloud environments. You may refer to the importance and/or role of (some of) the terms in part A) of this question. [5]
     - how cloud do authentication
         - e.g.: fine-grained access control which is authorization, auditing. There is still problem which is confidentiality. The fact that you put your data on the given server and you have no idea where the server is
-    
+  
     - fine-grained security is not done pretty well in the cloud. We kind of knowing how to do authentication to a certain degree. But building access control system without fine-grain is something that cloud doesn't generally provide for you so that you have to build by yourself.
 
     - authentication
@@ -2523,7 +2605,10 @@ Terminology
         - Static federation
         - no single CA
 - > [2015 Q5] B) The Internet2 Shibboleth technology as currently supported by the Australia Access Federation provides federated authentication.
+  
     - > a. Explain what is meant by this italicized term and discuss the advantages and disadvantages of the Shibboleth approach for security. [3]
+  
         - above
     - > b. Why isn’t Shibboleth used to access Cloud-based systems more generally? [3]
+      
         - above
