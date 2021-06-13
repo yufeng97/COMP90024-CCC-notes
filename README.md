@@ -560,41 +560,47 @@
 - Tantalizing hints about more advanced material on message passing routines.
 
 ### past exam
-- > [2015 Q4] B) Explain the role of a job scheduler on a high performance computing system like the University of Melbourne Edward cluster. What commands can be used to influence the behavior of the job scheduler in supporting parallel jobs running on single or multiple nodes (servers)? [3]
+- > [2015 Q4] B) Explain **the role of a job scheduler** on a high performance computing system like the University of Melbourne Edward cluster. What ***commands*** can be used to influence the behavior of the job scheduler in supporting parallel jobs running on single or multiple nodes (servers)? [3]
+  
     - you can specify wall time, number of processes, number of threads in slurm scripts 
     - and job scheduler schedule you job depend on theses
     - wall time is a massive influence on this
         - If you give a small wall time, the scheduler might schedule faster for you
 - > [sample Q5] B) The actual performance as experienced by users of shared-access HPC facilities such as the Edward cluster at the University of Melbourne can vary – where here performance can be considered as the throughput of jobs, i.e. from the time of first job submission to the time of last job completion. Explain why this can happen. [2]
+    (不同用户所体验到的实际性能是不同的)
+  
     - Stuck in queue
     - Overall usage of facility (some nodes can be super busy)
         - e.g.: I/O or node load
     - not all nodes are identical
     - the nature of the application itself
 - > [sample Q5] C) Explain how the Edward cluster has been set up to minimize this. [2]
+  
     - Stuck in queue: Multiple queues dedicated to certain jobs
         - e.g.: Cloud, physical, ...
     - Overall usage of facility (some nodes can be super busy): Queueing system to only schedule jobs when resources free
         - (avoid starvation/blocking of system by users with large reservation demands for their jobs)
-    - Modules set uo with main libraries installed
+    - Modules set up with main libraries installed
 - > [sample Q5] D) Explain what users can do to optimize their throughput (use) of the Edward cluster. [2]
     - wall time choices (minimal necessary)
         - If too large, then the job might be queued in a longer time it actually needs
         - If too small, then the job might be terminated before it finishes
-    - avoid demanding large scale resource
+    - **avoid demanding large scale resource**
     - Load right modules
     - benchmark small data then scale up to appropriate large value
-- > [sample Q5] E) Describe some of the challenges with application benchmarking on HPC facilities. [2]
+- > [sample Q5] E) Describe some of the **challenges** with application benchmarking on HPC facilities. [2]
+  
     - Stuck in queue for a long time
     - Shared facility is not just for you. Thus, can't guarantee runs the same results for same application
-    - benchmarking apps is hard
-        - different alogrithm implementation different performance
+    - **benchmarking** apps is hard
+        - different algorithm implementation different performance
     - use Linpack which is a fixed set of algorithms that doesn't reflect real world apps
         - e.g.: Twitter analytics
 - > [2014 Q3, 2015 Q4 C [1]] B) What features does the Edward HPC facility offer to allow utilization of multiple servers (nodes)? [2]
     - firstly, they exist
-    - secondly, you can specify your slurm scripts, you can specify the cloud resources you need (nodes/threads/cores). allows you to express these
+    - secondly, you can specify your slurm scripts, you can **specify the cloud resources** you need (nodes/threads/cores). allows you to express these
 - > [2014 Q3] C) Why is the accuracy of the wall time estimate important to Edward end users? [2]
+  
     - If too large, then the job might be queued in a longer time it actually needs
     - If too small, then the job might be terminated before it finishes
 - > [2015 Q4] A) Explain the following terms in the context of high performance computing.
@@ -604,23 +610,25 @@
         - the time limit when you submit job that you think the job will finish by
 
 ## Week5 - Cloud Computing & ~~Getting to Grips with the University of Melbourne Research Cloud~~
-Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) <u>that can be rapidly provisioned and released with minimal management effort or service provider interaction</u> 可以通过最少的管理工作或服务提供者交互从而可以快速地配置和发布
-- <img src="./docs/8.jpg" width="70%" height="50%" />
+Cloud computing is a model for enabling ubiquitous (无处不在的), convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage, applications, and services) <u>that can be rapidly provisioned and released with minimal management effort or service provider interaction</u> 
+可以通过最少的管理工作或服务提供者交互从而可以快速地配置和发布
+
+- <img src="./docs/8.jpg" style="zoom:67%;" />
 1. Deployment Models
 
-    || Private| Community| Public| Hybrid |
-    |---|---|---|---|---|
-    |pro|1. **Control**<br>2. **Consolidation of resources**<br>3. **Easier to secure** - easy to setup firewall<br>4. **More trust**||1. Utility computing<br>2. **Can focus on core business** - no need to care infrasture or be a devop<br>3. Cost-effective - use as much as you need<br>4. “Right-sizing”<br>5. Democratisation of computing<br>|1. **Cloud-bursting** - Use private cloud, but burst into (突然变成) public cloud when needed (What is hybrid cloud) |
-    |con|1. Relevance to core business?<br>e.g. Netflix to Amazon<br>2. Staff/management overheads - need devop<br>3. Hardware obsolescence - need to refesh hardware<br>4. Over/under utilisation challenges - recycle resources<br>| | 1. **Security** - people can see your sensitive data<br>2. Loss of control<br>3. **Possible lock-in** - difficult to switch Azure if using AWS<br>4. Dependency of Cloud provider continued existence<br>| 1. How do you move data/resources when needed?<br>2. How to decide (in real time?) what data can go to public cloud?<br>3. Is the public cloud compliant with PCI-DSS (Payment Card Industry – Data Security Standard)?<br>|
-    |example| | | | Eucalyptus, VMWare vCloud Hybrid Service|
+||Private|Public|Hybrid|
+|-|-------------|-|-|
+| pro     | 1. **Control** <br>2.**Consolidation of resources** <br>3. **Easier to secure** <br>- easy to setup firewall <br>4. **More trust** | 1. Utility computing<br>2. **Can focus on core business** <br>- no need to care infrastructure or be a devop<br>3. Cost-effective<br> - use as much as you need<br>4. “Right-sizing”<br>5. Democratization of computing<br> | 1. **Cloud-bursting** <br>- Use private cloud, but burst into (突然变成) public cloud when needed <br>(What is hybrid cloud) |
+| con     | 1. Relevance to core business? <br>- e.g. Netflix to  Amazon <br>2. Staff/ management overheads <br>- need devop<br>3. 硬件过时<br>Hardware obsolescence - need to refresh hardware <br>4. Over/under utilization challenges - recycle resources<br> | 1. **Security** - people can see your sensitive data <br>2. Loss of control <br>3. **Possible lock-in** <br>- difficult to switch Azure if using AWS <br>4. Dependency of Cloud provider continued existence <br> | 1. How do you move data/ resources when needed?<br>2. How to decide (in real time) what data can go to public cloud?<br>3. Is the public cloud compliant with PCI-DSS<br>(Payment Card Industry – Data Security Standard)?<br> |
+| example |                        | | Eucalyptus, VMWare vCloud Hybrid Service |
 
 2. Delivery Models
+
 - responsibilities:
-    - <img src="./docs/9.jpg" width="70%" height="50%" />
--
-    | | Iaas| Paas|Saas|
-    |---|---|---|---|
-    | example| Amazon Web Services<br>Oracle Public Cloud<br>NeCTAR| Azure| Gmail|
+    - <img src="./docs/9.jpg" style="zoom: 70%;" />
+| | Iaas (Infrastructure as a Service) | Paas (Platform as a Service) |Saas (Software as a Service)|
+|---|---|---|---|
+| example| Amazon Web Services<br>Oracle Public Cloud<br>NeCTAR| Azure| Gmail|
 
 ### past exam
 - > [2015 Q6] C) Describe some of the challenges in delivering hybrid Clouds? [2]
@@ -631,41 +639,26 @@ Cloud computing is a model for enabling ubiquitous, convenient, on-demand networ
   
     - below
 - > [2014 Q2] A) According to Wikipedia “Cloud Computing is a colloquial expression used to describe a variety of different types of computing concepts that involve a large number of computers that are connected through a real-time communication network (typically the Internet). Cloud computing is a jargon term without a commonly accepted non-ambiguous scientific or technical definition”.
+  >
+  > - a. Is this justified? Your answer should cover:
+  >
+  > - i. public, private and hybrid Cloud computing models and their advantages and disadvantages; [4]
+  >
+  >     See the table before ..
+  >
+  > - ii. the different flavours of “X as a Service (XaaS)” models including their associated advantages and disadvantages. [4]
+  > 
+    |      | IaaS                                                         | PaaS                                                         | SaaS                                             |
+    | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------ |
+    | Pros | give access to service where we can now deploy our services on top of that using Ansible/Heater | almost everything is organized by professionals, at the same time you have some freedom of action | everything is organized for you by professionals |
+  | Cons | you need to spend time to build such services                | great dependency on the vendor                               | no freedom, you fully depend on the vendor       |
   
-    - > a. Is this justified? Your answer should cover:
-  
-        - > i. public, private and hybrid Cloud computing models and their advantages and disadvantages; [4]
-      
-            || Private|Public| Hybrid |
-            |---|---|---|---|
-            |pro|1. **Control**<br>2. **Consolidation of resources**<br>3. **Easier to secure** - easy to setup firewall<br>4. **More trust**|1. Utility computing<br>2. **Can focus on core business** - no need to care infrasture or be a devop<br>3. Cost-effective - use as much as you need<br>4. “Right-sizing”<br>5. Democratisation of computing<br>|1. **Cloud-bursting** - Use private cloud, but burst into (突然变成) public cloud when needed |
-            |con|1. Relevance to core business?<br>e.g. Netflix to Amazon<br>2. Staff/management overheads - need devop<br>3. Hardware obsolescence - need to refesh hardware<br>4. Over/under utilisation challenges - recycle resources<br>| 1. **Security** - people can see your sensitive data<br>2. Loss of control<br>3. **Possible lock-in** - difficult to switch Azure if using AWS<br>4. Dependency of Cloud provider continued existence<br>| 1. How do you move data/resources when needed?<br>2. How to decide (in real time?) what data can go to public cloud?<br>3. Is the public cloud compliant with PCI-DSS (Payment Card Industry – Data Security Standard)?<br>|
-        - > ii. the different flavours of “X as a Service (XaaS)” models including their associated advantages and disadvantages. [4]
-            - IaaS
-                - adv
-                    - give access to service where we can now deploy our services on top of that using Ansible/Heater
-                disadv
-                    - you need to spend time to build such services
-            - PaaS
-                - adv
-                    - almost everything is organized by professionals, at the same time you have some freedom of action
-                - disadv
-                    - great dependency on the vendor
-            - SaaS
-                - adv
-                    - everything is organized for you by professionals
-                - disadv
-                    - no freedom, you fully depend on the vendor
 - > [2015 Q6] A) Describe the terms Cloud-based IaaS, PaaS and SaaS and give examples for each. [3]
-    - IaaS
-        - is a computing infrastructure giving access to service where we can now deploy our services on top of that using Ansible/Heater
-        - Amazon Web Services
-    - PaaS
-        - is a computing infrastructure almost everything is organized by professionals, at the same time you have some freedom of action
-        - Azure
-    - SaaS
-        - is a computing infrastructure everything is organized for you by professionals
-        - Gmail
+  
+  |             | IaaS                                                         | PaaS                                                         | SaaS                                                         |
+  | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+  | Description | a computing infrastructure giving access to service where we can now deploy our services on top of that using Ansible/Heater | a computing infrastructure almost everything is organized by professionals, at the same time you have some freedom of action | a computing infrastructure everything is organized for you by professionals |
+  | Example     | Amazon Web Services                                          | Azure                                                        | Gmail                                                        |
 - > [sample Q2 C] What are availability zones in NeCTAR and what restrictions do they impose on NeCTAR Cloud-based application developers? [2]
     - availability zone: locations of data centers used to provide logical view of cloud
     - restriction: can't mount volumes to VMs in remote locations. If you have computer in Melbourne, you can't have your storage somewhere else in a different availability zone and you can't mount that volume.
@@ -677,12 +670,12 @@ Cloud computing is a model for enabling ubiquitous, convenient, on-demand networ
 ## Workshop week5: Auto-Deployment -- Ansible
 - Reason for auto-deployment (**comparison**)
   - We are easy to forget what software we installed, and what steps we took to configure the system
-  - Manual process is error-prone, can be non-repeatable
+  - Manual process is error-prone, can be non-repeatable (手动流程容易出错，可能是不可重复的)
   - Snapshots are monolithic
     - provide no record of what has changed
   - Manual deployment provides no record of what has changed
 - Automation is the mechanism used to make servers reach a desirable state.
-  - Automation provides (**advantages**)
+  - **advantages**
     - A record of what you did
     - Knowledge about the system in code
     - Making the process repeatable
@@ -692,50 +685,50 @@ Cloud computing is a model for enabling ubiquitous, convenient, on-demand networ
     - Configuration management refers to the process of systematically handling changes to a system in a way that it maintains integrity over time.
 - Ansible is an automation tool for configuring and managing computers.
   - Features about ansible (Pros)
-    - Easy to learn
-      - Playbooks in YAML, templates in Jinja2
-      - Sequential execution
-    - Minimal requirements
-      - No need for centralized management servers/daemons
-      - Single command to install
-      - Using SSH to connect to target machine
-    - Idempotent
-      - Executing N times no different to executing once
-      - Prevents side-effects from re-running scripts
-    - Extensible
-      - Write you own modules
-    - Rolling updates
-      - Useful for continuous deployment/zero downtime deployment
-    - Inventory management
-      - Dynamic inventory from external data sources
-      - Execute tasks against host patterns
-    - Ansible Vault for encryption
+  - Easy to learn
+    - Playbooks in YAML, templates in Jinja2
+    - Sequential execution
+  - Minimal requirements
+    - No need for centralized management servers/daemons
+    - Single command to install
+    - Using SSH to connect to target machine
+  - Idempotent (幂等)
+    - Executing N times no different to executing once (执行N次与执行1次没有区别)
+    - Prevents side-effects from re-running scripts (防止重新运行脚本的副作用)
+  - Extensible: Write you own modules
+  - Rolling updates
+    - Useful for continuous deployment/zero downtime deployment
+  - Inventory management
+    - Dynamic inventory from external data sources
+    - Execute tasks against host patterns
+  - Ansible Vault for encryption
 
 ### past exam
-- > [Sample Q1, 2017 Q7 B each [2], 2015 Q7 A [4, 3]] Applications can be deployed across Clouds either through creation and deployment of virtual images (snapshots) or through scripting the installation and configuration of software applications.
-    - > What are the benefits and drawbacks of these approaches? [3]
-        - Snapshots
-            - benefits
-                - Snapshots are easy, can be created just by clicking buttons on dashboard
-            - drawbacks
-                - No history of how the instance built -> no control
-        - Scripting
-            - benefits
-                - Scripting allows to do much more 
-                    - start application
-                    - configure application
-                    - deploy application
-                    - upgrade system
-                    - thus, have more controll over the system
-                - Scripting has complete record of how to build and deploy
-            - drawbacks
-                - harder compared to clicking buttons in Snapshots
-    - > Discuss the mechanisms used to support these approaches. You may refer to specific tools used to support these processes on the NeCTAR Research Cloud. [3]
-        - openstack API (Nova/Glance/Swift/etc)
-        - openstack Service (Heat/etc)
-            - templates the flavor of deployment
-                - e.g.: specify the version of Ubuntu used
-        - Ansible scripting allows to automate software deployment including tasks/role
+- > [Sample Q1, 2017 Q7 B each [2], 2015 Q7 A [4, 3]] Applications can be deployed across Clouds either through creation and deployment of **virtual images (snapshots)** or through **scripting** the installation and configuration of software applications.
+  >
+  > - What are the benefits and drawbacks of these approaches? [3]
+  >     - Snapshots
+  >         - benefits: Snapshots are easy, can be created just by clicking buttons on dashboard
+  >         - drawbacks: No history of how the instance built -> no control
+  >     - Scripting
+  >         - benefits
+  >             - Scripting allows to do much more 
+  >                 - start application
+  >                 - configure application
+  >                 - deploy application
+  >                 - upgrade system
+  >                 - thus, have more controll over the system
+  >             - Scripting has complete record of how to build and deploy
+  >         - drawbacks
+  >             - harder compared to clicking buttons in Snapshots
+  >
+  > - Discuss the mechanisms used to support these approaches. You may refer to specific tools used to support these processes on the NeCTAR Research Cloud. [3]
+  >     - openstack API (Nova/Glance/Swift/etc)
+  >     - openstack Service (Heat/etc)
+  >         - templates the flavor of deployment
+  >         - e.g.: specify the version of Ubuntu used
+  >     - Ansible scripting allows to automate software deployment including tasks/role
+
 - > Describe the approach that would be taken using Ansible for scripted deployment of SaaS solutions onto the Cloud. [2]
     - Create a playbook that contains YAML files. Typical contents include variables, inventories and roles/tasks/templates. Inventories will include the servers/database used for the software etc etc. 
     - Then say how you would run the script using openrc.sh etc. Note 2 points so massive amounts of detail not needed.
@@ -753,34 +746,31 @@ Cloud computing is a model for enabling ubiquitous, convenient, on-demand networ
     - However, when components are distributed such a direct approach typically cannot be used  (e.g. Assignment 2!)
     - Therefore, components (more properly, systems) have to interact in more loosely-coupled ways. 
     - **Services** are often used for this. Typically combinations and commonality of services can be used to form a **Service-oriented Architecture (SoA)**.
-3. SOA goal
-
-    |||
-    |---|---|
-    |A set of externally facing services|that a business wants to provide to external collaborators|
-    |An architectural pattern|based on service providers, one or more brokers, and service requestors based on agreed service descriptions|
-    |A set of architectural principles, patterns and criteria|that support modularity, encapsulation, loose coupling, separation of concerns, reuse and composability|
-    |A programming model|complete with standards, tools and technologies that supports development and support of services (note that there can be many flavours of services)|
-    |A middleware solution|optimized for service assembly, orchestration, monitoring, and management (Can include tools and approaches that combine services together.)<br/>e.g. as workflows. - later on security lecture|
-
+3. SoA Core Goals
+    - A set of **externally facing services** that a business wants to provide to external collaborators
+    - An **architectural pattern** based on service providers, one or more brokers, and service requestors based on agreed service descriptions
+    - A set of architectural principles, patterns and criteria that support modularity, encapsulation, loose coupling, separation of concerns, reuse and composability
+        (一套体系结构原则、模式和标准，支持模块化、封装、松耦合、分离重用和可组合性)
+    - A programming model complete with standards, tools and technologies that supports development and support of services (note that there can be many flavours of services)
+    - A **middleware solution** optimized for service assembly, orchestration, monitoring, and management, e.g. as workflows.
 4. SOA design principle
 
-    |||exmaple|
-    |---|---|---|
-    |Standardized service contract| Services adhere to a communications agreement, as defined collectively by one or more service-description documents.|Use defined twitter API|
-    |Service loose coupling| Services maintain a relationship that minimizes dependencies and only requires that they maintain an awareness of each other.|
-    |Service abstraction| Beyond descriptions in the service contract, services hide logic from the outside world.|Twitter decide the API for you to use i.e. the rule how you can see inside through the Twitter, hide things which you have no access to
-    |Service reusability| Logic is divided into services with the intention of promoting reuse.|
-    |Service autonomy| Services have control over the logic they encapsulate.|you can have tweets older than 2 weeks than you really can't
-    |Service statelessness| Services minimize resource consumption by deferring the management of state information when necessary.|
-    |Service discoverability| Services are supplemented with communicative meta data by which they can be effectively discovered and interpreted.|
-    |Service composability| Services are effective composition participants, regardless of the size and complexity of the composition.|
-    |Service granularity| a design consideration to provide optimal scope at the right granular level of the business functionality in a service operation.|
-    |Service normalization| services are decomposed and/or consolidated to a level that minimizes redundancy, for performance optimization, access, and aggregation.|
-    |Service optimization| high-quality services that serve specific functions are generally preferable to general purpose low-quality ones.|
-    |Service relevance| functionality is presented at a level of granularity recognized by the user as a meaningful service.|
-    |Service encapsulation| many services are consolidated for use under a SOA and their inner workings hidden.|
-    |Service location transparency| the ability of a service consumer to invoke a service regardless of its actual location in the network.|client only use url to use the service on the web regardless of location of service
+    - **Standardized service contract** (标准化服务合同): Services adhere to a communications agreement, as defined collectively by one or more service-description documents.
+    - **Service loose coupling** (服务松耦合): Services maintain a relationship that minimizes dependencies and only requires that they maintain an awareness of each other.
+    - **Service abstraction** (服务抽象): Beyond descriptions in the service contract, services hide logic from the outside world.
+    - **Service reusability** (服务重用性): Logic is divided into services with the intention of promoting reuse.
+    - **Service autonomy** (服务自治): Services have control over the logic they encapsulate.
+    - **Service statelessness** (服务无状态): Services minimize resource consumption by deferring the management of state information when necessary.
+    - **Service discoverability** (服务可发现性): Services are supplemented with communicative meta data by which they can be effectively discovered and interpreted.
+    - **Service composability** (服务可组合性): Services are effective composition participants, regardless of the size and complexity of the composition.
+    - **Service granularity** (服务粒度): a design consideration to provide optimal scope at the right granular level of the business functionality in a service operation.
+    - **Service normalization** (服务规范化): services are decomposed and/or consolidated to a level that minimizes redundancy, for performance optimization, access, and aggregation.
+        (将服务分解和/或合并到最小化冗余的级别，以实现性能优化、访问和聚合。)
+    - **Service optimization** (服务优化): high-quality services that serve specific functions are generally preferable to general purpose low-quality ones.
+    - **Service relevance** (服务相关性): functionality is presented at a level of granularity recognized by the user as a meaningful service.
+    - **Service encapsulation** (服务封装): many services are consolidated for use under a SOA and their inner workings hidden.
+    - **Service location transparency** (服务位置透明性): the ability of a service consumer to invoke a service regardless of its actual location in the network. 
+        (服务使用者调用服务的能力，而不管它在网络中的实际位置。)
 
 ### Web Services
 1. Web Services & SOA
@@ -798,10 +788,10 @@ Cloud computing is a model for enabling ubiquitous, convenient, on-demand networ
 3. SOAP/WS v.s. ReST  
     SOAP (Simple Object Access Protocol)
 
-    |ReST|SOAP/WS|
-    |---|---|
-    is centered around resources, and the way they can be manipulated (added, deleted, etc.) remotely|built upon the <u>Remote Procedure Call paradigm (a language independent function call that spans another system)</u>|
-    |Actually ReST is more of a style to use HTTP than a separate protocol|while SOAP/WS is a stack of protocols that covers every aspect of using a remote service, from service discovery, to service description, to the actual request/response|
+|ReST|SOAP/WS|
+|---|---|
+|is centered around resources, and the way they can be manipulated (added, deleted, etc.) remotely|built upon the <u>Remote Procedure Call paradigm (a language independent function call that spans another system)</u>|
+|Actually ReST is more of **a style to use HTTP** than a separate protocol|while SOAP/WS is **a stack of protocols** that covers every aspect of using a remote service, from service discovery, to service description, to the actual request/response|
 4. How to describes the functionality offered by a web service?
     - WSDL: is an XML-based interface description language that describes the functionality offered by a web service.
     - WSDL provides a machine-readable description of how the service can be called, what parameters it expects, and what results/data structures it returns:
@@ -814,8 +804,10 @@ Cloud computing is a model for enabling ubiquitous, convenient, on-demand networ
         - Service - name given to the web service itself
 
 ### ReST-based Web Services
-1. What is ReST?  
-Representational State Transfer (ReST) is intended to evoke an image of how a well-designed Web application behaves: a network of web pages (a virtual state-machine), where the user progresses through an application by selecting links (state transitions), resulting in the next page (representing the next state of the application) being transferred to the user and rendered for their use.
+1. What is ReST? 
+
+  Representational State Transfer (ReST) is intended to evoke an image of how a well-designed Web application behaves: a network of web pages (a virtual state-machine), where the user progresses through an application by selecting links (state transitions), resulting in the next page (representing the next state of the application) being transferred to the user and rendered for their use.
+
 2. How it works?
     - <img src="./docs/10.png" width="50%" height="50%" />
     - Client wants to access a service (Amazon) a product and things come back
@@ -828,23 +820,24 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
         6. This transitions client into yet another state.
         7. Representational State Transfer!
         ```
+
 3. ReST Best Practices (principle)
     - Keep your URIs short – and create URIs that don’t change.
-    - URIs should be opaque identifiers that are meant to be discovered by following hyperlinks, not constructed by the client.
-    - Use nouns, not verbs in URLs
-    - Make all HTTP GETs side-effect free.  Doing so makes the request "safe".
-    - Use links in your responses to requests!  Doing so connects your response with other data.  It enables client applications to be "self-propelled".  That is, the response itself contains info about "what's the next step to take".  Contrast this to responses that do not contain links.  Thus, the decision of "what's the next step to take" must be made out-of-band.
+    - URIs should be **opaque identifiers** (不透明的) that are meant to be discovered by following hyperlinks, not constructed by the client.
+    - Use **nouns**, not verbs in URLs
+    - Make all **HTTP GETs side-effect free**.  Doing so makes the request "safe".
+    - Use links in your responses to requests!  Doing so connects your response with other data.  It enables client applications to be "self-propelled" (自我推进).  That is, the response itself contains info about "what's the next step to take".  Contrast this to responses that do not contain links.  Thus, the decision of "what's the next step to take" must be made out-of-band.
     - Minimize the use of query strings.  
         - For example:
             - Prefer: http://www.amazon.com/products/AXFC
             - Over: http://www.amazon.com/products?product-id=AXFC
     - Use HTTP status codes to convey errors/success
     - In general, keep the REST principles in mind. 
-        - In particular:
-            - Addressability (discussed above about address design)
-            - Uniform Interface (below)
-            - Resources and Representations instead of RPC (below Resource section)
-            - HATEOAS (below)
+        - Addressability (discussed above about address design)
+        - Uniform Interface (below)  (统一接口)
+        - Resources and Representations instead of RPC (below Resource section)
+        - HATEOAS (below)
+
 4. ReST – Uniform Interface
     - Uniform Interface has four more constrains:
         - Identification of Resources
@@ -862,7 +855,8 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
             - RESTful applications **<u>navigate</u>** instead of **<u>calling</u>**
                 - Representations contain information about possible traversals
                 - application navigates to the next resource depending on link semantics
-                - navigation can be delegated since all links use identifiers
+                - navigation can be delegated since all links use identifiers 
+                    (导航可以委托，因为所有链接使用标识符)
             - Making Resources Navigable
                 - RPC-oriented systems need to expose the available functions
                     - functions are essential for interacting with a service
@@ -874,7 +868,7 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
                         - learn about them by using URI Templates
                         - understand them by recognizing representations
 
-4. Resource  
+5. Resource  
     - is anything that’s important enough to be referenced as a thing in itself.
     - e.g.: 
         ```
@@ -887,15 +881,13 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
         - or perform other operations on it
                     ...then you should make it a resource.
         ```
-3. Resource-Oriented Architecture (ROA)
+
+6. Resource-Oriented Architecture (ROA)
     - what is it?
-        - is a way of turning a problem into a RESTful web service:   
+        - is a way of **turning a problem into a RESTful** web service:   
     an arrangement of URIs, HTTP, and XML that works like the rest of the Web
         - ROA has a style of supporting Restful services that allows folk to interact/navigate their functionality (HATEOS etc). The services still do PUT, POST, GET etc.
             - can be used to support the definition and creation of services or service endpoints. 
-    - ROA \& Rest
-      
-        - ROA has a style of supporting Restful services that allows folk to interact/navigate their functionality (HATEOS etc). The services still do PUT, POST, GET etc.
     - ROA v.s. SOA
         - similar
             - Much of the philosophy behind SOA applies to ROA, 
@@ -927,11 +919,12 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
         - Don't mapping PUT to Update and POST to create
             - **PUT** should be used when target resource URL is known by the client.
             - **POST** should be used when target resource URL is server generated
+
 7. HTTP Methods can be 
     - **Safe**
         - Do not change, repeating a call is equivalent to not making a call at all 
         - GET , OPTION, HEAD
-    -  **Idempotent**
+    -  **Idempotent** (幂等的)
         - Effect of repeating a call is equivalent to making a single call; if not can has side-effects
         - *PUT*, *DELETE*
     - **Neither**
@@ -939,36 +932,23 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
 
 ### past exam
 - > [2015 Q2] A) Explain the general principles that should underlie the design of Service-Oriented Architectures (SOA). [7]
-    - |||exmaple|
-        |---|---|---|
-        |Standardized service contract| Services adhere to a communications agreement, as defined collectively by one or more service-description documents.|Use defined twitter API|
-        |Service loose coupling| Services maintain a relationship that minimizes dependencies and only requires that they maintain an awareness of each other.|
-        |Service abstraction| Beyond descriptions in the service contract, services hide logic from the outside world.|Twitter decide the API for you to use i.e. the rule how you can see inside through the Twitter, hide things which you have no access to
-        |Service reusability| Logic is divided into services with the intention of promoting reuse.|
-        |Service autonomy| Services have control over the logic they encapsulate.|you can have tweets older than 2 weeks than you really can't
-        |Service statelessness| Services minimize resource consumption by deferring the management of state information when necessary.|
-        |Service discoverability| Services are supplemented with communicative meta data by which they can be effectively discovered and interpreted.|
-        |Service composability| Services are effective composition participants, regardless of the size and complexity of the composition.|
-        |Service granularity| a design consideration to provide optimal scope at the right granular level of the business functionality in a service operation.|
-        |Service normalization| services are decomposed and/or consolidated to a level that minimizes redundancy, for performance optimization, access, and aggregation.|
-        |Service optimization| high-quality services that serve specific functions are generally preferable to general purpose low-quality ones.|
-        |Service relevance| functionality is presented at a level of granularity recognized by the user as a meaningful service.|
-        |Service encapsulation| many services are consolidated for use under a SOA and their inner workings hidden.|
-        |Service location transparency| the ability of a service consumer to invoke a service regardless of its actual location in the network.|client only use url to use the service on the web regardless of location of service
+    - see SOA goal above
 - > [2015 Q2] B) Explain why and how Cloud infrastructures have benefited from SOA. [3]
-    - standardized interfaces available tn enable you not worry how the cloud internal do tasks for external interactions
+    
+    - standardized interfaces available (可用的标准化接口) to enable you not worry how the cloud internal do tasks for external interactions
     - When an architecture is completely contained within the same machine, components can communicate directly
         - e.g. through function calls or object instantiations.
     - However, when components are distributed such a direct approach typically cannot be used  (e.g. Assignment 2!)
     - Therefore, components (more properly, systems) have to interact in more loosely-coupled ways. 
     - **Services** are often used for this. Typically combinations and commonality of services can be used to form a **Service-oriented Architecture (SoA)**.
 - > [2014 Q1] B) How has the evolution of service-oriented architectures supported Cloud computing? [2]
-    - SOA has Uniform interface, abstraction, standard contract etc etc avoid all Clouds building their own bespoke solutions (from the forum, below from recording)
+    - SOA has Uniform interface, abstraction, standard contract etc etc avoid all Clouds building their own bespoke solutions (定制解决方案) (from the forum, below from recording)
     - you have standardized interface for the service-oriented architectures
-        - it offers the autonomy 
+        - it offers the autonomy  (自主权)
         - you are providing interface that people/software can interact with
-    - Where it is helping cloud computing is every single cloud provider at the builder of the interface using different technlogies i.e. you have to learn the programming language to do that and this can be a major bottleneck. Adpoting SOA like ReST can help to solve this problem. We have apis provided by openstack where you can interact with the cloud with the help of set of libraries for doing that. 
+    - Where it is helping cloud computing is every single cloud provider at the builder of the interface using different technologies i.e. you have to learn the programming language to do that and this can be a major bottleneck. Adopting SOA like ReST can help to solve this problem. We have apis provided by openstack where you can interact with the cloud with the help of set of libraries for doing that. 
 - > [2013 Q4] A) Compare and contrast Representational State Transfer (ReST) based web services and Simple Object Access Protocol (SOAP)-based web services for implementing service-oriented architectures. [8]
+    
     - They are different flavors of web services
     - complexity of SOAP
         - have namespace and standardization around us to do with the operation names of parameters
@@ -983,7 +963,8 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
 - > [2015 Q3] A) _SOAP is dead; ReST is the future!_ Explain this statement with regards to Representational State Transfer (ReST) based web services compared to Simple Object Access Protocol (SOAP)-based web services for implementing service-oriented architectures. [5]
   
     - above
-- > [2016 Q4] A) Representational State Transfer (ReST) based web services are often used for creating Resourceoriented Architectures (ROA) whilst Simple Object Access Protocol (SOAP)-based web services are often used to implement Service-oriented Architectures (SOA). Discuss the similarities and differences between a ROA and a SOA. [3]
+- > [2016 Q4] A) Representational State Transfer (ReST) based web services are often used for creating Resource Oriented Architectures (ROA) whilst Simple Object Access Protocol (SOAP)-based web services are often used to implement Service-oriented Architectures (SOA). Discuss the similarities and **differences between a ROA and a SOA**. [3]
+    
     - similar
         - Much of the philosophy behind SOA applies to ROA, 
             - Standardized service contract
@@ -1002,30 +983,34 @@ Representational State Transfer (ReST) is intended to evoke an image of how a we
     - **PUT** should be used when target resource URL is known by the client.
     - **POST** should be used when target resource URL is server generated
 - > [2014 Q1] C) A HTTP method can be _idempotent_
-  
-    - > What is meant by this italicized term? [1]
-  
-        - Effect of repeating a call is equivalent to making a single call; if not can has side-effects
-    - > Give an example of an idempotent ReST method. [1]
-      
-        - PUT
+
+    - > What is meant by this **italicized** term? [1]
+
+    Effect of repeating a call is equivalent to making a single call; if not can has side-effects
+
+  - > Give an example of an idempotent ReST method. [1]
+
+    PUT
 - > [2015 Q3] B) HTTP methods can be safe or idempotent.
   
     - > a. What is meant by a safe HTTP method? [1]
   
         - Do not change, repeating a call is equivalent to not making a call at all 
-    - > b. Give an example of a safe HTTP method. [1]
-      
-        - GET
-    - > c. What is meant by an idempotent HTTP method? [1]
-      
-        - Effect of repeating a call is equivalent to making a single call; if not can has side-effects
-    - > d. Give an example of an idempotent HTTP method. [1]
-      
-        - PUT
-    - > e. Give an example of a HTTP method that is neither safe nor idempotent? [1]
-      
-        - POST
+    
+  - > b. Give an example of a safe HTTP method. [1]
+    
+      - GET
+  - > c. What is meant by an idempotent HTTP method? [1]
+  
+      - Effect of repeating a call is equivalent to making a single call; if not can has side-effects
+  
+  - > d. Give an example of an idempotent HTTP method. [1]
+  
+      - PUT
+  
+  - > e. Give an example of a HTTP method that is neither safe nor idempotent? [1]
+  
+      - POST
 
 ## Week 7 – Big Data and CouchDB
 ### "Big data" challenges and architectures
