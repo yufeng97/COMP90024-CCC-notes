@@ -500,11 +500,10 @@
         - The HPC uses MIMD so you can have multiple applications running at the same time, reading/writing/processing multiple different types of data but still on the same cluster
 - > [2015 Q4] A) Explain the following terms in the context of high performance computing.
   - a. Data parallelization [1]
-  - - problem like you have a large amount of data But you need to process, analysis and aggregate  in a small amount in a parallel way.
+      - problem like you have a large amount of data But you need to process, analysis and aggregate  in a small amount in a parallel way.
 
-	-b. Compute parallelization [1]
-	
-	-  - many processes and many threads for process things concurrently
+  - b. Compute parallelization [1]
+      - many processes and many threads for process things concurrently
 - > [2015 Q4] D) Compute parallelization of an application can be achieved through a variety of paradigms including task farming and single program multiple data. Describe these approaches and explain when they might best be applied. [3]
   
     - Master-Worker/task-farming
@@ -1019,16 +1018,19 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
 #### challenge
 1. Big data challenges: four "Vs"
 
-    - **Volume**: yes, volume (Giga, Tera, Peta, …) is a criteria, but not the only one
-    - **Velocity**: the frequency at which new data is being brought into the system and analytics performed
-    - **Variety**: the variability and complexity of data schema. The more complex the data schema(s) you have, the higher the probability of them changing along the way, adding more complexity.
-    - **Veracity**: the level of trust in data accuracy (provenance); the more diverse sources you have, the more unstructured they are, the less veracity you have.
+    - **Volume**: (卷) yes, volume (Giga, Tera, Peta, …) is a criteria, but not the only one
+    - **Velocity**: (速度) the frequency at which new data is being brought into the system and analytics performed
+    - **Variety**: (多样性) the variability and complexity of data schema. The more complex the data schema(s) you have, the higher the probability of them changing along the way, adding more complexity.
+        (数据模式的可变性和复杂性。您拥有的数据模式越复杂，它们在过程中发生变化的概率就越高，从而增加了复杂性。)
+    - **Veracity**: (真实性) the level of trust in data accuracy (provenance); the more diverse sources you have, the more unstructured they are, the less veracity you have.
+        (对数据准确性(来源)的信任程度;你拥有的信息来源越多样化，它们就越不结构化，你的真实性就越低。)
 
 2. Big Data Calls for Ad hoc Solutions
     - While Relational DBMSs are extremely good at ensuring consistency, they rely on normalized data models that, in a world of big data (think about Veracity and Variety) can no longer be taken for granted.
+        (虽然关系数据库非常擅长确保一致性，但它们依赖于**规范化**的数据模型，在大数据的世界里(想想准确性和多样性)，这不再是理所当然的。)
     - Therefore, it makes sense to use DBMSs that are built upon data models that are not relational (relational model: tables and relationships amongst tables).
-    - While there is nothing preventing SQL to be used in distributed environments, alternative query languages have been used for distributed databases, hence they are sometimes called NoSQL DBMSs
-
+- While there is nothing preventing SQL to be used in distributed environments, alternative query languages have been used for distributed databases, hence they are sometimes called NoSQL DBMSs
+  
 3. DBMSs for Distributed Environments
 
     - A **key-value store** is a DBMS that allows the retrieval of a chunk of data given a key: fast, but crude (e.g. Redis, RocksDB, Berkeley DB)
@@ -1165,8 +1167,10 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
         - Distribute the computing load over multiple computers, e.g. to improve availability
         - Storing multiple copies of data, e.g. to achieve redundancy 
     - Consider two document-oriented DBMSs (CouchDB and MongoDB) and their typical cluster architectures
-2. CouchDB Cluster Architecture
-    - <img src="./docs/11.jpg" style="zoom: 50%;" />
+6. CouchDB Cluster Architecture
+
+    <img src="./docs/11.jpg" style="zoom: 50%;" />
+
     - In this example there are 3 nodes, 4 shards and a replica number of 2
       
         - replica: copy of data
@@ -1219,8 +1223,8 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
     |clusters are (difference in API)|less complex|more complex|
     |clusters are|more available|less available, as - by default - only primary nodes can talk to clients for read operations, (and exclusively so for write operations)|
     |software routers|while any HTTP client can connect to CouchDB|(MongoS) must be embedded in application servers|
-    |Losing two nodes|out of three in the CouchDB architecture shown, means **losing access to between 1/4 and 1/2 the data, depending on the nodes that fail**|in the MongoDB example implies **losing write access** to half the data (although there are ten nodes in the cluster instead of three), and possibly read access too, depending on the cluster configuration parameters and the nature (primary or secondary) of the lost nodes|
-    |Some features (such as unique indexes)| |not supported in MongoDB sharded environmen|
+    |Losing two nodes|out of three in the CouchDB architecture shown, means **losing access to between 1/4 and 1/2 the data, depending on the nodes that fail**|in the MongoDB example implies **losing write access** to half the data (although there are ten nodes in the cluster instead of three), <br/>and possibly read access too, depending on the cluster configuration parameters and the nature (primary or secondary) of the lost nodes|
+    |Some features (such as unique indexes)| |not supported in MongoDB sharded environment|
     |Classification of Distributed Processing Algorithms|uses MVCC|- uses a mix of two-phase commit (for replicating data from primary to secondary nodes) <br/> - Paxos-like (to elect a primary node in a replica-set)|
     |emphasis on and all have partition tolerance | Availability |consistency|
 
@@ -1237,7 +1241,7 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
 - > [2016 Q3] A) Big data is often associated with data having a range of properties including high volume, high velocity and high variety (heterogeneity).  
 Discuss the **advantages**, **disadvantages** and **suitability** more generally of the following data solutions with regards to these big data properties:  
 Your answer should include the way in which these solutions implement MapReduce.
-    
+  
     - a. CouchDB [3]
       - document-oriented approach (less fine grained schema which is typically needed for many big data scenarios)
           - is a document oriented database which helps to solve the data variaty challenge
@@ -1270,7 +1274,7 @@ Your answer should include the way in which these solutions implement MapReduce.
     - For life science, there can be all kinds of flavours of datasets and it's not as simple as integrating them all as there can be huge heterogeneous across data sets.
 - > [2013 Q7] B) What **capabilities** are currently offered or will be required for Cloud Computing infrastructures such as the NeCTAR Research Cloud to tackle these "big data" challenges. [5]  
   You may refer to specific research disciplines, e.g. life sciences, astrophysics, urban research (or others!) in your answer to part A) and B) of this question.
-    
+  
     -  You can have access to CouchDB service on the cloud but this does not help to the **high velocity problems** or **sensitive data problems** or it doesn't solve other challenges in the big data space. These problems should be solved by engineers and shouldn't be expected to be solved by the NeCTAR.
     - For life science, there is no cancer database. You have to build your own by using the infrastructure provided by the NeCTAR.
     - No fine-grained security service, you have to build it on the cloud.
@@ -1278,7 +1282,7 @@ Your answer should include the way in which these solutions implement MapReduce.
     - For life science, there are thousands of databases relevant to bioinformatics and growing! i.e. we know there can be lots of data but we don't know exact how much. So we should make the NeCTAR be scalable to the volumes of the data to be stored.
 
 - > [2013 Q3] A) Explain the consequences of **Brewer's CAP theorem** on distributed databases. [4]
-    
+  
     - Brewer’s CAP Theorem: you can only pick any two of Consistency, Availability and Partition-Tolerance.
     - Two phase commit can achieve Consistency and Availability
     - Paxos can achieve Consistency and Partition-Tolerance
@@ -1318,7 +1322,7 @@ Your answer should include the way in which these solutions implement MapReduce.
       - Minumum number of nodes that have to occur for a write operation for it to be accepted
 - > [2014 Q5] A) Discuss the **advantages** and **disadvantages** of unstructured (noSQL) databases such as CouchDB for dealing with “big data” compared to more traditional databases, e.g. relational databases such as MySQL.  
 Your answer should cover challenges with data distribution, traditional database ACID properties, heterogeneity of data and large-scale data processing. [6]
-    
+  
     - In traditional database, we have things like schema, keys tables. While we don't have these in noSQL database which is more flexible.
     - In traditional database, we have to write queries. While we don't to do these in noSQL database
     - Because we have heterogenous data, we would like to save them as document in the noSQL database which is not supported by traditional database
@@ -1341,15 +1345,17 @@ Your answer should cover challenges with data distribution, traditional database
     - Application containment
     - Horizontal scalability
   - Cons
-    - The guest OS and binaries can give rise to duplications between VMs wasting server processors, memory and disk space and limiting the number of VMs each server can support -> virtualization overhead
+    - The guest OS and binaries can give rise to duplications between VMs **wasting server processors, memory and disk space** and limiting the number of VMs each server can support -> **virtualization overhead**
+        (浪费内存和磁盘空间，增加虚拟化开销)
 - Containerization
   - Pros
-    - It allows virtual instances to share a single host OS (and associated drivers, binaries, libraries) to reduce these wasted resources since each container only holds the application and related binaries. The rest are shared among the containers.
+    - It allows virtual instances to **share a single host OS** (and associated drivers, binaries, libraries) to **reduce these wasted resources** since each container only holds the application and related binaries. The rest are shared among the containers.
+        (允许共享操作系统，减少资源浪费)
 - |Parameter | Virtual Machines                                             | Container                                     |
   | ------------- | ------------------------------------------------------------ | --------------------------------------------- |
   | Guest OS      | Run on virtual Hardware, have their own OS kernels           | Share same OS kernel                          |
   | Communication | Through Ethernet devices                                     | IPC mechanisms (pipes, sockets)               |
-  | Security      | Depends on the Hypervisor                                    | Requires close scrutiny                       |
+  | Security      | Depends on the Hypervisor                                    | Requires close scrutiny <br>(需要密切关注)        |
   | Performance   | Small overhead incurs when instructions are translated from guest to host OS | Near native performance                       |
   | Isolation     | File systems and libraries are not shared between guest and host OS | File systems can be shared, and libraries are |
   | Startup time  | Slow (minutes)                                               | Fast (a few seconds)                          |
@@ -1358,22 +1364,20 @@ Your answer should cover challenges with data distribution, traditional database
 - In real world they can co-exist
   
   - When deploying applications on the cloud, the base computation unit is a Virtual Machine. Usually Docker containers are deployed on top of VMs.
-- Containers not always better
-  - It depends on: 
-    - The size of the task on hand
-    - The life span of the application
-    - Security concerns
-    - Host operation system
+- Containers not always better, It depends on: 
+  - The size of the task on hand
+  - The life span of the application
+  - Security concerns
+  - Host operation system
 
 ### What is Container?
 - Similar concept of resources isolation and allocation as a virtual machine
 - Without bundling the entire hardware environment and full OS
 - What container runtimes are in use?
-  - Docker
-    - The leading software container platform
+  - Docker - The leading software container platform
   - Containerd
   - cri-o
-  
+
 ### Docker
   - What is it?
     - the most successful containerization technology.
@@ -1381,7 +1385,8 @@ Your answer should cover challenges with data distribution, traditional database
     - Container: a process that behaves like an independent machine, it is a runtime instance of a docker image.
     - Image: a blueprint for a container.
     - Dockerfile: the recipe to create an image.
-    - Registry: a hosted service containing repositories of images. E.g., the Docker Hub (https://hub.docker.com)
+    - Registry: a hosted service containing repositories of images. 
+        E.g., the Docker Hub (https://hub.docker.com)
     - Repository: is a sets of Docker images.
     - Tag: a label applied to a Docker image in a repository.
     - Docker Compose: Compose is a tool for defining and running multi-containers Docker applications. 
@@ -1422,7 +1427,7 @@ Your answer should cover challenges with data distribution, traditional database
 
 
 ### What are Orchestration Tools?
-- Container orchestration technologies provides a framework for integrating and managing containers **<u>at scale</u>**
+- Container orchestration technologies provides a framework for integrating and managing containers **<u>at scale</u>**     (编排工具)
 - Goals/benefits
   - Simplify container management process
   - Help to manage availability and scaling of containers
@@ -1464,23 +1469,25 @@ Your answer should cover challenges with data distribution, traditional database
 
 ### past exam
 - > [Sample Q1] Applications can be deployed across Clouds either through creation and deployment of virtual images (snapshots) or through scripting the installation and configuration of software applications.
-    - > Container based solutions such as Docker have advantages and disadvantages compared to traditional Cloud-based virtualization solutions based upon hypervisors. Discuss. [4]
-        - Guest OS
-            - Running on virtual Hardware will have their own OS kernels, thus introduce virtualization overhead. While container allows virtual instances to share a single host OS to reduce these wasted resources
-        - Communication
-            - Virulization communicate through Ethernet devices. Container communicate through IPC mechanisms
-        - Security
-            - Virulization depends on the Hypervisor. Container requires close scrutiny.
-        - Performance
-            - Virulization has small overhead incurs when instructions are translated from guest to host OS. Container have near native performance.
-        - Isolation
-            - Virulization has file systems and libraries are not shared between guest and host OS. Container has file systems and libraries can be shared.
-        - Startup time 
-            - Virulization's startup time is slow. Container's startup time is fast.
-        - Storage
-            - Virulization's requires storage space is large. Container's requires storage space is small and most are reusable.
-        - (Virtualization vs Containerization table above)
-- > [sample Q6] A)  What are container orchestration technologies? What are the main benefits of using container orchestration tools? Name two of the most popular Docker orchestration tools?                [3]
+  
+    - > **Container** based solutions such as Docker have **advantages** and **disadvantages** compared to traditional Cloud-based virtualization solutions based upon hypervisors. Discuss. [4]
+      - Guest OS
+          - Running on virtual Hardware will have their own OS kernels, thus introduce virtualization overhead. While container allows virtual instances to share a single host OS to reduce these wasted resources
+      - Communication
+          - Virulization communicate through Ethernet devices. Container communicate through IPC mechanisms
+      - Security
+          - Virulization depends on the Hypervisor. Container requires close scrutiny.
+      - Performance
+          - Virulization has small overhead incurs when instructions are translated from guest to host OS. Container have near native performance.
+      - Isolation
+          - Virulization has file systems and libraries are not shared between guest and host OS. Container has file systems and libraries can be shared.
+      - Startup time 
+          - Virulization's startup time is slow. Container's startup time is fast.
+      - Storage
+          - Virulization's requires storage space is large. Container's requires storage space is small and most are reusable.
+      - (Virtualization vs Containerization table above)
+- > [sample Q6] A)  What are **container orchestration technologies**? What are the main benefits of using container orchestration tools? Name two of the most popular Docker orchestration tools?                [3]
+  
     - Container orchestration technologies provides a framework for integrating and managing containers **<u>at scale</u>**
     - benefits
         - Simplify container management process
@@ -1488,167 +1495,171 @@ Your answer should cover challenges with data distribution, traditional database
     - Docker orchestration tools
         - Kubernetes
         - Docker SWARM
-- > [2017 Q4] d ii What is the relationship between a Docker Image and a Docker
-Container? [1]
+- > [2017 Q4] d ii)  What is the relationship between a **Docker Image** and a **Docker Container**?  [1]
+
     - Container is a process that behaves like an independent machine, it is a runtime instance of a docker image.
     - Image is a blueprint for a container.
 
-- > [sample Q6] B)  A researcher wants to attach to an already running Postgresql container and list all of the databases it contains. The command to list all of the database is psql -U postgres -c “\l”. The name of the container is postgres and it exposes the port 5432 to the host. Is the following command correct? If not, please correct it:                     docker exec -p 5432 --name postgres sh -c psql -U postgres -c “\l”             [3]    
+- > [sample Q6] B)  A researcher wants to attach to an already running Postgresql container and list all of the databases it contains. The command to list all of the database is 
+    psql -U postgres -c “\l”. 
+    The name of the container is postgres and it exposes the port 5432 to the host. Is the following command correct? If not, please correct it:                     
+  docker exec -p 5432 --name postgres sh -c psql -U postgres -c “\l”             [3]    
+  
+    Answer:
+  
     - docker exec -t postgres sh -c "psql -U postgres -c \"\I\""
     - docker exec -t postgres psql -U postgres -c "\I"
-
-- > [sample Q6] C) The following Docker compose file starts two Docker containers that are used to run a WordPress website. What are the equivalent Docker commands that could be used to start these two containers individually?   [4]
-    ```
-    version: '3.6'
-    ```
-  ```
   
+- > [sample Q6] C) The following **Docker compose file** starts two Docker containers that are used to run a WordPress website. What are the **equivalent Docker commands** that could be used to start these two containers individually?   [4]
+  ```
+  version: '3.6'
   services:
+      wordpress:
+          image: wordpress
+          restart: always
+          ports:
+          	- 8080:80
+          environment:
+              WORDPRESS_DB_HOST: database
+              WORDPRESS_DB_USER: wordpress
+              WORDPRESS_DB_PASSWORD: wordpress
+              WORDPRESS_DB_NAME: wordpress
   
-  wordpress:
-  
-      image: wordpress
-      
-      restart: always
-      
-      ports:
-      
-      - 8080:80
-      
-      environment:
-      
-      WORDPRESS_DB_HOST: database
-      
-      WORDPRESS_DB_USER: wordpress
-      
-      WORDPRESS_DB_PASSWORD: wordpress
-      
-      WORDPRESS_DB_NAME: wordpress
-  
-  database:
-  
-      image: mysql:5.7
-      
-      restart: always
-      
-      environment:
-      
-      MYSQL_DATABASE: wordpress
-      
-      MYSQL_USER: wordpress
-      
-      MYSQL_PASSWORD: wordpress
-      
-      MYSQL_ROOT_PASSWORD: P@ssw0rd
-      
-      volumes:
-      
-        - /data/mysql:/var/lib/mysql
+      database:
+          image: mysql:5.7
+          restart: always
+          environment:
+              MYSQL_DATABASE: wordpress
+              MYSQL_USER: wordpress
+              MYSQL_PASSWORD: wordpress
+              MYSQL_ROOT_PASSWORD: P@ssw0rd
+          volumes:
+            - /data/mysql:/var/lib/mysql
   ```
-    - ```
-        docker run -e WORDPRESS_DB_HOST=database \
-        -e WORDPRESS_DB_USER=wordpress \
-        -e WORDPRESS_DB_PASSWORD=wordpress \
-        -e WORDPRESS_DB_NAME=wordpress \
-        -p 8080:80 --restart always wordpress
-        ```
+  
+  - ```bash
+    docker run -e WORDPRESS_DB_HOST=database \
+    -e WORDPRESS_DB_USER=wordpress \
+    -e WORDPRESS_DB_PASSWORD=wordpress \
+    -e WORDPRESS_DB_NAME=wordpress \
+    -p 8080:80 --restart always wordpress
     ```
-    - ```
-        docker run -e MYSQL_DATABASE=wordpress \
-        -e MYSQL_USER=wordpress \
-        -e MYSQL_PASSWORD=wordpress \
-        -e MYSQL_ROOT_PASSWORD=P@ssw0rd \
-        -v /data/mysql:/var/lib/mysql \
-        -d --restart always mysql:5.7
+    
+  - ```bash
+  docker run -e MYSQL_DATABASE=wordpress \
+  -e MYSQL_USER=wordpress \
+  -e MYSQL_PASSWORD=wordpress \
+  -e MYSQL_ROOT_PASSWORD=P@ssw0rd \
+  -v /data/mysql:/var/lib/mysql \
+  -d --restart always mysql:5.7
     ```
 
 ## Week 8.1 – Virtualisation
 Terminology
-- <img src="./docs/15.png" width="30%" height="30%" />
-- 
-    |||
-    |---|---|
-    |Virtual Machine Monitor/Hypervisor|The virtualisation layer between the underlying hardware the virtual machines and guest operating systems it supports. Give a perception of a whole machine.
-    |Virtual Machine|A representation of a real machine using hardware/software that can host a guest operating system
-    |Guest Operating System|An operating system that runs in a virtual machine environment that would otherwise run directly on a separate physical system.
+- <img src="./docs/15.png" style="zoom: 50%;" />
+
+- | Terminology                        |                                                              |
+    | ---------------------------------- | ------------------------------------------------------------ |
+    | Virtual Machine Monitor/Hypervisor | The virtualization layer between the underlying hardware the virtual machines and guest operating systems it supports. Give a perception of a whole machine. |
+    | Virtual Machine                    | A representation of a real machine using hardware/software that can host a guest operating system |
+    | Guest Operating System             | An operating system that runs in a virtual machine environment that would otherwise run directly on a separate physical system. |
 1. What happens in a VM?
-    - <img src="./docs/16.jpg" width="70%" height="30%" />
-    - Inside the virtual machine, there are Virtual Network Device, VHD(Virtual Hard disk), VMDK(Virtual Machinie Disk), qcow2(QEMU Copy on Write)
-    - Guest OS apps “think” they write to hard disk but translated to virtualised host hard drive by VMM
+    - <img src="./docs/16.jpg" style="zoom:67%;" />
+    - Inside the virtual machine, there are Virtual Network Device, VHD(Virtual Hard disk), VMDK (Virtual Machine Disk), qcow2(QEMU Copy on Write)
+    - Guest OS apps “think” they write to hard disk but translated to virtualized host hard drive by VMM
         - Which one is determined by image that is launched
 
 2. Motivation (why we want VM/virtualization/advantages) ~~& History~~
-    |motivation||
+    |Motivation / Advantages| |
     |---|---|
-    |Server Consolidation|1. Increased utilisation<br/>2. Reduced energy consumption
-    |Personal virtual machines can be created on demand|1. No hardware purchase needed<br/>2. Public cloud computing - won't lockin Amazon
-    |Security/Isolation|Share a single machine with multiple users - won't want everyone see what you are doing
-    |Hardware independence|Relocate to different hardware
+    |Server Consolidation|1. Increased utilization<br/>2. Reduced energy consumption|
+    |Personal virtual machines can be created on demand|1. No hardware purchase needed<br/>2. Public cloud computing - won't be lock in Amazon|
+    |Security/Isolation|Share a single machine with multiple users - won't want everyone see what you are doing|
+    |Hardware independence|Relocate to different hardware|
+
     - originally, virtual machine = an efficient, isolated duplicate of the real machine
-        - Properties of interest (can also be thought as motivation):
-            - Fidelity
-                - Software on the VMM executes behaviour identical to that demonstrated when running on the machine directly, barring timing effects
-            - Performance
-                - An overwhelming majority of guest instructions executed by hardware without VMM intervention
-            - Safety
-                - The VMM manages all hardware resources
+
+        | Properties of interest | Description                                                  |
+        | ---------------------- | ------------------------------------------------------------ |
+        | Fidelity               | Software on the VMM executes behavior identical to that demonstrated when running on the machine directly, barring timing effects |
+        | Performance            | An overwhelming majority of guest instructions executed by hardware without VMM intervention |
+        | Safety                 | The VMM manages all hardware resources                       |
+
     - history see lecture 8.1 slide 7
+    
 3. Classification of Instructions
-    ||||
-    |---|---|---|
-    |Privileged Instructions|instructions that trap if the processor is in user mode and do not trap in kernel mode
-    |Sensitive Instructions|instructions whose behaviour depends on the mode or configuration of the hardware|Different behaviours depending on whether in user or kernel mode<br/>- e.g. POPF interrupt (for interrupt flag handling)
-    |Innocuous Instructions|instructions that are neither privileged nor sensitive|Read data, add numbers etc
+    | Class                   | Description of Instruction                                   | Example                                                      |
+    | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+    | Privileged Instructions | instructions that trap if the processor is in user mode and do not trap in kernel mode |                                                              |
+    | Sensitive Instructions  | instructions whose behavior depends on the mode or configuration of the hardware | Different behaviors depending on whether in user or kernel mode <br/>- e.g. POPF interrupt (for interrupt flag handling) |
+    | Innocuous Instructions  | instructions that are neither privileged nor sensitive       | Read data, add numbers etc                                   |
+    
+    
     - Popek and Goldberg Theorem  
         - For any conventional third generation computer, a virtual machine monitor may be constructed if the set of **sensitive instructions** for that computer is a subset of the set of **privileged instructions** i.e. have to be trappable
-    - x86 architecture was historically not virtualisable, due to **<u>sensitive instructions</u> that could not be trapped** 
-    - Intel and AMD introduced extensions to make x86 virtualisable
-3. What are the requirements for virtualisation?
-    - <img src="./docs/17.jpg" width="40%" height="30%" />
-    |Typical Virtualisation Strategy||Achieved by|problem|
+            (对于任何传统的第三代计算机，如果用于该计算机的**敏感指令集**是**特权指令集的子集**，即必须是可捕获的，则可以构造一个虚拟机监视器)
+    - x86 architecture was historically not virtualizable, due to **<u>sensitive instructions</u> that could not be trapped** 
+        (X86架构在历史上是不可虚拟化的，因为敏感指令不能被捕获)
+    - Intel and AMD introduced extensions to make x86 virtualizable
+    
+3. What are the requirements for virtualization?
+    - <img src="./docs/17.jpg"/>
+    |Typical Virtualisation Strategy| |Achieved by|problem|
     |---|---|---|---|
-    |De-privileging (trap-and-emulate)|trap-and-emulate: VMM emulates the effect on system/hardware resources of privileged instructions whose execution traps into the VMM|running GuestOS at a lower hardware priority level than the VMM|Problematic on some architectures where privileged instructions do not trap when executed at de-privileged level
-    |Primary/shadow structures|1. VMM maintains “shadow” copies of critical structures whose “primary” versions are manipulated by the GuestOS, e.g. memory page tables<br/>2. Primary copies needed to insure correct versions are visible to GuestOS
-    |Memory traces|Controlling access to memory so that the shadow and primary structure remain coherent|write-protect primary copies so that update operations cause page faults which can be caught, interpreted, and addressed <br/>- Someones app/code doesn’t crash the server you are using!!!
+    |De-privileging (trap-and-emulate)|trap-and-emulate: VMM emulates the effect on system/hardware resources of privileged instructions whose execution traps into the VMM|running GuestOS at a lower hardware priority level than the VMM|Problematic on some architectures where privileged instructions do not trap when executed at de-privileged level|
+    |Primary/shadow structures|1. VMM maintains “shadow” copies of critical structures whose “primary” versions are manipulated by the GuestOS, e.g. memory page tables<br/>2. Primary copies needed to insure correct versions are visible to GuestOS| | |
+    |Memory traces|Controlling access to memory so that the shadow and primary structure remain coherent|write-protect primary copies so that update operations cause page faults which can be caught, interpreted, and addressed <br/>- Someones app/code doesn’t crash the server you are using!!!| |
+
     - Do sensitive instructions and privileged instructions both need to be trap-and-emulate?
         - All sensitive/privileged instructions have to be dealt with. Some will need to be emulated/translated
         - others can just happen depending on the mode and/or whether para-virtualisation is supported.
         - (Popek and Goldberg Theorem above and sth below)
-4. Virtualisation approaches (compare with each other pair wise 1 v.s. 2, ...)
-    |Aspects of VMMs|What is it?|e.g.|Advantages|Disadvantages|
-    |---|---|---|---|---|
-    |Full virtualisation|allow an unmodified guest OS to run in isolation by simulating full hardware <br/>- Guest OS has no idea it is not on physical machine|VMWare|1. Guest is unaware it is executing within a VM<br/>2. Guest OS need not be modified<br/>3. No hardware or OS assistance required<br/>4. Can run legacy OS|1. can be less efficient|
-    |Para-virtualisation|- VMM/Hypervisor exposes special interface to guest OS for better performance. Requires a modified/hypervisor-aware Guest OS <br/> - Can optimise systems to use this interface since not all instructions need to be trapped/dealt with because "VMM emulates the effect on system/hardware resources of privileged instructions whose execution traps into the VMM"|Xen|1. Lower virtualisation overheads, so better performance|1. Need to modify guest OS - Can’t run arbitrary OS!<br/>2. Less portable<br/>3. Less compatibility<br/>
-    |Hardware-assisted virtualisation|Hardware provides architectural support for running a Hypervisor<br/>- New processors typically have this<br/>- Requires that all sensitive instructions trappable|KVM|1. Good performance<br/>2. Easier to implement<br/>3. Advanced implementation supports hardware assisted DMA, memory virtualisation|1. Needs hardware support
-    |software virtualization|Any virtualisation that does not involve hardware support.|
-    |Binary Translation|Trap and execute occurs by scanning guest instruction stream and replacing sensitive instructions with emulated code <br/> - Don’t need hardware support, but can be much harder to achieve|VMWare|1. Guest OS need not be modified<br/>2. No hardware or OS assistance required<br/>3. Can run legacy OS|1. Overheads<br/> 2. Complicated<br/> 3. Need to replace instructions “on-the-fly”<br/> 4. Library support to help this, e.g. vCUDA
-    |Bare Metal Hypervisor|VMM runs directly on actual hardware<br/>- Boots up and runs on actual physical machine<br/>- VMM has to support device drivers, all HW mgt |VMWare ESX Server
-    |Hosted Virtualisation|VMM runs on top of another operating system|VMWare Workstation
-    |Operating System Level Virtualisation|1. Lightweight VMs<br/>2. Instead of whole-system virtualisation, the OS creates mini-containers|Docker|1. Lightweight<br/>2. Many more VMs on same hardware<br/>3. Can be used to package applications and all OS dependencies into container|1. Can only run apps designed for the same OS<br/>2. Cannot host a different guest OS<br/>3. Can only use native file systems<br/>4. Uses same resources as other containers|
-    |Memory Virtualisation|VMM maintains shadow page tables in lock-step with the page tables.<br/> detail see below section|||1. Adds additional management overhead
-    - <img src="./docs/18.jpg" width="60%" height="30%" />  for Full virtualisation, Binary Translation
-        - but in each case there can be some differences in rangs for each service see lecture 8.1 slides 15, 19
-    - <img src="./docs/19.jpg" width="40%" height="30%" /> for Para-virtualisation, Hardware-assisted virtualisation
-        differ in ring 0 service, see lecture 8.1 slides 16, 18
-        - New Ring -1 for VMM supported Page tables, virtual memory mgt, direct memory access for high speed reads etc
     
+5. Virtualisation approaches (compare with each other pair wise 1 v.s. 2, ...)
+    | Aspects of VMMs                       | What is it?                                                  | e.g.               | Advantages                                                   | Disadvantages                                                |
+    | ------------------------------------- | ------------------------------------------------------------ | ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+    | Full virtualisation                   | allow an unmodified guest OS to run in isolation by simulating full hardware - Guest OS has no idea it is not on physical machine | VMWare             | 1. Guest is unaware it is executing within a VM 2. Guest OS need not be modified 3. No hardware or OS assistance required 4. Can run legacy OS | 1. can be less efficient                                     |
+    | Para-virtualisation                   | - VMM/Hypervisor exposes special interface to guest OS for better performance. Requires a modified/hypervisor-aware Guest OS - Can optimise systems to use this interface since not all instructions need to be trapped/dealt with because "VMM emulates the effect on system/hardware resources of privileged instructions whose execution traps into the VMM" | Xen                | 1. Lower virtualisation overheads, so better performance     | 1. Need to modify guest OS - Can’t run arbitrary OS! 2. Less portable 3. Less compatibility |
+    | Hardware-assisted virtualisation      | Hardware provides architectural support for running a Hypervisor - New processors typically have this - Requires that all sensitive instructions trappable | KVM                | 1. Good performance 2. Easier to implement 3. Advanced implementation supports hardware assisted DMA, memory virtualisation | 1. Needs hardware support                                    |
+    | software virtualization               | Any virtualisation that does not involve hardware support.   |                    |                                                              |                                                              |
+    | Binary Translation                    | Trap and execute occurs by scanning guest instruction stream and replacing sensitive instructions with emulated code - Don’t need hardware support, but can be much harder to achieve | VMWare             | 1. Guest OS need not be modified 2. No hardware or OS assistance required 3. Can run legacy OS | 1. Overheads 2. Complicated 3. Need to replace instructions “on-the-fly” 4. Library support to help this, e.g. vCUDA |
+    | Bare Metal Hypervisor                 | VMM runs directly on actual hardware - Boots up and runs on actual physical machine - VMM has to support device drivers, all HW mgt | VMWare ESX Server  |                                                              |                                                              |
+    | Hosted Virtualisation                 | VMM runs on top of another operating system                  | VMWare Workstation |                                                              |                                                              |
+    | Operating System Level Virtualisation | 1. Lightweight VMs 2. Instead of whole-system virtualisation, the OS creates mini-containers | Docker             | 1. Lightweight 2. Many more VMs on same hardware 3. Can be used to package applications and all OS dependencies into container | 1. Can only run apps designed for the same OS 2. Cannot host a different guest OS 3. Can only use native file systems 4. Uses same resources as other containers |
+    | Memory Virtualisation                 | VMM maintains shadow page tables in lock-step with the page tables. detail see below section |                    |                                                              | 1. Adds additional management overhead                       |
+
+    
+
+    - <img src="./docs/18.jpg" style="zoom:67%;" />  
+
+        for Full virtualization, Binary Translation
+
+        - but in each case there can be some differences in rangs for each service see lecture 8.1 slides 15, 19
+
+        
+
+    - <img src="./docs/19.jpg" style="zoom:67%;" /> 
+        
+    - for Para-virtualisation, Hardware-assisted virtualisation differ in ring 0 service, see lecture 8.1 slides 16, 18
+        
+        - New Ring -1 for VMM supported Page tables, virtual memory mgt, direct memory access for high speed reads etc
+
 5. Memory Virtualisation
-    - <img src="./docs/20.jpg" width="40%" height="30%" />
-      
-        - In conventional case, page tables store the logical page number and physical page number mappings
-    - <img src="./docs/21.jpg" width="40%" height="30%" />
-      
-        - In VMM case, VMM maintains shadow page tables in lock-step with the page tables. Additional management overhead is added.
+    - <img src="./docs/20.jpg" style="zoom:50%;" />
+      - In conventional case, page tables store the logical page number and physical page number mappings
+    - <img src="./docs/21.jpg" style="zoom:50%;" />
+      - In VMM case, VMM maintains shadow page tables in lock-step with the page tables. Additional management overhead is added.
     - Shadow Page Tables
         - VMM maintains shadow page tables in lock-step with the page tables
-        - <img src="./docs/22.jpg" width="40%" height="30%" />
+        - <img src="./docs/22.jpg" style="zoom:50%;" />
         - In this case, one OS represent in blue, the other in green
         - Disadv: Adds additional management overhead
             - Hardware performs guest -> physical and physical -> machine translation
+    
 6. Live migration
     - having continuity of service during data moving
     - Live Migration from Virtualisation Perspective/Live migration of virtual machines
-        - <img src="./docs/30.jpg" width="40%" height="30%" />
+        - <img src="./docs/30.jpg" style="zoom:67%;" />
 
 ### past exam
 - > [2014 Q7] A) Define the following terms and their relevance to Cloud Computing:
@@ -1656,80 +1667,99 @@ Terminology
     - > a. Hypervisor [1]
   
         - above
-    - > b. Virtual machine [1]
-      
-        - A representation of a real machine using hardware/software that can host a guest operating system
-    - > c. Machine image [1]
-      
-        - is a Compute Engine resource that stores all the configuration, metadata, permissions, and data from one or more disks required to create a virtual machine (VM) instance.
-    - > d. Object Store [1]
-      
-        - is a strategy that manages and manipulates data storage as distinct units
-    - > e. Volume Store [1]
-        - Store = Storage
-        - Volume storage is the virtual equivalent of a USB drive. A USB drive retains your data, whether it is plugged in or not. Manipulating the data on a USB drive requires that it is plugged into a computer and that it is mounted by the operating system. Your USB drive can be unplugged and plugged into another (newer, bigger, better) computer, but your USB drive can only ever be plugged in to one computer at a time. 
-        - Equivalently a volume in your Nectar project can retain your data, whether it is attached to an instance or not. Manipulating the data on the volume requires that is attached to an instance, and that the file systems is mounted by the operating system. Your volume can be detached and attached to another (newer, bigger, better) instance, but your volume can only ever be attached to one instance at a time. 
-    - > f. Key-pair [1]
-      
-        - A key pair consists of a private key and a public key.
+    
+  - > b. Virtual machine [1]
+    
+      - A representation of a real machine using hardware/software that can host a guest operating system
+  - > c. Machine image [1]
+  
+      - is a Compute Engine resource that stores all the configuration, metadata, permissions, and data from one or more disks required to create a virtual machine (VM) instance.
+  
+  - > d. Object Store [1]
+  
+      - is a strategy that manages and manipulates data storage as distinct units
+  
+  - >  e. Volume Store [1]
+  
+    - Store = Storage
+    - Volume storage is the virtual equivalent of a USB drive. A USB drive retains your data, whether it is plugged in or not. Manipulating the data on a USB drive requires that it is plugged into a computer and that it is mounted by the operating system. Your USB drive can be unplugged and plugged into another (newer, bigger, better) computer, but your USB drive can only ever be plugged in to one computer at a time. 
+    - Equivalently a volume in your Nectar project can retain your data, whether it is attached to an instance or not. Manipulating the data on the volume requires that is attached to an instance, and that the file systems is mounted by the operating system. Your volume can be detached and attached to another (newer, bigger, better) instance, but your volume can only ever be attached to one instance at a time. 
+  
+  - > f. Key-pair [1]
+  
+      - A key pair consists of a private key and a public key.
 - > [2013 Q5] A) Explain what is meant by the following terms:
   
     - > Virtual Machine Monitor/Hypervisor [1]
   
         - is a technology to provide virtualization by providing a virtualisation layer between the underlying hardware the virtual machines and guest operating systems it supports.
-    - > Full virtualization [1]
-        - allow an unmodified guest OS to run in isolation by simulating full hardware 
-            - Guest OS has no idea it is not on physical machine
-    - > Para-virtualization [1]
-        - VMM/Hypervisor exposes special interface to guest OS for better performance. Requires a modified/hypervisor-aware Guest OS 
-        - Can optimise systems to use this interface since not all instructions need to be trapped/dealt with
-    - > Shadow page tables [1]
-      
-        - VMM (virtual machine monitar) keeps a mapping between what a vitual machine on the server rack you think that if you are dealing with address spaces and memory update. And it keeps a logical mapping so that all the instances think their own page tables which they don't. All of that is managed indirectly by the shadow page table.
-    - > Explain how hardware virtualization and software virtualization can differ in their treatment of shadow page tables. [2]
-        <!-- - hardware virtualization has less performance overheads
-        - hardware virtualization has the ability to trap various sensitive calls and different software solutions to do that -->
-        - Main issue is that the hardware does a lot of the management of shadow page tables and hence is faster but needs all calls to be trappable by hardware. Doing it via software virtualisation requires sensitive calls to be trapped and handled by the VMM which is slower. 
-        - The VMM needs to keep shadow page tables synchronised with guest page tables. You might add para-virtualisation to hardware virtualization (the one has shadow page table) can improve things from a performance perspective.
-    - > Explain the advantages and disadvantages of virtual machines. [2]
-        - adv
-            - reuse hardware and have multiple different OS running on the same physical system
-        - disadv
-            - performance overhead
-            - privacy and security issue
-            - virtual machine has slow startup time
-    - > [2017 Q7 C [3]] Describe the typical steps that are required to support live migration of virtual machine instances using a Cloud facility such as the NeCTAR Research Cloud. [2]
-      
-        - picture above
+    
+  - > Full virtualization [1]
+    
+    - allow an unmodified guest OS to run in isolation by simulating full hardware 
+        - Guest OS has no idea it is not on physical machine
+  - > Para-virtualization [1]
+  
+    - VMM/Hypervisor exposes special interface to guest OS for better performance. Requires a modified/hypervisor-aware Guest OS 
+    - Can optimise systems to use this interface since not all instructions need to be trapped/dealt with
+  
+  - > Shadow page tables [1]
+  
+      - VMM (virtual machine monitar) keeps a mapping between what a vitual machine on the server rack you think that if you are dealing with address spaces and memory update. And it keeps a logical mapping so that all the instances think their own page tables which they don't. All of that is managed indirectly by the shadow page table.
+  
+- > Explain how hardware virtualization and software virtualization can differ in their treatment of shadow page tables. [2]
+  > <!-- - hardware virtualization has less performance overheadshardware virtualization has the ability to trap various sensitive calls and different software solutions to do that -->
+  >
+  > - Main issue is that the hardware does a lot of the management of shadow page tables and hence is faster but needs all calls to be trappable by hardware. Doing it via software virtualisation requires sensitive calls to be trapped and handled by the VMM which is slower. 
+  > - The VMM needs to keep shadow page tables synchronised with guest page tables. You might add para-virtualisation to hardware virtualization (the one has shadow page table) can improve things from a performance perspective.
+
+- > Explain the advantages and disadvantages of virtual machines. [2]
+    - adv
+        - reuse hardware and have multiple different OS running on the same physical system
+    - disadv
+        - performance overhead
+        - privacy and security issue
+        - virtual machine has slow startup time
+
+- > [2017 Q7 C [3]] Describe the typical steps that are required to support live migration of virtual machine instances using a Cloud facility such as the NeCTAR Research Cloud. [2]
+
+    - picture above
+
 - > [2016 Q5] A) Popek and Goldberg laid down the foundations for computer virtualization in their 1974 paper, Formal Requirements for Third Generation Architectures.
     - > a. Identify and explain the different types of classification of instruction sets for virtualization to occur according to the theorem of Popek and Goldberg. You should include the relationships between the instruction sets. [3]
-        - |||
-            |---|---|
-            |Privileged Instructions|instructions that trap if the processor is in user mode and do not trap in kernel mode
-            |Sensitive Instructions|instructions whose behaviour depends on the mode or configuration of the hardware|
-            |Innocuous Instructions|instructions that are neither privileged nor sensitive|
-        - relation = subset
-            - For any conventional third generation computer, a virtual machine monitor may be constructed if the set of **sensitive instructions** for that computer is a subset of the set of **privileged instructions** i.e. have to be trappable
-        - innocuous instructions do not need to be trapped and dealt with and hence can be considered separately.
+      
+      - |Type||
+          |---|---|
+          |Privileged Instructions|instructions that trap if the processor is in user mode and do not trap in kernel mode|
+          |Sensitive Instructions|instructions whose behaviour depends on the mode or configuration of the hardware|
+          |Innocuous Instructions|instructions that are neither privileged nor sensitive|
+      - relation = subset
+          
+          - For any conventional third generation computer, a virtual machine monitor may be constructed if the set of **sensitive instructions** for that computer is a subset of the set of **privileged instructions**   i.e. have to be trappable
+      - innocuous instructions do not need to be trapped and dealt with and hence can be considered separately.
     - > b. Describe how these principles are realized by modern virtual machine monitors/hypervisors. [2]
-        - |Typical Virtualisation Strategy||
-            |---|---|
-            |De-privileging (trap-and-emulate)|trap-and-emulate: VMM emulates the effect on system/hardware resources of privileged instructions whose execution traps into the VMM|
-            |Primary/shadow structures|1. VMM maintains “shadow” copies of critical structures whose “primary” versions are manipulated by the GuestOS, e.g. memory page tables<br/>2. Primary copies needed to insure correct versions are visible to GuestOS
-            |Memory traces|Controlling access to memory so that the shadow and primary structure remain coherent
-        - sensitive/privileged instructions (calls) have to be trapped and dealt with
+      
+      - | Virtualisation Strategy           |                                                              |
+          | --------------------------------- | ------------------------------------------------------------ |
+          | De-privileging (trap-and-emulate) | trap-and-emulate: VMM emulates the effect on system/hardware resources of privileged instructions whose execution traps into the VMM |
+          | Primary/shadow structures         | 1. VMM maintains “shadow” copies of critical structures whose “primary” versions are manipulated by the GuestOS, <br/>e.g. memory page tables 2. Primary copies needed to insure correct versions are visible to GuestOS |
+          | Memory traces                     | Controlling access to memory so that the shadow and primary structure |
+          
+      - sensitive/privileged instructions (calls) have to be trapped and dealt with
     - > c. Explain the differences between full virtualization and para-virtualisation. Give an example of a hypervisor that uses full virtualization and an example of a hypervisor that uses paravirtualisation. [2]
-        - full virtualization
-            - allow an unmodified guest OS to run in isolation by simulating full hardware 
-            - VMWare
-        - para-virtualisation
-            - VMM/Hypervisor exposes special interface to a modified/hypervisor-aware Guest OS for better performance.
-            - Xen
-    - >  d. Describe the role of a virtual machine manager/hypervisor with regards to memory management and shadow page tables. [3]
-        - VMM maintains shadow page tables in lock-step with the page tables. Additional management overhead is added.
-        - VMM emulates the effect on system/hardware resources of privileged instructions whose execution traps into the VMM
-        - VMM maintains “shadow” copies of critical structures whose “primary” versions are manipulated by the GuestOS
-        - Control access to memory so that the shadow and primary structure remain coherent
+      
+      - full virtualization
+          - allow an unmodified guest OS to run in isolation by simulating full hardware 
+          - VMWare
+      - para-virtualization
+          - VMM/Hypervisor exposes special interface to a modified/hypervisor-aware Guest OS for better performance.
+          - Xen
+    - > d. Describe the role of a virtual machine manager/hypervisor with regards to memory management and shadow page tables. [3]
+      
+      - VMM maintains shadow page tables in lock-step with the page tables. Additional management overhead is added.
+      - VMM emulates the effect on system/hardware resources of privileged instructions whose execution traps into the VMM
+      - VMM maintains “shadow” copies of critical structures whose “primary” versions are manipulated by the GuestOS
+      - Control access to memory so that the shadow and primary structure remain coherent
 
 
 ## Week 8.2 – OpenStack & Comparing and Contrasting AWS with NeCTAR Cloud
