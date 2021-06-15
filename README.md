@@ -1639,9 +1639,9 @@ Terminology
         
 
     - <img src="./docs/19.jpg" style="zoom:67%;" /> 
-        
+      
     - for Para-virtualisation, Hardware-assisted virtualisation differ in ring 0 service, see lecture 8.1 slides 16, 18
-        
+      
         - New Ring -1 for VMM supported Page tables, virtual memory mgt, direct memory access for high speed reads etc
 
 5. Memory Virtualisation
@@ -1726,15 +1726,16 @@ Terminology
     - picture above
 
 - > [2016 Q5] A) Popek and Goldberg laid down the foundations for computer virtualization in their 1974 paper, Formal Requirements for Third Generation Architectures.
+  
     - > a. Identify and explain the different types of classification of instruction sets for virtualization to occur according to the theorem of Popek and Goldberg. You should include the relationships between the instruction sets. [3]
-      
+  
       - |Type||
           |---|---|
           |Privileged Instructions|instructions that trap if the processor is in user mode and do not trap in kernel mode|
           |Sensitive Instructions|instructions whose behaviour depends on the mode or configuration of the hardware|
           |Innocuous Instructions|instructions that are neither privileged nor sensitive|
       - relation = subset
-          
+        
           - For any conventional third generation computer, a virtual machine monitor may be constructed if the set of **sensitive instructions** for that computer is a subset of the set of **privileged instructions**   i.e. have to be trappable
       - innocuous instructions do not need to be trapped and dealt with and hence can be considered separately.
     - > b. Describe how these principles are realized by modern virtual machine monitors/hypervisors. [2]
@@ -1768,9 +1769,8 @@ Terminology
 - Often used through web-based dashboards, through command-line tools, or programmatically through ReSTful APIs
 
 ### Openstack architecture
-- <img src="./docs/33.jpg" width="60%" height="30%" />
-
-    - As a user, login in through Horizon to have access to cloud and get identity
+- <img src="./docs/33.jpg" style="zoom: 50%;" />
+- As a user, login in through Horizon to have access to cloud and get identity
         - identity is passed among the components
         - operation is restricted based on your identity and resource available
             - reformat other's disk
@@ -1785,29 +1785,30 @@ Terminology
     - **Identity works as a glue among components**
 
 ### Typically asynchronous queuing systems used (AMQP)
-- <img src="./docs/29.jpg" width="60%" height="30%" />
-
-    - AMQP: queueing service for load balance when large request comes
+- <img src="./docs/29.jpg" style="zoom:50%;" />
+- AMQP: queueing service for load balance when large request comes
         - queue an instance creation request and starts when one is released
 
 ### Key Services
 #### Keystone -- Identity Service
 - Provides an authentication and authorization service fro OpenStack services
-  - Tracks users/permissions
-- Provides a catalog of endpoints for all OpenStack services
-  - Each service registered during install
+  - Tracks users/permissions (跟踪用户/权限)
+- Provides a catalog of endpoints for all OpenStack services 
+  (提供所有OpenStack服务的端点目录)
+  - Each service registered during install	
     - Know where they are and who can do what with them
   - Project membership
   - firewall rules
-- Generic authorization system
+- Generic authorization system (通用授权系统)
   - More refer to week10 ==TODO==
 #### Nova -- Compute Service
-- Manages the lifecycle of compute instances in an OpenStack environment
+- Manages the lifecycle of compute instances in an OpenStack environment 
+    (管理OpenStack环境中计算实例的生命周期)
 - Responsibilities for virtual machines on demand, include 
   - spawning
   - scheduling
   - Decommissioning
-- Virtualisation agnostic
+- Virtualization agnostic (虚拟化不可知论者)
   - Key point of success as it allows openStack works with **<u>any kind</u>** of virtualisation solution, including
     - XenAPI, Hyper-V, VMWare ESX
     - Docker
@@ -1827,8 +1828,7 @@ Terminology
   - Networking
     - Nova-network
       - Accepts network tasks from queue and manipulates network, e.g. changing IP table rules
-  - <img src="./docs/34.jpg" width="60%" height="30%" />
-    
+  - <img src="./docs/34.jpg" style="zoom:50%;" />
     - I need a VM with: 64Gb memory, 8vCPUs, in Melbourne, running Ubuntu 12.04
         - The call comes in through load balancer and buffered
         - nova-api Accepts/responds to end user API calls
@@ -1836,27 +1836,36 @@ Terminology
         -  Nova-conductor mediates interactions between compute services and other components, e.g. image database
 #### Swift - Object Storage
 - Stores and retrieves arbitrary unstructured data objects via ReSTful API
+  (通过ReSTful API存储和检索任意非结构化数据对象)
   - e.g.: VM images and data
   - This service can be used to access arbitrary unstructured data
-- Fault tolerant with data replication and scale-out architecture
+- **Fault tolerant** with data replication and scale-out architecture
+  (数据复制和扩展架构的容错)
   - Available from anywhere; persists until deleted
   - Allows to write objects and files to multiple drives, ensuring the data is replicated across a server cluster
+      (允许向多个驱动器写入对象和文件，确保数据跨服务器集群复制)
 - Can be used with/without **<u>Nova</u>**
 - Client/admin support
   - Swift client allows users to submit commands to ReST API through command line clients to configure/connect object storage to VMs
+      (Swift客户端允许用户通过命令行客户端向ReST API提交命令，实现对象存储与虚拟机的配置/连接)
 #### Cinder -- Block Storage
 - Provides persistent block storage to virtual machines (instances) and supports creation and management of block storage devices
+    (为虚拟机(实例)提供持久块存储，支持块存储设备的创建和管理)
 - Cinder access associated with a VM
   - Cinder-api
     - routes requests to cinder-volume
   - Cinder-volume
-    - interacts with block storage service and scheduler to read/write requests; can interact with multiple flavours of storage (flexible driver architecture)
+    - interacts with block storage service and scheduler to read/write requests; can interact with multiple flavours of storage (**flexible driver architecture**)
+        与块存储服务和调度器交互，实现读写请求;可以与多种类型的存储交互(灵活的驱动程序架构)
   - Cinder-scheduler
     - selects optimal storage provider node to create volumes (ala nova-scheduler)
+        选择最佳的存储提供商节点来创建卷
   - Cinder-backup
     - provides backup to any types of volume to backup storage provider
+        (提供备份到任何类型的卷到备份存储提供商)
 #### Glance -- Image Service
 - Accepts requests for disk or server images and their associated metadata (from **<u>Swift</u>**) and retrieves / installs (through **<u>Nova</u>**)
+  接受对磁盘或服务器映像及其相关元数据的请求(从**Swift**)，并检索/安装(通过**Nova**)
   - Find the image at **<u>Swift</u>**, but getting the image at **<u>Glance</u>**
 - API
   - Glance-api
@@ -1872,16 +1881,18 @@ Terminology
   - Network in and out
   - Network security group
 - Offers an API for users to define networks and the attachments into them,
-    - e.g.: 
-        - switches
-        - routers
-- Pluggable architecture that supports multiple networking vendors and technologies
+    - switches
+    - routers
+- **Pluggable architecture** that supports multiple networking vendors and technologies
+    (可插拔架构，支持多种网络厂商和技术)
 - Neutron-server
   - accepts and routes API requests to appropriate plug-ins for action
+      (接受API请求，并将其路由到适当的插件中进行操作)
   - Port management, e.g. default SSH, VM-specific rules, ...
   - More broadly configuration of availability zone networking, e.g. subnets, DHCP, ...
 #### Horizon -- Dashboard Service
 - Provides a web-based self-service portal to interact with underlying OpenStack services, such as 
+  (提供基于web的自助portal，与底层OpenStack服务交互)
   1. launching an instance
   2. assigning IP addresses
   3. configuring access controls
@@ -1890,6 +1901,7 @@ Terminology
 - Other services optional...
 #### Trove -- Database Service
 - Provides scalable and reliable Cloud database (DBaaS) functionality for both <u>relational</u> and <u>non-relational</u> database engines
+    (为关系型和非关系型数据库引擎提供可扩展和可靠的DBaaS功能)
 - Benefits
   - Resource isolation
   - high performance
@@ -1899,24 +1911,32 @@ Terminology
   - backups
   - restores
   - monitoring
-  - ...
 - Use image service for each DB type and trove-manage to offer them to tenants/user communities
+    (对每种DB类型和trove-manage使用image服务，提供给租户/用户社区)
 #### Sahara -- Data Processing Service
 - Provides capabilities to provision and scale Hadoop clusters in OpenStack by specifying parameters such as Hadoop version, cluster topology and node hardware details
+    (通过指定Hadoop版本、集群拓扑、节点硬件详细信息等参数，提供OpenStack中Hadoop集群的提供和扩展能力)
 - User fills in details and Sahara supports the automated deployment of infrastructure with support for addition/removal of worker nodes on demand
-#### Heat -- Orchestration Service
+    (用户填写细节和 Sahara 支持基础设施支持的自动化部署添加/删除工作节点的需求)
+#### Heat -- Orchestration Service  (业务流程服务)
 - Template-driven service to manage lifecycle of applications deployed on Openstack
+    (模板驱动服务，管理部署在Openstack上的应用的生命周期)
 - Stack
   - Another name for the template and procedure behind creating infrastructure and the required resources from the template file
+      (模板的另一个名称，创建基础设施的过程，模板文件中所需的资源)
 - Can be integrated with automation tools such as Chef
-  - Puppet
+  - Puppet   (傀儡)
   - Ansible
 - Heat details
     - heat_template_version: allows to specify which version of Heat, the template was written for (optional)
     - Description: describes the intent of the template to a human audience (optional)
+        描述:向人类读者描述模板的意图(可选)
     - Parameters: the arguments that the user might be required to provide (optional)
+        参数:用户可能需要提供的参数(可选)
     - Resources: the specifications of resources that are to be created (mandatory)
+        资源:待创建的资源规格(必选)
     - Outputs: any expected values that are to be returned once the template has been processed (optional)
+        输出:模板处理后返回的任何期望值(可选)
 
 ### Creating Stacks in MRC/NeCTAR
 1. Create the template file according to your requirements
@@ -1926,7 +1946,8 @@ Terminology
 5. Wait for the magic to happen! 
 
 ### past exam
-- > [sample Q3 A] The NeCTAR Research Cloud is based on the OpenStack technology. Describe the role and features of the following OpenStack components:
+- > [sample Q3 A] The NeCTAR Research Cloud is based on the OpenStack technology. Describe the role and features of the following **OpenStack components**:
+  
     - Nova    [1] (one of below)
         - Manages the lifecycle of compute instances in an OpenStack environment
         - Responsibilities for virtual machines on demand, include spawning, scheduling and decommissioning
@@ -1946,14 +1967,17 @@ Terminology
         - Supports networking of OpenStack services
         - Offers an API for users to define networks and the attachments into them, e.g.:  switches, routers
         - Port management, e.g. default SSH, VM-specific rules, ...
-- > [sample Q3 B]  Describe the interplay between these components that allows a researcher to create an instance of a virtual machine through a pre-existing snapshot from a non-public NeCTAR Cloud image, e.g. a snapshot created by a user. [3]
-    - Authenticate via Keystone. provide unimelb id and password for MRC. And Keystone identity enable us to use other components in the system so that the system knows that's us using them.
-    - Daemon that creates/terminates VMs through hypervisor APIs via Nova-computer
+- > [sample Q3 B]  Describe the **interplay between these components** that allows a researcher to **create an instance** of a virtual machine through a **pre-existing snapshot** from a non-public NeCTAR Cloud image, e.g. a snapshot created by a user. [3]
+  
+    - 登录认证，Nova创建守护VM，调度请求，调解计算服务，swift查找资源，
+    
+    - **Authenticate via Keystone**. provide unimelb id and password for MRC. And Keystone identity enable us to use other components in the system so that the system knows that's us using them.
+    - **Daemon that creates/terminates VMs** through hypervisor APIs via Nova-computer
     - schedules VM instance requests from queue and determines which server host to run via Nova-scheduler
-    - Mediates interactions between compute services and other components, e.g. image database via Nova-conductor
-    - looking up resoueces required via Swift/Glance
+    - **Mediates interactions** between compute services and other components, e.g. image database via Nova-conductor
+    - **looking up resoueces** required via Swift/Glance
     - preparing the VM on machine required
-- > Describe the approach that would be taken using the openStack Heat service for deployment of SaaS solutions onto the Cloud. [2]
+- > Describe the approach that would be taken using the openStack Heat service for **deployment of SaaS** solutions onto the Cloud. [2]
     1. Create the template file according to your requirements
     2. Provide environment details (name of key file, image id, etc)
     3. Select a name for your stack and confirm the parameters
@@ -1980,22 +2004,26 @@ Terminology
                 Therefore consideration must be given on how to make functions with side effects run in parallel, as typically required in FaaS environments.
         - ephemeral (短暂的;瞬息的),
             - Synchronous/Asynchronous Functions
+            
             - Relationship to FaaS
                 - By default functions in FaaS are synchronous, hence they return their result immediately
                 - However, there may be functions that take longer to return a result, hence they incur timeouts and lock connections with clients in the process, hence it is better to transform them into asynchronous functions
                     - a publish/subscribe pattern involving a queuing system can be used to deal with asynchronous functions
+                
             - How them work?
-                |Function|How|
-                |---|---|
-                |Synchronous functions|return their result immediately
-                |Asynchronous functions|return a code that informs the client that the execution has started, and then trigger an event when the execution completes
+              
+                | Function               | How                                                          |
+                | ---------------------- | ------------------------------------------------------------ |
+                | Synchronous functions  | return their result immediately                              |
+                | Asynchronous functions | return a code that informs the client that the execution has started, and then trigger an event when the execution completes |
         - stateless, 
-            - What is it?
-                - A subset of functions with side-effects is composed of stateful functions 
-                    |||e.g.|
-                    |---|---|---|
-                    |stateful function|is one whose output changes in relation to internally stored information (hence its input cannot entirely predict its output)| a function that adds items to a "shopping cart" and retains that information internally
-                    |stateless function|is one that does not store information internally|adding an item to a "shopping cart" stored in a DBMS service and not internally would make the function above stateless, but not side-effect free.
+            - A subset of functions with side-effects is composed of stateful functions 
+                - stateful function
+                    - is one whose output changes in relation to internally stored information (hence its input cannot entirely predict its output)
+                    - a function that adds items to a "shopping cart" and retains that information internally
+                - stateless function
+                    - is one that does not store information internally
+                    - adding an item to a "shopping cart" stored in a DBMS service and not internally would make the function above stateless, but not side-effect free.
             - Why it is important for FaaS?
                 - Because there are multiple instances of the same function, and there is no guarantee the same user would call the same function instance twice.
         - which make them ideal for 
@@ -2015,9 +2043,9 @@ Terminology
 4. Why we need Faas?
     |Reason|How|
     |---|---|
-    |Simpler deployment|the service provider takes care of the infrastructure
-    |Reduced computing costs|only the time during which functions are executed is billed
-    |Reduced application complexity|due to loosely-coupled architecture
+    |Simpler deployment|the service provider takes care of the infrastructure|
+    |Reduced computing costs|only the time during which functions are executed is billed|
+    |Reduced application complexity|due to loosely-coupled architecture|
 5. FaaS application
     - Functions are triggered by events
     - Functions can call each other
@@ -2034,14 +2062,15 @@ Terminology
 - > [sample Q7] A) In the context of Cloud, what is meant by serverless computing? [1]
   
     - A way of developing applications as **collections of functions** that are deployed on a computing infrastructure without the need to manage it.
-- > [sample Q7] B) List three reasons why it may be beneficial to choose a serverless solution. [3]
-    - |Reason|How|
-        |---|---|
-        |Simpler deployment|the service provider takes care of the infrastructure
-        |Reduced computing costs|only the time during which functions are executed is billed
-        |Reduced application complexity|due to loosely-coupled architecture
-        - "Why we need Faas?" above
-- > [sample Q7] C) Discuss the role of functions in serverless computing. Your answer should include key properties of functions that make them suitable for serverless environments.  [3]
+- > [sample Q7] B) List three reasons why it may be **beneficial to choose a serverless** solution. [3]
+  >
+  > - | Reason                         | How                                                         |
+  >     | ------------------------------ | ----------------------------------------------------------- |
+  >     | Simpler deployment             | the service provider takes care of the infrastructure       |
+  >     | Reduced computing costs        | only the time during which functions are executed is billed |
+  >     | Reduced application complexity | due to loosely-coupled architecture                         |
+- > [sample Q7] C) Discuss the **role of functions in serverless computing**. Your answer should include **key properties** of functions that make them suitable for serverless environments.  [3]
+  
     - Serverless applications are composed of functions
     - key properties of functions that make them suitable for serverless environments:
         - Functions in server less comuting are:
@@ -2077,246 +2106,297 @@ Terminology
 
 ## Week 9 - Big Data Analytics
 1. Why we need it?
-    - There would not be much point in amassing vast amount of data without being able to analyse it, hence the blossoming of large-scale business intelligence and more complex machine learning algorithms. 
-    - Overlapping among business intelligence, machine learning, statistics and data mining.
+    - There would not be much point in amassing vast amount of data without being able to analyze it, hence the blossoming of large-scale business intelligence and more complex machine learning algorithms. 
+        (如果无法分析海量数据，就无法积累大量数据，因此大规模商业智能和更复杂的机器学习算法将会蓬勃发展。)
+    - 适用领域：Overlapping among **business intelligence**, **machine learning**, **statistics and data mining**.
         - Just use big data analytics
 2. What is it?
-    - There is a good deal of overlap and confusion among terms such as business intelligence, machine learning, statistics, and data mining. For the sake of clarity, we just use the more general term (big) data analytics
+
+    There is a good deal of overlap and confusion among terms such as business intelligence, machine learning, statistics, and data mining. For the sake of clarity, we just use the more general term (big) data analytics
+    (在商业智能、机器学习、统计和数据挖掘等术语中存在大量重叠和混淆。为了清晰起见，我们只使用更通用的术语(大)数据分析)
 3. Examples of Analytics
-    ||
-    |---|
-    |Full-text searching
-    |Aggregation of data
-    |Clustering
-    |Sentiment analysis
-    |Recommendations
+   
+    - Full-text searching     (全文搜索)
+    - Aggregation of data     (数据汇总)
+    - Clustering
+    - Sentiment analysis
+    - Recommendations
 4. Challenges of Big Data Analytics
-    - A framework for analysing big data has to distribute both data and processing over many nodes, which implies:
-        |imply||
-        |---|---|
-        |Reading and writing distributed datasets
-        |Preserving data in the presence of failing data nodes
-        |Supporting the execution of MapReduce tasks
-        |Being fault-tolerant|a few failing compute nodes may slow down the processing, but not stop it
-        |Coordinating the execution of tasks across a cluster
+
+    A framework for analyzing big data has to **distribute both data and processing over many nodes**, which implies:
+
+    - Reading and writing distributed datasets     读写分布式数据集
+    - Preserving data in the presence of failing data nodes      读写分布式数据集
+    - Supporting the execution of MapReduce tasks    支持MapReduce任务的执行
+    - Being fault-tolerant (a few failing compute nodes may slow down the processing, but not stop it)
+        容错(少量计算节点故障可能会减慢处理速度，但不会停止处理)
+    - Coordinating the execution of tasks across a cluster       协调跨集群任务的执行
 5. Tools for Analytics:
     - Apache Hadoop
     - Apache Spark
 ### Apache Hadoop
 1. How it works?
-    - Apache Hadoop started as a way to distribute files over a cluster and execute MapReduce tasks, but many tools have now been built on that foundation to add further functionality
+
+    Apache Hadoop started as a way to distribute files over a cluster and execute MapReduce tasks, but many tools have now been built on that foundation to add further functionality
 2. Components
     - Hadoop Distributed File System (HDFS)
     - Hadoop Resource Manager (YARN)
-2. Hadoop Distributed File System (HDFS)
+3. Hadoop Distributed File System (HDFS)
     - What is it?
-        - The core of Hadoop is a fault tolerant file system that has been explicitly designed to span many nodes
+
+        The core of Hadoop is a **fault tolerant file system** that has been explicitly designed to span many nodes
+        (Hadoop的核心是一个容错文件系统，它被明确地设计为跨多个节点)
     - HDFS blocks v.s. blocks
-        - HDFS blocks are much larger than blocks used by an ordinary file system (say, 4 KB versus 128MB)
+        - HDFS blocks are much larger than blocks used by an ordinary file system 
+            (say, 4 KB versus 128MB)
         - Why?
-            ||How achieve it?|
-            |---|---|
-            |Reduced need for memory to store information about where the blocks are|metadata
-            |More efficient use of the network|with a large block, a reduced number network connections needs to be kept open
-            |Reduced need for seek operations on big files
-            |Efficient when most data of a block have to be processed
+            - Reduced need for memory to store information about where the blocks are (metadata)
+                减少了存储块位置信息的内存需求(元数据)
+            - More efficient use of the network (with a large block, a reduced number network connections needs to be kept open)
+                更有效地利用网络(使用更大的区块，需要保持开放的网络连接数量减少)
+            - Reduced need for seek operations on big files
+                减少了对大文件的查找操作
+            - Efficient when most data of a block have to be processed
+                当一个块的大部分数据必须被处理时，效率很高
     - HDFS Architecture
         - A HDFS file is a collection of blocks stored in datanodes, with metadata (such as the position of those blocks) that is stored in namenodes
-        - <img src="./docs/23.png" width="60%" height="50%" />
+        - <img src="./docs/23.png" style="zoom:50%;" />
     - The HDFS Shell
         - Why we need it?
             - Managing the files on a HDFS cluster cannot be done on the operating system shell
-                - hence a custom HDFS shell must be used.
+            - hence a custom HDFS shell must be used.
         - The HDFS file system shell replicates many of the usual commands (ls, rm, etc.), with some other commands dedicated to loading files from the operating system to the cluster (and back)
+            HDFS文件系统shell复制了很多常用的命令(ls, rm等)，还有一些专门用于将文件从操作系统加载到集群(或返回)的命令
 3. The Hadoop Resource Manager (YARN)
     - What is it/What does it do?
         - YARN deals with Executing MapReduce jobs on a cluster
             - It is composed of a central ***Resource Manager*** and
             - Many ***Node Managers*** that reside on slave machines
     - Every time a MapReduce job is scheduled for execution on a Hadoop cluster, YARN starts an **<u>Application Master</u>** that negotiates resources with the **<u>Resource Manager</u>** and starts Containers on the slave nodes
+        每次调度MapReduce任务在Hadoop集群上执行时，YARN启动一个**Application Master**，与**Resource Manager**协商资源，并在从节点上启动container
         - Containers are the processes where the actual processing is done
 5. Programming on Hadoop
 ### Apache Spark
-1. Why Spark not Hadoop?/Spark v.s. Hadoop
-    - While Hadoop MapReduce works well, it is geared towards performing relatively simple jobs on large datasets.
+1. Why Spark not Hadoop? / Spark v.s. Hadoop
+    - While Hadoop MapReduce works well, it is geared towards performing **relatively simple jobs** on large datasets.
         - While the execution order of Hadoop MapReduce is fixed, the lazy evaluation of Spark allows the developer to stop worrying about it, and have the Spark optimizer take care of it. 
+            (虽然Hadoop MapReduce的执行顺序是固定的，但是Spark的lazy evaluation让开发者不用再担心它，而是让Spark优化器来处理它。)
         - In addition, the driver program can be divided into steps that are easier to understand without sacrificing performance (as long as those steps are composed of transformations).
+            此外，驱动程序可以被划分为更容易理解的步骤，而不牺牲性能(只要这些步骤是由转换组成的)。
     - However, when complex jobs are performed, we would like
         - Caching data in memory
         - Having finer-grained control on the execution of the jobs
+            对作业的执行有更细粒度的控制
     - Spark was designed to 
         - reduce the latency inherent in the Hadoop approach for the execution of MapReduce job
+            (减少Hadoop方法中执行MapReduce作业的固有延迟)
         - How?
             - The transformations in the program use lazy evaluation, hence Spark has the possibility of optimizing the process
+                (程序中的转换使用惰性求值，因此Spark有可能对流程进行优化)
     - Spark can operate within the Hadoop architecture, using YARN and Zookeeper to 
         - Manage computing resources
         - Storing data on HDFS
     - Spark has a tightly-coupled nature of its main components
+        Spark的主要组件具有紧密耦合的特性
     - Spark has a cluster manager of its own, but it can work with other cluster managers, such as YARN or MESOS.
 2. Spark Architecture
-    - One of the strong points of Spark is the tightly-coupled nature of its main components
-        - <img src="./docs/24.jpg" width="60%" height="50%" />
+    - One of the strong points of Spark is the **tightly-coupled nature** of its main components
+
+        <img src="./docs/24.jpg"/>
     - Spark ships with a cluster manager of its own, but it can work with other cluster managers, such as YARN or MESOS.
 3. The Spark Shell
     - allows to send commands to the cluster interactively in either Scala or Python.
     - While the shell can be extremely useful, it prevents Spark from deploying all of its optimizations, leading to poor performance.
+        (虽然Shell可以非常有用，但它阻止Spark部署所有的优化，导致性能低下。)
 4. Programming on Spark
+   
     - Lecture 09:: 00:34:24
 5. Spark Runtime Architecture
-    - Applications in Spark are composed of different components including
-      - Job
-        - The data processing that has to be performed on a dataset
-        - the overall processing that Spark is directed to perform by a driver program
-      - Task
-        - A single operation on a dataset
-        - a single transformation operating on a single partition of data on a single node
-      - Stage
-        - Set of task operating on a single partition
-      - Stage \& performance
-        - The fewer the number of stages, the faster the computation (shuffling data across the cluster is slow)
-      - Stage \& Job
-        - A job is composed of more than one stage when data are to be transferred across node
-      - Executors
-        - The processes in which tasks are executed
-      - Cluster Manager
-        - The process assigning tasks to executors
-      - Driver program
-        - The main logic of the application
-      - Spark application
-        - Driver program + Executor
-      - Spark Context
-        - The general configuration of the job
-            - The **deployment is set in the Stpark Context**, which is also used to set the configuration of a Spark application, including the cluster it connects to in cluster mode.
-                -  For instance, this hard-coded Spark Context directs the execution to run locally, using 2 threads (usually, it is set to the number of cores): 
-                    - sc = new SparkContext(new SparkConf().setMaster("local[2]"));
-                - This other hard-coded line directs the execution to a remote cluster:
-                    - sc = new SparkContext(new SparkConf().setMaster("spark://192.168.1.12:6066"));
-            - Spark Contexts can also be used to **tune the execution** by setting the memory, or the number of executors to use.  
+    Applications in Spark are composed of different components including
+
+    - Job
+      - The data processing that has to be performed on a dataset
+      - the overall processing that Spark is directed to perform by a driver program
+    - Task
+      - A single operation on a dataset
+      - a single transformation operating on a single partition of data on a single node
+    - Stage
+      
+      - Set of task operating on a single partition
+    - Stage \& performance
+      
+      - The fewer the number of stages, the faster the computation (shuffling data across the cluster is slow)
+    - Stage \& Job
+      
+      - A job is composed of more than one stage when data are to be transferred across node
+    - Executors
+      
+      - The processes in which tasks are executed
+    - Cluster Manager
+      
+      - The process assigning tasks to executors
+    - Driver program
+      
+      - The main logic of the application
+    - Spark application
+      
+      - Driver program + Executor
+    - Spark Context
+  - The general configuration of the job
+      - The **deployment is set in the Spark Context**, which is also used to set the configuration of a Spark application, including the cluster it connects to in cluster mode.
+      -  For instance, this hard-coded Spark Context directs the execution to run locally, using 2 threads (usually, it is set to the number of cores): 
+              
+              - ```java
+                  sc = new SparkContext(new SparkConf().setMaster("local[2]"));
+                  ```
+        - This other hard-coded line directs the execution to a remote cluster:
+              
+              - ```java
+                  sc = new SparkContext(new SparkConf().
+                                        setMaster("spark://192.168.1.12:6066"));
+                  ```
+      - Spark Contexts can also be used to **tune the execution** by setting the memory, or the number of executors to use.  
+      
     - These different components can be arranged in **<u>three</u>** different deployment modes (below) across the cluster
+    
     - Spark Runtime Mode
-        - Local Mode
-            - In local mode, every Spark component runs within the same JVM. However, the Spark application can still run in parallel, as there may be more than on executor active
-            - When used?
-                - Good for developing and debugging
-        - Cluster Mode
-            - In cluster mode, every component, including the driver program, is executed on the cluster. Upon launching, the job can run autonomously. 
-            - When used?
-                - This is the common way of running non-interactive Spark jobs.
-        - Client Mode
-            - The driver program talks directly to the executors on the worker nodes. Therefore, the machine hosting the driver program has to be connected to the cluster until job completion.
-            - When used? 
-                - Client mode must be used when the applications are interactive, as happens in the Python or Scala Spark shells.
+      
+    | Mode         |                                                              | When used                                                    |
+    | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+    | Local Mode   | In local mode, every Spark component runs within the same JVM. However, the Spark application can still run in parallel, as there may be more than on executor active | Good for developing and debugging                            |
+    | Cluster Mode | In cluster mode, every component, including the driver program, is executed on the cluster. Upon launching, the job can run autonomously. | This is the common way of running non-interactive Spark jobs. |
+    | Client Mode  | The driver program talks directly to the executors on the worker nodes. Therefore, the machine hosting the driver program has to be connected to the cluster until job completion. | Client mode must be used when the applications are interactive, as happens in the Python or Scala Spark shells. |
+    
 5. Caching Intermediate Results
-    - rdd.persist(storageLevel) can be used to save an RDD either in memory and/or disk. 
+    - `rdd.persist(storageLevel)` can be used to save an RDD either in memory and/or disk. 
         - The storageLevel can be tuned to a different mix of use of RAM or disk to store the RDD
-        - since RDDs are immutable, 
-            - the result of the final transformation is cached, not the input RDD. 
-            - In other words, when this statement is executed
-                - rddB = rddA.persist(DISK_ONLY)
-                - only rddB has been written to disk.
-6. Resilient Distributed Dataset (RDDs) (Central to Spark)
+    - since RDDs are immutable, 
+        - the result of the final transformation is cached, not the input RDD. 
+        - In other words, when this statement is executed
+            - rddB = rddA.persist(DISK_ONLY)
+            - only rddB has been written to disk.
+7. Resilient Distributed Dataset (RDDs) (Central to Spark)
     - What is it?
-        - the way data are stored in Spark during computation, and understanding them is crucial to writing programs in Spark:
-            ||What?|
-            |---|---|
-            |Resilient|data are stored redundantly, hence a failing node would not affect their integrity
-            |Distributed|data are split into chunks, and these chunks are sent to different nodes
-            |Dataset|a dataset is just a collection of objects, hence very generic
+
+        the way data are stored in Spark during computation, and understanding them is crucial to writing programs in Spark:
+
+        - Resilient (data are stored redundantly, hence a failing node would not affect their integrity)
+        - Distributed (data are split into chunks, and these chunks are sent to different nodes)
+        - Dataset (a dataset is just a collection of objects, hence very generic)
     - Properties of RDDs
-        - RDDs are
-            |Property||benefit
-            |---|---|---|
-            |immutable|once defined, they cannot be changed|simplifies parallel computations on them, and <br/>is consistent with the functional programming paradigm
-            |transient|they are meant to be used only once, then discarded (but they can be cached, if it improves performance)|
-            |lazily-evaluated|the evaluation process happens only <br/> - when data cannot be kept in an RDD, as when the number of objects in an RDD has to be computed, <br/> - or an RDD has to be written to a file (these are called actions), but <br/> - not when an RDD are transformed into another RDD (these are called transformations)|optimizing the process
-            - The transformations in the program use lazy evaluation, hence Spark has the possibility of optimizing the process
+        |Property||benefit|
+        |---|---|---|
+        |immutable|once defined, they cannot be changed|simplifies parallel computations on them, and <br/>is consistent with the functional programming paradigm|
+        |transient|they are meant to be used only once, then discarded (but they can be cached, if it improves performance)||
+        |lazily-evaluated|the evaluation process happens only <br/> - when data cannot be kept in an RDD, as when the number of objects in an RDD has to be computed, <br/> - or an RDD has to be written to a file (these are called actions), but <br/> - not when an RDD are transformed into another RDD (these are called transformations)|optimizing the process|
+
+        - The transformations in the program use lazy evaluation, hence Spark has the possibility of optimizing the process
     - How to Build an RDD?
         - created out of data stored elsewhere (HDFS, a local text file, a DBMS)
         - created out of collections too, using the parallelize function
     - RDD variable
+        
         - are just placeholders until the action is encountered. Remember that the Spark application is not just the driver program, but all the RDD processing that takes place on the cluster
+            (只是占位符，直到遇到行动。请记住，Spark应用程序不仅是驱动程序，而且是发生在集群上的所有RDD处理)
     - RDD Transformations
-        - rdd.filter(lambda) selects elements from an RDD
-        - rdd.distinct() returns an RDD without duplicated elements
-        - rdd.union(otherRdd) merges two RDDs
-        - rdd.intersection(otherRdd) returns elements common to both
-        - rdd.subtract(otherRdd) removes elements of otherRdd
-        - rdd.cartesian(otherRdd) returns the Cartesian product of both RDDs
+        - `rdd.filter(lambda)` selects elements from an RDD
+        - `rdd.distinct()` returns an RDD without duplicated elements
+        - `rdd.union(otherRdd)` merges two RDDs
+        - `rdd.intersection(otherRdd)` returns elements common to both
+        - `rdd.subtract(otherRdd)` removes elements of otherRdd
+        - `rdd.cartesian(otherRdd)` returns the Cartesian product of both RDDs
     - RDD Action
-        - rdd.collect() returns all elements in an RDD
-        - rdd.count() returns the number of elements in an RDD
-        - rdd.reduce(lambda) applies the function to all elements repeatedly, resulting in one result (say, the sum of all elements. Not to be confused with the reduceByKey transformation)
-        - rdd.foreach(lambda) applies lambda to all elements of an RDD
+        - `rdd.collect()` returns all elements in an RDD
+        - `rdd.count()` returns the number of elements in an RDD
+        - `rdd.reduce(lambda)` applies the function to all elements repeatedly, resulting in one result (say, the sum of all elements. Not to be confused with the `reduceByKey` transformation)
+        - `rdd.foreach(lambda)` applies lambda to all elements of an RDD
 
 ### past exam
 - > [2014 Q5] B) Apache Hadoop is a software framework that enables processing of large data sets.
-    - > a. Explain the role of Hadoop Distributed File System (HDFS) in supporting the Apache Hadoop framework. [2]
-        - HDFS has blocks existing on nodes and there is a name node which contains the meta data about which block is running.
-        - HDFS is a fault tolerant file system that has been explicitly designed to span many nodes
+    
+    - > a. Explain **the role of Hadoop Distributed File System (HDFS)** in supporting the Apache Hadoop framework. [2]
+      
+      - HDFS has blocks existing on nodes and there is a name node which contains the meta data about which block is running.
+      - HDFS is a fault tolerant file system that has been explicitly designed to span many nodes
     - > b. Describe the process by which Apache Hadoop supports fault tolerant data processing. [2]
   
         - HDFS has blocks existing on nodes and there is a name node which contains the meta data about which block is running and if one of the nodes fails then the data is still available somewhere else in the system load balanced. And it will try to rebalnce itself.
-- > [sample Q4] D) Describe the three different Apache SPARK runtime modes:    
+- > [sample Q4] D) Describe the three different Apache **SPARK runtime modes**:    
+    
     - > Local [1]
-        - The driver program and the executors are all hosted on the same computer (no need for a cluster manager).
-        - The Spark appplication is hosted on the same computer.
+      
+      - The driver program and the executors are all hosted on the same computer (no need for a cluster manager).
+      - The Spark appplication is hosted on the same computer.
     - > Cluster [1]
-        - The cluster manager, driver program and the executors are all hosted on the cluster.
-        - The cluster manager and Spark appplication is hosted on the cluster.
+      
+      - The cluster manager, driver program and the executors are all hosted on the cluster.
+      - The cluster manager and Spark appplication is hosted on the cluster.
     - > Client [1]
+    
+      The driver program is hosted on the same computer that is not part of the cluster, while the cluster manager and executors are hosted on the cluster.
   
-        - The driver program is hosted on the same computer that is not part of the cluster, while the cluster manager and executors are hosted on the cluster.
 - > [2017 Q2] B What is the Apache Hadoop Resilient Distributed Dataset (RDD) operation type that triggers RDD evaluations? Which operation type does not trigger RDD evaluations? [2]
   
     - Spark's RDDs provide two kinds of operations: transformations and actions, where only actions such as reduce or collect trigger the evaluation. So transformation does not trigger RDD evaluations.
 
 ## Week 10.1 – Security and Clouds
 1. Why is security so important?
-    - If systems (Grids/Clouds/outsourced infrastructure!) are not secure 
-        - Large communities will not engage
-            - medical community, industry, financial community, etc they will only use their own internal resources, e.g.: private clouds!
+
+    If systems (Grids/Clouds/outsourced infrastructure!) are not secure 
+    - Large communities will not engage
+        - medical community, industry, financial community, etc 
+            they will only use their own internal resources, e.g.: private clouds!
+
     - Expensive to repeat some experiments
         - Huge machines running large simulations for several years
     - Legal and ethical issues possible to be violated with all sorts of consequences
+        (可能违反法律和道德问题，造成各种后果)
         - e.g. data protection act violations and fines incurred
             - Amazon Web Services, Sydney
     - Trust is easily lost and hard to re-establish
 - What do we mean by security anyway?
     - Secure from whom?
-        - From sys-admin?
-        - From rogue employee?
-- Secure against what?
-    - Security is never black and white but is a grey landscape where the context determines the accuracy of how secure a system is
-        - e.g. secure as given by a set of security requirements
+        - From sys-admin?  系统管理员
+        - From rogue employee?   流氓员工
+    - Secure against what?
+        - Security is never black and white but is a grey landscape where the context determines the accuracy of how secure a system is
+            - e.g. secure as given by a set of security requirements
 - security technology ≠ secure system
     - Ultra secure system using 2048+ bit encryption technology, packet filtering firewalls, …
         - on laptop in unlocked room
         - on PC with password on “post-it” on screen/desk
         - the challenge of peta/exa-scale computers and possibility for brute force cracking
+            (超大规模计算机的挑战和暴力破解的可能性)
 2. The Challenge of Security
-    - Grids and Clouds (IaaS) allow users to compile codes that do stuff on physical/virtual machines
+    - Grids and Clouds (IaaS) **allow users to compile codes that do stuff on physical/virtual machines**
         - In the Grid world a rich blend of facilities co-existed (were accessible/integrated!) which had "issues" - prevent people do bad staff
             - Highly secure supercomputing facilities compromised by single user PCs/laptops
             - Need security technologies that scales to meet wide variety of applications 
         - Using services for processing of patient data through to “needle in haystack” searching of physics experiments
+            (利用服务处理患者数据，直至物理实验的“大海捞针”搜索)
     - Should try to develop generic security solutions
         - Avoid all application areas re-inventing their own (incompatible/inoperable) solutions
-    - Clouds allow scenarios that stretch inter-organisational security
+            (避免所有应用领域重新发明自己的(不兼容/不可操作的)解决方案)
+    - Clouds allow scenarios that stretch inter-organizational security
         - Policies that restrict access to and usage of resources based on pre-identified users, resources
+            (基于预先识别的用户、资源限制对资源的访问和使用的策略)
             - Groups/tenancy…
         - But what if new resources added, new users added, old users go…?
             - Over-subscription issues
-            - User management (per user, per team, per organisation, per country…)
-        - What if organisations decide to change policies governing access to and usage of resources, or bring their data back inside of their firewall?
+            - User management (per user, per team, per organization, per country…)
+        - What if organizations decide to change policies governing access to and usage of resources, or bring their data back inside of their firewall?
+            (如果组织决定改变管理资源访问和使用的政策，或将他们的数据带回防火墙内部，该怎么办?)
             - Really not replicated somewhere else?
-        - What if you share a tenancy with a noisy neighbour!
+        - What if you share a tenancy with a noisy neighbor!
             - I/O demanding applications
                 - You hopefully never experienced this, but early NeCTAR RC had performance issues!
-        - The multi-faceted challenges of ”life beyond the organisational firewall”?
+        - The multi-faceted challenges of ”life beyond the organizational firewall”?
 3. Technical Challenges of Security
     - All are important but some applications/domains have more emphasis on concepts than others
-        - Key is to make all of this simple/transparent to users!
-    - <img src="./docs/25.jpg" width="60%" height="50%" />
+        
+        - Key is to make all of this **simple/transparent to users**!
+        
+        <img src="./docs/25.jpg" style="zoom: 67%;" />
     - Single sign-on
         - What is it?
             - Login once, but can access many more resources that potentially provided by other providers
@@ -2328,12 +2408,12 @@ Terminology
     - Auditing 
         - What is it?
             - logging, intrusion detection, auditing of security in external computer facilities. Logging the actions by each user
-                - When bad thing happen, we have the record
+            - When bad thing happen, we have the record
         - **well established in theory and practice and for local systems**
             - Less mature in Cloud environments (beyond the firewall!)
         - Tools to support generation of diagnostic trails 
-            - Across federations of Clouds?
-            - Log/keep all information?
+            - Across federations of Clouds?  (穿越云的联盟?)
+            - Log/keep all information?   (记录/保存所有信息?)
             - For how long?
         - Problem/challenge 
             - The record are distributed most of time
@@ -2344,8 +2424,9 @@ Terminology
             - Many tools and utilities don’t work!
         - Scale of data
             - Securely deleting a few Mb easy enough
-    - Liability
-        - Using contract to state the risk when put data here
+    - Liability  (责任)
+        
+        - Using contract to state the risk when put data here (使用契约来说明放置数据时的风险)
     - Licensing
         - Challenges with the Cloud delivery model (Where can jobs realistically run)
         - Many license models
@@ -2359,7 +2440,8 @@ Terminology
             - Taverna, Pegasus, Galaxy, Kepler, Nimrod, OMS, …
         - **Many workflows models**
             - Orchestration (**centralised** definition/enactment),
-            - Choreography (**decentralised**)
+                编排(**集中**定义/制定)
+            - Choreography (**decentralised**) 编排(**分散**)
         - Serious challenges of 
             - defining, 
             - enforcing, 
@@ -2367,16 +2449,19 @@ Terminology
             - enacting 
         - security-oriented workflows
     - The Ever Changing Technical/Legal Landscape 
+        
         - requirements and guarantee on cloud using
 
 - Authentication
-    What does it do?
-        - prove who you are
+
     - What is it?
         - Authentication is <u>**the establishment and propagation of a user’s identity in the system**</u>
+            (认证就是**用户身份在系统中的建立和传播**)
         - e.g. so site X can check that user Y is attempting to gain access to it’s resources
             - Note <u>**does not check what user is allowed to do, only that we know (and can check!) who they are**</u>
+                **不检查用户被允许做什么，只知道(并且可以检查!)他们是谁**
                 - <u>**Masquerading always a danger**</u> (and realistic possibility)
+                    **伪装总是危险**(和现实的可能性)
                 - Security guidance/balances
                     - Password selection
                         - 16 characters, upper/lower case and must include nonalphanumeric characters and be changed quarterly…!?!?!?!
@@ -2408,19 +2493,26 @@ Terminology
     - Public Key Infrastructures (PKI) underpins MANY systems
         - What is it?
             - an arrangement that binds public key with respective identities of entities(like people and organization). 
-            - The binding is established through a process of registration and issurance of certificates at and by a certificate authority 
-            - The PKI role that assures valid and correct registration is called a registration authority(RA). RA is responsible for accepting requests for digital certificates and authenticating the entity making the reques
+                - The binding is established through a process of registration and issurance of certificates at and by a certificate authority 
+            - The PKI role that **assures valid and correct registration** is called a registration authority(RA). RA is responsible for accepting requests for digital certificates and authenticating the entity making the reques
         - Based on public key cryptography
-        - Public Key Cryptography
-            - Also called Asymmetric Cryptography
-                - Two distinct keys
-                    - One that must be kept private
-                        - Private Key
-                    - One that can be made public
-                        - Public Key
-                - Two keys complementary, but essential that cannot find out value of private key from public key
-                    - With private keys can digitally sign messages, documents and validate them with associated public keys
-                        - Check whether changed, useful for non-repudiation
+        - Public Key Cryptography  
+
+            Also called Asymmetric Cryptography
+            (公钥加密，又称非对称加密)
+
+            - Two distinct keys
+                - Private Key, must be kept **private**
+
+                - Public Key, can be made public
+
+            - Two keys complementary, but essential that cannot find out value of private key from public key
+                (两个密钥是互补的，但很重要，不能从公钥中找出私钥)
+                
+                - With private keys can digitally sign messages, documents and validate them with associated public keys
+                    - Check whether changed, useful for non-repudiation
+                        (公钥签名：检查是否更改，对不可抵赖有用)
+
             - Public Key Cryptography simplifies key management
                 - Don’t need to have many keys for long time
                     - The longer keys are left in storage, more likelihood of their being compromised
@@ -2451,6 +2543,7 @@ Terminology
                 - Public Key Certificates issued by trusted "Certification Authority"
         - Certification Authority
             - What it it?
+                
                 - <u>**Central component of PKI is Certification Authority (CA)**</u>
             - CA has numerous responsibilities 
                 - <u>**Policy and procedures**</u>
@@ -2460,30 +2553,36 @@ Terminology
                 - Issuing certificates
                     - Often need to delegate to local Registration Authority
                     - Prove who you are, e.g. with passport, student card
-                - Revoking certificates
+                - Revoking certificates  (撤销证书)
                     - Certificate Revocation List (CRL) for expired/compromised certificates
-                - Storing, archiving 
+                - Storing, archiving   存储归档
                     - Keeping track of existing certificates, various other information, …
             - models
-                - <img src="./docs/26.jpg" width="60%" height="50%" />
+
+                <img src="./docs/26.jpg" />
             - Typical Simple CA
                 - Based on statically defined centralised CA with direct single hierarchy to users
+                
                 - Typical scenario for getting a certificate
+                
                 - steps:
-                - <img src="./docs/27.jpg" width="60%" height="50%" />
-- Authorisation
-    - What is it?
-        - Authorisation is concerned with controlling access to resources based on policy 
-            - Can this user invoke this service, make use of this data?
-            - Complementary to authenticationL Know it is this user, now can we restrict/enforce what they can/cannot do
+                
+                    <img src="./docs/27.jpg" style="zoom:67%;" />
+- Authorisation  (授权)
+    - Authorisation is concerned with controlling access to resources based on policy 
+        授权涉及到基于策略控制对资源的访问
+        - Can this user invoke this service, make use of this data?
+        - Complementary to authentication Know it is this user, now can we restrict/enforce what they can/cannot do
+
     - Many different approaches for authorisation
         |approach|e.g.|
         |---|---|
-        |Group Based Access Control|your project VMs
-        |Role Based Access Control|RBAC
-        |Identity Based Access Control|IBAC
-        |Attribute Based Access Control|ABAC
+        |Group Based Access Control|your project VMs|
+        |Role Based Access Control|RBAC|
+        |Identity Based Access Control|IBAC|
+        |Attribute Based Access Control|ABAC|
     - Many Technologies
+        
         - XACML, PERMIS, CAS, VOMS, AKENTI, VOMS, SAML, WS-*
     - typical model: RBAC
         - Basic idea is to define:
@@ -2493,11 +2592,15 @@ Terminology
                     - X can do everything and more than Y who can do everything and more than Z
             - **actions** allowed/not allowed for VO members
             - **resources** comprising VO infrastructure (computers, data etc)
-            - A policy then consists of sets of these rules
-                - { Role x Action x Target }
-                    - Can user with VO role X invoke service Y on resource Z?
-                - Policy itself can be represented in many ways, 
-                    - e.g. XML document, SAML, XACML, …
+            
+        - A policy then consists of sets of these rules
+            - { Role x Action x Target }
+                - Can user with VO role X invoke service Y on resource Z?
+            
+        - Policy itself can be represented in many ways, 
+            
+            - e.g. XML document, SAML, XACML, …
+            
             - Standards on when/where these used (PEP) and enforced (PDP)
             - Policy engines consume this information to make access decisions
     - Authorisation and Clouds
@@ -2515,11 +2618,15 @@ Terminology
     - How it is achieved?
         - Often realised through Virtual Organisations (VO)
             - Collection of distributed resources shared by collection of users from one or more organizations typically to work on common research goal
+                (来自一个或多个组织的用户通常为共同的研究目标而共享的分布式资源的集合)
                 - Provides conceptual framework for rules and regulations for resources to be offered/shared between VO institutions/members 
+                    (为VO机构/成员之间提供/共享资源的规则和规章提供概念框架)
                 - Different domains place greater/lesser emphasis on expression and enforcement of rules and regulations (policies)
+                    (不同的领域对规则和规则(策略)的表达和执行的重视程度不同)
     - Should all be transparent to end users!
     - Reflect needs and understanding of organisations involved!
     - Identity Provider
+        
         - The place you got authenticated
 
 ### past exam
@@ -2528,101 +2635,115 @@ Terminology
     - > single sign-on [1]
   
         - is where you authenticate once then the identity provider will enable you to access set of multiple different services which can be hosted in different places 
-    - > public key infrastructures [1]
-        - the cloud computing is based on this
-        - you have public private key pairs where public key is hold by anyone but only you hold by yourself. And the certificates which issuing the connection between your pulic key and your private key. And the certificate is issued by the certification authority. If you want to get certificates, you have to prove your identity. 
-    - > certification authority [1]
-      
-        - The certification authority is the authority who is responsible for issuing the certificate.
-    - > registration authority [1]
-      
-        - The physical individual in the organization who is responsible for checking someone's identity
-    - > identity provider (IdP) [l]
-        - is the authentication system
-        - The place you got authenticated to prove your identity
-         - e.g.: When you want to login the AURIN, you are redirected to unimelb authentication where you need to provide your identity
-- > [2013 Q6] B) Discuss the challenges in supporting fine-grained security in Cloud environments. You may refer to the importance and/or role of (some of) the terms in part A) of this question. [5]
+    
+  - > public key infrastructures [1]
+    
+    - the cloud computing is based on this
+    - you have public private key pairs where public key is hold by anyone but only you hold by yourself. And the certificates which issuing the connection between your pulic key and your private key. And the certificate is issued by the certification authority. If you want to get certificates, you have to prove your identity. 
+  - > certification authority [1]
+  
+      - The certification authority is the authority who is responsible for issuing the certificate.
+  
+  - > registration authority [1]
+  
+      - The physical individual in the organization who is responsible for checking someone's identity
+  
+  - > identity provider (IdP) [l]
+  
+    - is the authentication system
+    - The place you got authenticated to prove your identity
+     - e.g.: When you want to login the AURIN, you are redirected to unimelb authentication where you need to provide your identity
+- > [2013 Q6] B) Discuss the **challenges** in supporting **fine-grained security** in Cloud environments. You may refer to the **importance** and/or role of (some of) the terms in part A) of this question. [5]
+    
     - how cloud do authentication
         - e.g.: fine-grained access control which is authorization, auditing. There is still problem which is confidentiality. The fact that you put your data on the given server and you have no idea where the server is
   
-    - fine-grained security is not done pretty well in the cloud. We kind of knowing how to do authentication to a certain degree. But building access control system without fine-grain is something that cloud doesn't generally provide for you so that you have to build by yourself.
-
+  - fine-grained security is not done pretty well in the cloud. We kind of knowing how to do authentication to a certain degree. But building access control system without fine-grain is something that cloud doesn't generally provide for you so that you have to build by yourself.
+  
     - authentication
     - authorization
     - accounting/auditing
     - confidentiality
     - trust
-- > [2015 Q5] A) There are many open challenges in delivering secure Clouds. Describe some of the technical and non-technical issues that currently exist for development and delivery of security-oriented Clouds. [4]
-    - techincal issues:
-        - authorisation
-        - trust, 
-            - trust the cloud provider that data is secured to be stored on that
-        - api, 
-        - single sign-on, 
-            - Login once, but can access many more resources that potentially provided by other providers
-            - **The Grid model (and Shib model!) needed**
-            - **Currently not solved for Cloud-based IaaS**
-            - Onus (责任) is on non-Cloud developers to define/support this, so cloud developer can't do anything to help with
-        - certificate authority
-            - challenge: 
-                - there isn't centralized certificate authority for the cloud
-                - Issuing certificates
-                    - Often need to delegate to local Registration Authority
-                    - Prove who you are, e.g. with passport, student card
-                - Revoking certificates
-                    - Certificate Revocation List (CRL) for expired/compromised certificates
-                - Storing, archiving 
-                    - Keeping track of existing certificates, various other information
-    - non-techincal issues:
-        - business issue: government won't allow medical data stored on cloud like AWS because it might be backup in somewhere else
-        - sensitive issue
-        - policy issue
-        - Liability
-            - Using contract to state the risk when put data here
-        - Licensing
-            - Challenges with the Cloud delivery model (Where can jobs realistically run)
-            - Many license models
-                - Per user
-                - Per server
-                - Per organisation
-                - Floating licenses
-                - Fixed to machines
-- > [2014 Q2] A) b. Outline some of the practical challenges in supporting Cloud interoperability? [2]
-    - Security
-        - You don't have single sign-on: login once to access a variety of clouds for various reasons
-    - API themselves
-        - Cloud providers, especially public ones want to lock you in. 
-        - They have different business models, different costs
-- > [2014 Q6] A) The Internet2 Shibboleth technology as currently supported by the Australia Access Federation provides _federated authentication_ and _single sign-on_.
+- > [2015 Q5] A) There are many open challenges in delivering secure Clouds. Describe some of the **technical** and **non-technical issues** that currently exist for development and delivery of security-oriented Clouds. [4]
+  
+  - techincal issues:
+      - authorisation
+      - trust, 
+          - trust the cloud provider that data is secured to be stored on that
+      - api, 
+      - single sign-on, 
+          - Login once, but can access many more resources that potentially provided by other providers
+          - **The Grid model (and Shib model!) needed**
+          - **Currently not solved for Cloud-based IaaS**
+          - Onus (责任) is on non-Cloud developers to define/support this, so cloud developer can't do anything to help with
+      - certificate authority
+          - challenge: 
+              - there isn't centralized certificate authority for the cloud
+              - Issuing certificates
+                  - Often need to delegate to local Registration Authority
+                  - Prove who you are, e.g. with passport, student card
+              - Revoking certificates
+                  - Certificate Revocation List (CRL) for expired/compromised certificates
+              - Storing, archiving 
+                  - Keeping track of existing certificates, various other information
+  - non-techincal issues:
+      - business issue: government won't allow medical data stored on cloud like AWS because it might be backup in somewhere else
+      - sensitive issue
+      - policy issue
+      - Liability
+          - Using contract to state the risk when put data here
+      - Licensing
+          - Challenges with the Cloud delivery model (Where can jobs realistically run)
+          - Many license models
+              - Per user
+              - Per server
+              - Per organisation
+              - Floating licenses
+              - Fixed to machines
+- > [2014 Q2] A) b. Outline some of the **practical challenges** in supporting **Cloud interoperability**? [2]
+  
+  - Security
+      - You don't have single sign-on: login once to access a variety of clouds for various reasons
+  - API themselves
+      - Cloud providers, especially public ones want to lock you in. 
+      - They have different business models, different costs
+- > [2014 Q6] A) The Internet2 Shibboleth technology as currently supported by the Australia Access Federation provides _**federated authentication**_ and **_single sign-on_**.
+    
     - > a. Explain what is meant by the italicized terms [2].
-        - federated authentication
-            - is basically where you are trying to access a resource while you are proving your identity somewhere else
-        - single sign-on 
-            - is where you authenticate once then the identity provider will enable you to access set of multiple different services which can be hosted in different places 
-    - > b. Explain the role of trust and public key infrastructures in supporting the Internet2 Shibboleth model. [2]
-        - trust
-            - is a key part of any kind of security system in Shibboleth based on trust. So we all trust the organisation to authenticate their uses
-        - public key infrastructures
-            - all messages about where you are from and do you authenticate here are digitally signed. We don't trust anyone who is not identity proven. It's only those in the federation and they have keys which are used to do the authentication.
-                - e.g. I am from unimelb and I am assigning this message with my key which you can then use this key to verify that this is the key you trust effectively.
-    - > c. What are the advantages and disadvantages of the Shibboleth approach for security? [4]
-        - adv
-            - flexible when you doing single sign-on
-            - simple to use, access different service just by proving identity once
-        - disadv
-            - all of the protocols are static
-                - this information which is used to setup professor snott has authenticated at unimelb. So there is a collection about attributes e.g.: he is a staff. This information is pre-agreed in advance. If join the new project, this information wouldn't be available with unimelb system. limited because it is static
-            - not flexible, not dynamic 
+      
+      - federated authentication
+          - is basically where you are trying to access a resource while you are proving your identity somewhere else
+      - single sign-on 
+          - is where you authenticate once then the identity provider will enable you to access set of multiple different services which can be hosted in different places 
+    - > b. Explain the role of **trust** and **public key infrastructures** in supporting the Internet2 Shibboleth model. [2]
+      
+      - trust
+          - is a key part of any kind of security system in Shibboleth based on trust. So we all trust the organisation to authenticate their uses
+      - public key infrastructures
+          - all messages about where you are from and do you authenticate here are digitally signed. We don't trust anyone who is not identity proven. It's only those in the federation and they have keys which are used to do the authentication.
+              - e.g. I am from unimelb and I am assigning this message with my key which you can then use this key to verify that this is the key you trust effectively.
+    - > c. What are the **advantages and disadvantages** of the Shibboleth approach for security? [4]
+      
+      - adv
+          - flexible when you doing single sign-on
+          - simple to use, access different service just by proving identity once
+      - disadv
+          - all of the protocols are static
+              - this information which is used to setup professor snott has authenticated at unimelb. So there is a collection about attributes e.g.: he is a staff. This information is pre-agreed in advance. If join the new project, this information wouldn't be available with unimelb system. limited because it is static
+          - not flexible, not dynamic 
     - > d. Why isn’t Shibboleth used to access Cloud-based systems more generally? [2]
-        - related to trust. differnt cloud provider requires different facts in the Shibboleth
-            - e.g.: Amazon requires you credit card info while unimelb only requires student info.
-        - Static federation
-        - no single CA
+      
+      - related to trust. different cloud provider requires different facts in the Shibboleth
+          - e.g.: Amazon requires you credit card info while unimelb only requires student info.
+      - Static federation
+      - no single CA
 - > [2015 Q5] B) The Internet2 Shibboleth technology as currently supported by the Australia Access Federation provides federated authentication.
   
     - > a. Explain what is meant by this italicized term and discuss the advantages and disadvantages of the Shibboleth approach for security. [3]
   
         - above
-    - > b. Why isn’t Shibboleth used to access Cloud-based systems more generally? [3]
-      
-        - above
+    
+  - > b. Why isn’t Shibboleth used to access Cloud-based systems more generally? [3]
+    
+      - above
