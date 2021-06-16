@@ -119,7 +119,7 @@
 - > [2013 Q1, 2017 Q1 B [5]] B) Current Cloud Computing systems do not solve many key challenges of large-scale distributed systems. Discuss. [7]
   
     - by below
-- > [sample Q2 A] Describe some of the current challenges associated with large-scale distributed systems. [4] 
+- > [sample Q2 A] Describe some of the **current challenges** associated with large-scale distributed systems. [4] 
   
     - distributed systems didn't solve **data heterogeneity**. And we have big data challenges.
     - distributed systems has **scalability and issues of fixed hardware system**. We have distributed computers running on different hardware system. （**hardware system heterogeneity**）
@@ -985,10 +985,12 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
 - > [2014 Q1] C) A HTTP method can be _idempotent_
 
     - > What is meant by this **italicized** term? [1]
-    >
-      > Effect of repeating a call is equivalent to making a single call; if not can has side-effects
-
+  
+  
+    Effect of repeating a call is equivalent to making a single call; if not can has side-effects
+  
   - > Give an example of an idempotent ReST method. [1]
+  
   >
     > PUT
   
@@ -1097,6 +1099,7 @@ Cloud computing is a model for enabling ubiquitous (无处不在的), convenient
             - **a method to ensure availability** (every node in a cluster always accepts requests) and
             - **some sort of recovery from a partition** by reconciling the single databases with revisions (data are not replaced, they are just given a new revision number)
         - In MVCC, **concurrent updates are possible without distributed locks** (in optimistic locking only the local copy of the object is locked), since the updates will have different revision numbers; 
+            **某种类型的分区恢复**通过协调单个数据库与修订(数据不会被替换，他们只是给了一个新的修订号)
             - the transaction that completes last will get a higher revision number, hence will be considered as the current value.
         - In case of cluster partition and concurrent requests with the same revision number going to two partitioned nodes, both are accepted, but once the partition is solved, there would be a conflict. 
             - Conflict that would have to be solved somehow (CouchDB returns a list of all current conflicts, which are then left to be solved by the application).
@@ -1440,7 +1443,7 @@ Your answer should cover challenges with data distribution, traditional database
   - Rolling update
 - Tools
   - Kubernetes and Hosted Kubernetes
-  - Docker SWARM / Docker Compose
+  - Docker SWARM
   - OpenShift
 
 ### Docker SWARM
@@ -1500,16 +1503,16 @@ Your answer should cover challenges with data distribution, traditional database
     - Container is a process that behaves like an independent machine, it is a runtime instance of a docker image.
     - Image is a blueprint for a container.
 
-- > [sample Q6] B)  A researcher wants to attach to an already running Postgresql container and list all of the databases it contains. The command to list all of the database is 
+- > [sample Q6] B)  A researcher wants to attach to an **already running** Postgresql container and list all of the databases it contains. The command to list all of the database is 
     psql -U postgres -c “\l”. 
-    The name of the container is postgres and it exposes the port 5432 to the host. Is the following command correct? If not, please correct it:                     
+    The name of the container is **postgres** and it exposes the port 5432 to the host. Is the following command correct? If not, please correct it:                     
   docker exec -p 5432 --name postgres sh -c psql -U postgres -c “\l”             [3]    
-  
+
     Answer:
-  
+
+    - docker run postgres -p 5432 --name postgres
     - docker exec -t postgres sh -c "psql -U postgres -c \"\I\""
-    - docker exec -t postgres psql -U postgres -c "\I"
-  
+
 - > [sample Q6] C) The following **Docker compose file** starts two Docker containers that are used to run a WordPress website. What are the **equivalent Docker commands** that could be used to start these two containers individually?   [4]
   ```
   version: '3.6'
@@ -2245,19 +2248,18 @@ Terminology
   - The general configuration of the job
       - The **deployment is set in the Spark Context**, which is also used to set the configuration of a Spark application, including the cluster it connects to in cluster mode.
       -  For instance, this hard-coded Spark Context directs the execution to run locally, using 2 threads (usually, it is set to the number of cores): 
-              
-              - ```java
-                  sc = new SparkContext(new SparkConf().setMaster("local[2]"));
-                  ```
-        - This other hard-coded line directs the execution to a remote cluster:
-              
-              - ```java
-                  sc = new SparkContext(new SparkConf().
-                                        setMaster("spark://192.168.1.12:6066"));
-                  ```
+         ```java
+          sc = new SparkContext(new SparkConf().setMaster("local[2]"));
+          ```
+      - This other hard-coded line directs the execution to a remote cluster
+        ```java
+        sc = new SparkContext(new SparkConf().
+                                  setMaster("spark://192.168.1.12:6066"));
+        ```
+        
       - Spark Contexts can also be used to **tune the execution** by setting the memory, or the number of executors to use.  
       
-    - These different components can be arranged in **<u>three</u>** different deployment modes (below) across the cluster
+      - These different components can be arranged in **<u>three</u>** different deployment modes (below) across the cluster
     
     - Spark Runtime Mode
       
@@ -2295,7 +2297,7 @@ Terminology
         - created out of data stored elsewhere (HDFS, a local text file, a DBMS)
         - created out of collections too, using the parallelize function
     - RDD variable
-        
+      
         - are just placeholders until the action is encountered. Remember that the Spark application is not just the driver program, but all the RDD processing that takes place on the cluster
             (只是占位符，直到遇到行动。请记住，Spark应用程序不仅是驱动程序，而且是发生在集群上的所有RDD处理)
     - RDD Transformations
@@ -2313,7 +2315,7 @@ Terminology
 
 ### past exam
 - > [2014 Q5] B) Apache Hadoop is a software framework that enables processing of large data sets.
-    
+  
     - > a. Explain **the role of Hadoop Distributed File System (HDFS)** in supporting the Apache Hadoop framework. [2]
       
       - HDFS has blocks existing on nodes and there is a name node which contains the meta data about which block is running.
@@ -2322,7 +2324,7 @@ Terminology
   
         - HDFS has blocks existing on nodes and there is a name node which contains the meta data about which block is running and if one of the nodes fails then the data is still available somewhere else in the system load balanced. And it will try to rebalnce itself.
 - > [sample Q4] D) Describe the three different Apache **SPARK runtime modes**:    
-    
+  
     - > Local [1]
       
       - The driver program and the executors are all hosted on the same computer (no need for a cluster manager).
@@ -2393,7 +2395,7 @@ Terminology
         - The multi-faceted challenges of ”life beyond the organizational firewall”?
 3. Technical Challenges of Security
     - All are important but some applications/domains have more emphasis on concepts than others
-        
+      
         - Key is to make all of this **simple/transparent to users**!
         
         <img src="./docs/25.jpg" style="zoom: 67%;" />
@@ -2425,7 +2427,7 @@ Terminology
         - Scale of data
             - Securely deleting a few Mb easy enough
     - Liability  (责任)
-        
+      
         - Using contract to state the risk when put data here (使用契约来说明放置数据时的风险)
     - Licensing
         - Challenges with the Cloud delivery model (Where can jobs realistically run)
@@ -2449,7 +2451,7 @@ Terminology
             - enacting 
         - security-oriented workflows
     - The Ever Changing Technical/Legal Landscape 
-        
+      
         - requirements and guarantee on cloud using
 
 - Authentication
@@ -2543,7 +2545,7 @@ Terminology
                 - Public Key Certificates issued by trusted "Certification Authority"
         - Certification Authority
             - What it it?
-                
+              
                 - <u>**Central component of PKI is Certification Authority (CA)**</u>
             - CA has numerous responsibilities 
                 - <u>**Policy and procedures**</u>
@@ -2582,7 +2584,7 @@ Terminology
         |Identity Based Access Control|IBAC|
         |Attribute Based Access Control|ABAC|
     - Many Technologies
-        
+      
         - XACML, PERMIS, CAS, VOMS, AKENTI, VOMS, SAML, WS-*
     - typical model: RBAC
         - Basic idea is to define:
@@ -2598,7 +2600,7 @@ Terminology
                 - Can user with VO role X invoke service Y on resource Z?
             
         - Policy itself can be represented in many ways, 
-            
+          
             - e.g. XML document, SAML, XACML, …
             
             - Standards on when/where these used (PEP) and enforced (PDP)
@@ -2626,7 +2628,7 @@ Terminology
     - Should all be transparent to end users!
     - Reflect needs and understanding of organisations involved!
     - Identity Provider
-        
+      
         - The place you got authenticated
 
 ### past exam
@@ -2654,7 +2656,7 @@ Terminology
     - The place you got authenticated to prove your identity
      - e.g.: When you want to login the AURIN, you are redirected to unimelb authentication where you need to provide your identity
 - > [2013 Q6] B) Discuss the **challenges** in supporting **fine-grained security** in Cloud environments. You may refer to the **importance** and/or role of (some of) the terms in part A) of this question. [5]
-    
+  
     - how cloud do authentication
         - e.g.: fine-grained access control which is authorization, auditing. There is still problem which is confidentiality. The fact that you put your data on the given server and you have no idea where the server is
   
@@ -2709,7 +2711,7 @@ Terminology
       - Cloud providers, especially public ones want to lock you in. 
       - They have different business models, different costs
 - > [2014 Q6] A) The Internet2 Shibboleth technology as currently supported by the Australia Access Federation provides _**federated authentication**_ and **_single sign-on_**.
-    
+  
     - > a. Explain what is meant by the italicized terms [2].
       
       - federated authentication
